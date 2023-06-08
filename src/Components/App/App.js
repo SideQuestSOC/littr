@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { supabaseSignUp } from '../../Models/queries';
 
 const App = () => {
+  // This state variable 'formData' is used to store form data for the signup.
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -11,6 +12,8 @@ const App = () => {
     password: '',
   });
 
+  // This function is used to handle changes in the form inputs.
+  // It is triggered when an input value is changed.
   function handleChange(event) {
     setFormData((prevFormData) => {
       return {
@@ -20,8 +23,14 @@ const App = () => {
     });
   }
 
+  // This function is used to handle the form submission.
+  // It is triggered when the form is submitted.
   function handleSubmit(e) {
+    // The 'e.preventDefault()' prevents the default form submission behavior.
+    // It ensures that the form does not cause a page reload.
     e.preventDefault();
+    // supabaseSignUp() is called, passing the 'formData' as a parameter.
+    // This function contains the logic and DB query for creating a new user.
     supabaseSignUp(formData);
   }
 
