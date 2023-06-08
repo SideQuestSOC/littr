@@ -9,7 +9,7 @@ const App = () => {
     password: '',
   });
 
-  console.log(formData);
+  // console.log(formData);
 
   function handleChange(event) {
     setFormData((prevFormData) => {
@@ -22,40 +22,38 @@ const App = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    try {
-      const { user, error } = await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
-      });
-
-      if (error) {
-        console.error('Error signing up:', error);
-        return;
+    await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+      options: {
+        data: {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+        }
       }
+    })
+    .then((response) => {
+      let user_id = response.data.user.id;
+      let first_name = response.data.user.user_metadata.first_name;
+      let last_name = response.data.user.user_metadata.last_name;
+      console.log(user_id, first_name, last_name);
 
-      const userId = user.id;
+      insertPublicUser(user_id, first_name, last_name);
 
-      const { data, error: insertError } = await supabase
-        .from('public_users')
-        .insert([
-          {
-            id: userId,
-            first_name: formData.firstName,
-            last_name: formData.lastName,
-          },
-        ]);
-
-      if (insertError) {
-        console.error('Error inserting user:', insertError);
-        return;
-      }
-
-      console.log('User created and data inserted successfully:', data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    })
+    .catch((err) => { alert(err) });
   }
+
+
+  async function insertPublicUser(user_id, first_name, last_name) {
+    await supabase.from('users')
+              .insert({
+                id: user_id,
+                first_name: first_name,
+                last_name: last_name,
+              })
+  }
+
 
   return (
     <div>
