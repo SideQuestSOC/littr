@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { supabase } from '../../Models/client';
 
+// import queries
+import { insertPublicUser } from '../../Models/queries';
+
 const App = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -16,15 +19,6 @@ const App = () => {
         [event.target.name]: event.target.value,
       };
     });
-  }
-
-  async function insertPublicUser(user_id, first_name, last_name) {
-    await supabase.from('users')
-              .insert({
-                id: user_id,
-                first_name: first_name,
-                last_name: last_name,
-              })
   }
 
   async function handleSubmit(e) {
