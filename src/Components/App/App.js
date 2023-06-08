@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { supabase } from './Client';
+import { supabase } from '../../Models/client';
 
 const App = () => {
   const [formData, setFormData] = useState({
@@ -9,8 +9,6 @@ const App = () => {
     password: '',
   });
 
-  // console.log(formData);
-
   function handleChange(event) {
     setFormData((prevFormData) => {
       return {
@@ -18,6 +16,15 @@ const App = () => {
         [event.target.name]: event.target.value,
       };
     });
+  }
+
+  async function insertPublicUser(user_id, first_name, last_name) {
+    await supabase.from('users')
+              .insert({
+                id: user_id,
+                first_name: first_name,
+                last_name: last_name,
+              })
   }
 
   async function handleSubmit(e) {
@@ -36,24 +43,11 @@ const App = () => {
       let user_id = response.data.user.id;
       let first_name = response.data.user.user_metadata.first_name;
       let last_name = response.data.user.user_metadata.last_name;
-      console.log(user_id, first_name, last_name);
 
       insertPublicUser(user_id, first_name, last_name);
-
     })
     .catch((err) => { alert(err) });
   }
-
-
-  async function insertPublicUser(user_id, first_name, last_name) {
-    await supabase.from('users')
-              .insert({
-                id: user_id,
-                first_name: first_name,
-                last_name: last_name,
-              })
-  }
-
 
   return (
     <div>
