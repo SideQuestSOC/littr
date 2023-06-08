@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { supabase } from '../../Models/client';
 
 // import queries
-import { insertPublicUser } from '../../Models/queries';
+import { supabaseSignUp } from '../../Models/queries';
 
 const App = () => {
   const [formData, setFormData] = useState({
@@ -21,26 +20,9 @@ const App = () => {
     });
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    await supabase.auth.signUp({
-      email: formData.email,
-      password: formData.password,
-      options: {
-        data: {
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-        }
-      }
-    })
-    .then((response) => {
-      let user_id = response.data.user.id;
-      let first_name = response.data.user.user_metadata.first_name;
-      let last_name = response.data.user.user_metadata.last_name;
-
-      insertPublicUser(user_id, first_name, last_name);
-    })
-    .catch((err) => { alert(err) });
+    supabaseSignUp(formData);
   }
 
   return (
