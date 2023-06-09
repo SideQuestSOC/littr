@@ -3,7 +3,7 @@ import './SignUp.css';
 import { useState } from 'react';
 
 // import queries
-import { supabaseSignUp } from '../../Models/queries';
+import { supabaseSignUp } from '../../../../Models/queries';
 
 function SignUp() {
       // This state variable 'formData' is used to store form data for the signup.
