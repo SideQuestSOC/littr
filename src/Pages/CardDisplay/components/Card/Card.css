@@ -1,0 +1,71 @@
+.card-main {
+    width: 90vw;
+    max-width: 450px;
+    border-radius: 10px;
+    border: "none";
+    box-shadow: "2px 2px 4px 0px rgba(0, 0, 0, 0.55)";
+    margin-bottom: "10px";
+    margin-top: "10px";
+    padding-bottom: 0;
+}
+
+.card-eyes{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.card-header{
+    background-color:  #D9D9D9;
+    border-Radius: 5px;
+    margin: 0 25px 10px;
+    padding: 10px;
+    box-Shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.35);
+}
+
+.card-inner{
+    background-color: #D9D9D9;
+    height: 100%;
+    border-radius: 5px;
+    border: none;
+}
+
+.card-body{
+    padding: 10px;
+    margin-bottom: 0px;
+    inline-size: 90vw; 
+    max-inline-size: 450px;
+}
+
+/* all this stuff below didn't work */
+
+/* .details-button{
+    background-color: #2F3E46;
+    color: #D9D9D9;
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.55);
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    width: 90px;
+    height: 30px;
+    align-content: left;
+    margin-right: auto
+}
+
+.details-button:hover{
+    background-color: #D9D9D9;
+    color: #2F3E46;
+    box-shadow: 2px 2px 1px 0px rgba(0, 0, 0, 0.55);
+    transition: 0.2s;
+}
+
+.details-button:active{
+    background-color: #D9D9D9;
+    color: #2F3E46;
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.55);
+    transition: 0.1s;
+}
+
+.thumb-counter{
+    margin-left: 10px;
+} */
