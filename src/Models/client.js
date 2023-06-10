@@ -27,6 +27,6 @@ export async function SignInUser(email, password) {
     } catch (error) {
       // Handle any other errors that may occur
       console.error('Error during sign-in:', error);
-      
+      return false;
     }
   }

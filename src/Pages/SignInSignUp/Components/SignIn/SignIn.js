@@ -1,13 +1,19 @@
 import '../../SignInSignUp.css';
-
+import { useState } from 'react'
 // useNavigate() is used to redirect to a different page
 import { useNavigate } from 'react-router-dom';
-
+// import function from client.js
 import { SignInUser } from '../../../../Models/client';
+// import components
+import SignInFailure from '../SignInFailure/SignInFailure';
+
 
 function SignIn({ formData, handleChange }) {
     // initialize the navigate object using the useNavigate 'hook'
     const navigate = useNavigate();
+
+    // useState to track if SignIn error message should be displayed
+    const [ signInError, setSignInError ] = useState(false);
 
     // This function is used to handle the form submission.
     // It is triggered when the form is submitted.
@@ -27,7 +33,8 @@ function SignIn({ formData, handleChange }) {
         }
         // if (signInSuccessful === false) display error message
         else {
-            // TODO: set up variable to show or hide sign in feedback message on sign in failure
+            // show sign in error component
+            setSignInError(true);
         }
         
     }
@@ -35,7 +42,9 @@ function SignIn({ formData, handleChange }) {
     return (
         <div className='sign-form'>
             <h1>Sign In</h1>
-            {/* TODO: Add sign in feedback message component */}
+            {/* Check if signInError has been changed to true and display error if so */}
+            {signInError && (<SignInFailure />)}
+            
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
                 <input
