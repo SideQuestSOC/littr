@@ -1,30 +1,9 @@
 import './SignUp.css';
 
-import { useState } from 'react';
-
 // import queries
 import { supabaseSignUp } from '../../../../Models/queries';
 
-function SignUp() {
-      // This state variable 'formData' is used to store form data for the signup.
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  });
-
-  // This function is used to handle changes in the form inputs.
-  // It is triggered when an input value is changed.
-  function handleChange(event) {
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [event.target.name]: event.target.value,
-      };
-    });
-  }
-
+function SignUp({ formData, handleChange }) {
   // This function is used to handle the form submission.
   // It is triggered when the form is submitted.
   function handleSubmit(e) {
@@ -38,6 +17,7 @@ function SignUp() {
 
   return (
     <div id='sign-up-form'>
+    <p>Sign Up</p>
       <form onSubmit={handleSubmit}>
         <input
           placeholder='firstName'
