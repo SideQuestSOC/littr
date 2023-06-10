@@ -20,12 +20,12 @@ function SignIn({ formData, handleChange }) {
         <div className='sign-form'>
             <h1>Sign In</h1>
             <form onSubmit={handleSubmit}>
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <input
                     name='email'
                     onChange={handleChange}
                 />
-                <label for="password">Password</label>
+                <label fhtmlForor="password">Password</label>
                 <input
                     name='password'
                     type='password'

@@ -19,22 +19,22 @@ function SignUp({ formData, handleChange }) {
     <div className='sign-form'>
     <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        <label for="firstName">First Name</label>
+        <label htmlFor="firstName">First Name</label>
         <input
           name='firstName'
           onChange={handleChange}
         />
-        <label for="lastName">Last Name</label>
+        <label htmlFor="lastName">Last Name</label>
         <input
           name='lastName'
           onChange={handleChange}
         />
-        <label for="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           name='email'
           onChange={handleChange}
         />
-        <label for="password">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           name='password'
           type='password'
