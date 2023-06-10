@@ -34,6 +34,10 @@ export async function supabaseSignUp(formData) {
         let last_name = response.data.user.user_metadata.last_name;
         // insertPublicUser() is called to insert the signed-up user into the public.users table.
         insertPublicUser(user_id, first_name, last_name);
+        return true;
     })
-    .catch((err) => { alert(err); });
+    .catch((err) => { 
+        console.log(err); 
+        return false;
+    });
 }

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 // import function from client.js
 import { SignInUser } from '../../../../Models/client';
 // import components
-import SignInFailure from '../SignInFailure/SignInFailure';
+import SignMessage from '../../Components/SignMessage/SignMessage';
 
 
 function SignIn({ formData, handleChange }) {
@@ -33,7 +33,7 @@ function SignIn({ formData, handleChange }) {
         }
         // if (signInSuccessful === false) display error message
         else {
-            // show sign in error component
+            // show SignMessage component
             setSignInError(true);
         }
         
@@ -43,7 +43,7 @@ function SignIn({ formData, handleChange }) {
         <div className='sign-form'>
             <h1>Sign In</h1>
             {/* Check if signInError has been changed to true and display error if so */}
-            {signInError && (<SignInFailure />)}
+            {signInError && (<SignMessage message="Failed to sign in."/>)}
             
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
