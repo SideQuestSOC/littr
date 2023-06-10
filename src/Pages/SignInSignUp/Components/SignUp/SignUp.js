@@ -11,6 +11,8 @@ function SignUp({ formData, handleChange }) {
     // It ensures that the form does not cause a page reload.
     e.preventDefault();
 
+    // TODO: Handle scenario where user is already signed up and tries to sign up again
+
     // Check if Sign Up form has been filled out
     if (formData.firstName !== "" && formData.lastName !== "" && formData.email !== "" && formData.password !== "") {
       // supabaseSignUp() is called, passing the 'formData' as a parameter.
