@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from 'react';
 
 // import components
@@ -43,6 +43,17 @@ function SignInSignUp() {
 
     return (
         <div id="sign-up-in-outer-container">
+            <div id="sign-up-in-close">
+                <button><Link to="/src/pages/carddisplay">X</Link></button>
+            </div>
+            <div id="welcome-message-container">
+                <div id="welcome-title">
+                    <h1>WELCOME</h1>
+                </div>
+                <div id="welcome-subheading">
+                    <h2>Connect, Clean, Transform Spaces</h2>
+                </div>
+            </div>
             <div id="sign-up-in-container">
                 <div id="sign-up-in-button-container">
                     <button onClick={handleSignUpClick}>Sign Up</button>

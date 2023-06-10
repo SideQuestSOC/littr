@@ -5,6 +5,51 @@
     background-image: url("../../../public/Assets/placeholderimage.png");
 }
 
+#sign-up-in-close {
+    padding: 5px;
+    /* Flexbox properties */
+    display: flex;
+    justify-content: flex-end;
+}
+
+#sign-up-in-close button {
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+    background-color: #2F3E46;
+    color: white;
+    border: none;
+}
+
+#sign-up-in-close button a {
+    /* Remove default link styling */
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+#welcome-message-container {
+    padding-top: 6vh;
+}
+
+#welcome-message-container, #welcome-title {
+    /* Flexbox properties */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+#welcome-subheading {
+    width: 240px;
+    padding-left: 40px;
+    text-decoration: underline;
+    text-decoration-color: #6AAF88;
+    text-decoration-thickness: 0.4em;
+    text-decoration-skip-ink: none;
+}
+
 #sign-up-in-container {
     height: fit-content;
     width: 100vw;
@@ -43,4 +88,13 @@
 
 #sign-up-in-button-container button, .sign-form input, .sign-form button {
     border-radius: 10px;
+    border: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+input {
+    width: 80vw;
 }
