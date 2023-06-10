@@ -1,3 +1,5 @@
+import '../../SignInSignUp.css';
+
 import { SignInUser } from '../../../../Models/client';
 
 function SignIn({ formData, handleChange }) {
@@ -10,25 +12,28 @@ function SignIn({ formData, handleChange }) {
 
         console.log(formData);
 
+        //  Call SignInUser() from Models/client.js and pass in user inputted email and password
         SignInUser(formData.email, formData.password);
     }
 
     return (
-        <div id='sign-in-form'>
-            <p>Sign In</p>
+        <div className='sign-form'>
+            <h1>Sign In</h1>
             <form onSubmit={handleSubmit}>
+                <label for="email">Email</label>
                 <input
-                    placeholder='email'
                     name='email'
                     onChange={handleChange}
                 />
+                <label for="password">Password</label>
                 <input
-                    placeholder='password'
                     name='password'
                     type='password'
                     onChange={handleChange}
                 />
-                <button type='submit'>Submit</button>
+                <div>
+                    <button type='submit'>Submit</button>
+                </div>
             </form>
         </div>
     );

@@ -1,4 +1,4 @@
-import './SignUp.css';
+import '../../SignInSignUp.css';
 
 // import queries
 import { supabaseSignUp } from '../../../../Models/queries';
@@ -16,32 +16,33 @@ function SignUp({ formData, handleChange }) {
   }
 
   return (
-    <div id='sign-up-form'>
-    <p>Sign Up</p>
+    <div className='sign-form'>
+    <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
+        <label for="firstName">First Name</label>
         <input
-          placeholder='firstName'
           name='firstName'
           onChange={handleChange}
         />
+        <label for="lastName">Last Name</label>
         <input
-          placeholder='lastName'
           name='lastName'
           onChange={handleChange}
         />
+        <label for="email">Email</label>
         <input
-          placeholder='email'
           name='email'
           onChange={handleChange}
         />
+        <label for="password">Password</label>
         <input
-          placeholder='password'
           name='password'
           type='password'
           onChange={handleChange}
         />
-
-        <button type='submit'>Submit</button>
+        <div>
+          <button type='submit'>Submit</button>
+        </div>
       </form>
     </div>
   );

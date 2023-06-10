@@ -14,6 +14,10 @@ function SignInSignUp() {
         password: '',
     });
 
+    // State variables to control the visibility of the sign up and sign in components
+    const [showSignUp, setShowSignUp] = useState(false);
+    const [showSignIn, setShowSignIn] = useState(false);
+
     // This function is used to handle changes in the form inputs.
     // It is triggered when an input value is changed.
     function handleChange(event) {
@@ -25,10 +29,36 @@ function SignInSignUp() {
         });
     }
 
-    return <>
-        <SignUp formData={formData} handleChange={handleChange}/>
-        <SignIn formData={formData} handleChange={handleChange}/>
-    </>
+    function handleSignUpClick() {
+        // Event handler for sign up button click
+        setShowSignUp(true); // Set showSignUp to true to show the sign up component
+        setShowSignIn(false); // Set showSignIn to false to hide the sign in component
+    }
+
+    function handleSignInClick() {
+        // Event handler for sign in button click
+        setShowSignUp(false); // Set showSignUp to false to hide the sign up component
+        setShowSignIn(true); // Set showSignIn to true to show the sign in component
+    }
+
+    return (
+        <div id="sign-up-in-outer-container">
+            <div id="sign-up-in-container">
+                <div id="sign-up-in-button-container">
+                    <button onClick={handleSignUpClick}>Sign Up</button>
+                    <button onClick={handleSignInClick}>Sign In</button>
+                </div>
+            
+                {showSignUp && (<SignUp formData={formData} handleChange={handleChange} /> 
+                // Show sign up component if showSignUp variable is true
+                )}
+
+                {showSignIn && (<SignIn formData={formData} handleChange={handleChange} /> 
+                // Show sign in component if showSignIn variable is true
+                )}
+            </div>
+        </div>
+    );
 }
 
 export default SignInSignUp;
