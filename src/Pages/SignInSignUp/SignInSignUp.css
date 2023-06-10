@@ -1,8 +1,9 @@
 #sign-up-in-outer-container {
     height: 100vh;
     width: 100vw;
-    /* TODO: Replace this placeholder img with landing page img asset */
-    background-image: url("../../../public/Assets/placeholderimage.png");
+    background-image: url("../../../public/Assets/signinupbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #sign-up-in-close {

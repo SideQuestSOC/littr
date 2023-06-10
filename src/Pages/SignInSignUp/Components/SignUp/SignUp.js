@@ -10,9 +10,13 @@ function SignUp({ formData, handleChange }) {
     // The 'e.preventDefault()' prevents the default form submission behavior.
     // It ensures that the form does not cause a page reload.
     e.preventDefault();
-    // supabaseSignUp() is called, passing the 'formData' as a parameter.
-    // This function contains the logic and DB query for creating a new user.
-    supabaseSignUp(formData);
+
+    // Check if Sign Up form has been filled out
+    if (formData.firstName !== "" && formData.lastName !== "" && formData.email !== "" && formData.password !== "") {
+      // supabaseSignUp() is called, passing the 'formData' as a parameter.
+      // This function contains the logic and DB query for creating a new user.
+      supabaseSignUp(formData);
+    }    
   }
 
   return (

@@ -25,7 +25,7 @@ function SignIn({ formData, handleChange }) {
                     name='email'
                     onChange={handleChange}
                 />
-                <label fhtmlForor="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input
                     name='password'
                     type='password'
