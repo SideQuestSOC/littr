@@ -1,8 +1,25 @@
-#sign-in-message {
+:root {
+    --neonBlue: #55DADB;
+    --sunburstYellow: #F5BB02;
+    --neonGreen: #6AAF88;
+    --strawberry: #FC786E;
+    --navyBlue: #2F3E46;
+}
+
+#sign-in-message-failure {
     height: fit-content;
     width: fit-content;
     border-radius: 10px;
     padding: 5px;
     margin: 5px;
-    background-color: #FC786E;
+    background-color: var(--strawberry);
+}
+
+#sign-in-message-success {
+    height: fit-content;
+    width: fit-content;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+    background-color: var(--neonGreen);
 }

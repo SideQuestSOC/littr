@@ -22,6 +22,10 @@ function SignInSignUp() {
     const [showSignUp, setShowSignUp] = useState(false);
     const [showSignIn, setShowSignIn] = useState(false);
 
+    // signUpRedirect - used where a new user successfully signs up, 
+    // it toggles hiding the sign up component and showing the sign in component
+    const [signUpRedirect, setSignUpRedirect ] = useState(false);
+
     // This function is used to handle changes in the form inputs.
     // It is triggered when an input value is changed.
     function handleChange(event) {
@@ -64,13 +68,11 @@ function SignInSignUp() {
                     <Button variant="contained" onClick={handleSignInClick}>Sign In</Button>
                 </div>
             
-                {showSignUp && (<SignUp formData={formData} handleChange={handleChange} /> 
-                // Show sign up component if showSignUp variable is true
-                )}
+                {/* Render the SignUp component only if showSignUp is true and signUpRedirect is false */}
+                {showSignUp && !signUpRedirect && (<SignUp formData={formData} handleChange={handleChange} setSignUpRedirect={setSignUpRedirect} />)}
 
-                {showSignIn && (<SignIn formData={formData} handleChange={handleChange} /> 
-                // Show sign in component if showSignIn variable is true
-                )}
+                {/* Render the SignIn component if either showSignIn is true or signUpRedirect is true (where a new user has just signed up) */}
+                {(showSignIn || signUpRedirect) && (<SignIn formData={formData} handleChange={handleChange} signUpRedirect={signUpRedirect}/>)}
             </div>
         </div>
     );

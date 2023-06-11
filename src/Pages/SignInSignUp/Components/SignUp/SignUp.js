@@ -9,7 +9,7 @@ import { supabaseSignUp } from '../../../../Models/queries';
 // import components
 import SignMessage from '../../Components/SignMessage/SignMessage';
 
-function SignUp({ formData, handleChange }) {
+function SignUp({ formData, handleChange, setSignUpRedirect }) {
   // useStates to track if SignIn error messages should be displayed
   const [ signUpError, setSignUpError ] = useState(false);
   const [ signUpSuccess, setSignUpSuccess ] = useState(true);
@@ -27,14 +27,14 @@ function SignUp({ formData, handleChange }) {
       // This function contains the logic and DB query for creating a new user.
       // also sets signUpSuccess variable to true if new user could not be created.
       setSignUpSuccess(await supabaseSignUp(formData));
+      // toggle SignUpRedirect to true to switch to the SignUp component with SignUp success message
+      setSignUpRedirect(true);
     }
     // show SignMessage component
     else {
       setSignUpError(true);
     }
   }
-
-  // TODO: show message on sign up success and switch to sign in component
 
   return (
     <div className='sign-form'>

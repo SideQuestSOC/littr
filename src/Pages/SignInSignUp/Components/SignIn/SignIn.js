@@ -12,7 +12,7 @@ import { SignInUser } from '../../../../Models/client';
 import SignMessage from '../../Components/SignMessage/SignMessage';
 
 
-function SignIn({ formData, handleChange }) {
+function SignIn({ formData, handleChange, signUpRedirect }) {
     // initialize the navigate object using the useNavigate 'hook'
     const navigate = useNavigate();
 
@@ -48,6 +48,8 @@ function SignIn({ formData, handleChange }) {
             <h1>Sign In</h1>
             {/* Check if signInError has been changed to true and display error if so */}
             {signInError && (<SignMessage message="Failed to sign in."/>)}
+            {/* Check if signUpRedirect (new user has successfully signed up) has been changed to true and display success message if so */}
+            {signUpRedirect && (<SignMessage message="Successfully signed up. Please log in." signUpRedirect={signUpRedirect}/>)}
             
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>

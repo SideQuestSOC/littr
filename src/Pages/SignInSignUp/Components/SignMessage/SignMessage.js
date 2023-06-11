@@ -1,9 +1,9 @@
 // import css
 import './SignMessage.css';
 
-function SignMessage({ message }) {
+function SignMessage({ message, signUpRedirect }) {
     return (
-        <div id="sign-in-message">
+        <div id={signUpRedirect ? "sign-in-message-success" : "sign-in-message-failure"} >
             <h3>{message}</h3>
         </div>
     );
