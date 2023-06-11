@@ -1,6 +1,10 @@
+// import css
+import './SignInSignUp.css';
+// import react dependencies
 import { Link } from "react-router-dom";
 import { useState } from 'react';
-
+// import MaterialUI dependencies
+import { Button } from '@mui/material';
 // import components
 import SignIn from "./Components/SignIn/SignIn";
 import SignUp from "./Components/SignUp/SignUp";
@@ -44,7 +48,7 @@ function SignInSignUp() {
     return (
         <div id="sign-up-in-outer-container">
             <div id="sign-up-in-close">
-                <button><Link to="/src/pages/carddisplay">X</Link></button>
+                <Button variant="contained"><Link to="/src/pages/carddisplay">X</Link></Button>
             </div>
             <div id="welcome-message-container">
                 <div id="welcome-title">
@@ -56,8 +60,8 @@ function SignInSignUp() {
             </div>
             <div id="sign-up-in-container">
                 <div id="sign-up-in-button-container">
-                    <button onClick={handleSignUpClick}>Sign Up</button>
-                    <button onClick={handleSignInClick}>Sign In</button>
+                    <Button variant="contained" onClick={handleSignUpClick}>Sign Up</Button>
+                    <Button variant="contained" onClick={handleSignInClick}>Sign In</Button>
                 </div>
             
                 {showSignUp && (<SignUp formData={formData} handleChange={handleChange} /> 

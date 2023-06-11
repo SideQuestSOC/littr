@@ -1,12 +1,15 @@
+// import css
 import '../../SignInSignUp.css';
+// import react dependencies
 import { useState } from 'react'
+// import MaterialUI dependencies
+import { Button } from '@mui/material';
 // import queries
 import { supabaseSignUp } from '../../../../Models/queries';
 // import components
 import SignMessage from '../../Components/SignMessage/SignMessage';
 
 function SignUp({ formData, handleChange }) {
-
   // useStates to track if SignIn error messages should be displayed
   const [ signUpError, setSignUpError ] = useState(false);
   const [ signUpFailure, setsignUpFailure ] = useState(false);
@@ -30,6 +33,8 @@ function SignUp({ formData, handleChange }) {
       setSignUpError(true);
     }
   }
+
+  // TODO: show message on sign up success and switch to sign in component
 
   return (
     <div className='sign-form'>
@@ -62,8 +67,8 @@ function SignUp({ formData, handleChange }) {
           type='password'
           onChange={handleChange}
         />
-        <div>
-          <button type='submit'>Submit</button>
+        <div className="submit-button">
+          <Button variant="contained" type='submit'>Submit</Button>
         </div>
       </form>
     </div>

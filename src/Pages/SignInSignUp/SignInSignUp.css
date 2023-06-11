@@ -1,3 +1,11 @@
+:root {
+    --neonBlue: #55DADB;
+    --sunburstYellow: #F5BB02;
+    --neonGreen: #6AAF88;
+    --strawberry: #FC786E;
+    --navyBlue: #2F3E46;
+}
+
 #sign-up-in-outer-container {
     height: 100vh;
     width: 100vw;
@@ -16,8 +24,10 @@
 #sign-up-in-close button {
     height: 30px;
     width: 30px;
+    /* min-width: 0 needed to override MIUI default min-width */
+    min-width: 0;
     border-radius: 20px;
-    background-color: #2F3E46;
+    background-color: var(--navyBlue);
     color: white;
     border: none;
 }
@@ -46,7 +56,7 @@
     width: 240px;
     padding-left: 45px;
     text-decoration: underline;
-    text-decoration-color: #6AAF88;
+    text-decoration-color: var(--neonGreen);
     text-decoration-thickness: 0.4em;
     text-decoration-skip-ink: none;
 }
@@ -55,7 +65,7 @@
     height: fit-content;
     width: 100vw;
     border-radius: 10px 10px 0 0;
-    background-color: #2F3E46;
+    background-color: var(--navyBlue);
     padding: 5px;
 
     /* Move container to the bottom of the screen on mobile */
@@ -90,6 +100,10 @@
 #sign-up-in-button-container button, .sign-form input, .sign-form button {
     border-radius: 10px;
     border: none;
+}
+
+#sign-up-in-button-container button, .submit-button button {
+    background-color: var(--neonGreen);
 }
 
 button {

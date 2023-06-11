@@ -1,7 +1,11 @@
+// import css
 import '../../SignInSignUp.css';
+// import react dependencies
 import { useState } from 'react'
 // useNavigate() is used to redirect to a different page
 import { useNavigate } from 'react-router-dom';
+// import MaterialUI dependencies
+import { Button } from '@mui/material';
 // import function from client.js
 import { SignInUser } from '../../../../Models/client';
 // import components
@@ -57,8 +61,8 @@ function SignIn({ formData, handleChange }) {
                     type='password'
                     onChange={handleChange}
                 />
-                <div>
-                    <button type='submit'>Submit</button>
+                <div className="submit-button">
+                    <Button variant="contained" type='submit'>Submit</Button>
                 </div>
             </form>
         </div>
