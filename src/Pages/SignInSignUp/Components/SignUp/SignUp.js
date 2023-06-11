@@ -12,11 +12,11 @@ import SignMessage from '../../Components/SignMessage/SignMessage';
 function SignUp({ formData, handleChange }) {
   // useStates to track if SignIn error messages should be displayed
   const [ signUpError, setSignUpError ] = useState(false);
-  const [ signUpFailure, setsignUpFailure ] = useState(false);
+  const [ signUpSuccess, setSignUpSuccess ] = useState(true);
 
   // This function is used to handle the form submission.
   // It is triggered when the form is submitted.
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     // The 'e.preventDefault()' prevents the default form submission behavior.
     // It ensures that the form does not cause a page reload.
     e.preventDefault();
@@ -25,8 +25,8 @@ function SignUp({ formData, handleChange }) {
     if (formData.firstName !== "" && formData.lastName !== "" && formData.email !== "" && formData.password !== "") {
       // supabaseSignUp() is called, passing the 'formData' as a parameter.
       // This function contains the logic and DB query for creating a new user.
-      // also sets signUpFailure variable to true if new user could not be created.
-      setsignUpFailure(supabaseSignUp(formData));
+      // also sets signUpSuccess variable to true if new user could not be created.
+      setSignUpSuccess(await supabaseSignUp(formData));
     }
     // show SignMessage component
     else {
@@ -42,8 +42,8 @@ function SignUp({ formData, handleChange }) {
 
       {/* Check if signInError has been changed to true and display error if so */}
       {signUpError && (<SignMessage message="Please complete all form fields."/>)}
-      {/* Check if signUpFailure has been changed to true and display error if so */}
-      {signUpFailure && (<SignMessage message="Failed to sign up."/>)}
+      {/* Check if signUpSuccess has been changed to true and display error if so */}
+      {!signUpSuccess && (<SignMessage message="Failed to sign up."/>)}
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="firstName">First Name</label>
