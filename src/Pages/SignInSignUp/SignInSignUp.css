@@ -24,7 +24,7 @@
 #sign-up-in-close button {
     height: 30px;
     width: 30px;
-    /* min-width: 0 needed to override MIUI default min-width */
+    /* min-width: 0 needed to override MUI default min-width */
     min-width: 0;
     border-radius: 20px;
     background-color: var(--navyBlue);
@@ -103,6 +103,16 @@
 }
 
 #sign-up-in-button-container button, .submit-button button {
+    background-color: var(--neonGreen);
+}
+
+/* Override default MUI button colours - stops submit button turning blue after click */
+#sign-up-in-button-container button:active,
+.submit-button button:active,
+#sign-up-in-button-container button:focus,
+.submit-button button:focus,
+#sign-up-in-button-container button:hover,
+.submit-button button:hover {
     background-color: var(--neonGreen);
 }
 

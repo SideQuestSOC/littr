@@ -68,7 +68,7 @@ function SignUp({ formData, handleChange }) {
           onChange={handleChange}
         />
         <div className="submit-button">
-          <Button variant="contained" type='submit'>Submit</Button>
+          <Button variant="contained" type='submit' onClick={() => {setSignUpError(false)}}>Submit</Button>
         </div>
       </form>
     </div>
