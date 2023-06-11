@@ -20,12 +20,12 @@ export default function Card4(props) {
   return (
     <div
       style={{
-        width: "400px",
+        width: 350,
         backgroundColor: props.color,
-        borderRadius: "10px",
+        borderRadius: 10,
         border: "none",
         boxShadow: "2px 2px 4px 0px rgba(0, 0, 0, 0.55)",
-        margin: "30px",
+        margin: 10,
         paddingBottom: 0,
         display: "flex",
         justifyContent: "center",
@@ -34,8 +34,8 @@ export default function Card4(props) {
       <List component="nav" aria-labelledby="nested-list-subheader">
         <h3
           style={{
-            marginTop: "0px",
-            marginBottom: "0px",
+            marginTop: 0,
+            marginBottom: 0,
             display: "flex",
             justifyContent: "center",
           }}
@@ -45,10 +45,11 @@ export default function Card4(props) {
         <h5
           style={{
             backgroundColor: "#D9D9D9",
-            borderRadius: "5px",
-            margin: "5px",
-            padding: "5px",
-            width: "350px",
+            borderRadius: 5,
+            marginTop: 0,
+            marginBottom: 0,
+            padding: 5,
+            width: 300,
             boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.35)",
             justifyContent: "center",
             display: "flex",
@@ -184,7 +185,7 @@ export default function Card4(props) {
             disablePadding
             sx={{
               bgcolor: "#D9D9D9",
-              width: 400,
+              width: 350,
               borderRadius: "5px",
               border: "none",
               fontSize: "12px",
@@ -195,9 +196,11 @@ export default function Card4(props) {
             <Typography
               sx={{
                 fontSize: "12px",
-                width: "400px",
+                width: 350,
+                height: "auto",
                 display: "flex",
                 justifyContent: "center",
+                wordWrap: "break-word",
               }}
             >
               {props.body}
