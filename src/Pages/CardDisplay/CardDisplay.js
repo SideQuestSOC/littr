@@ -2,7 +2,7 @@
 import Card from "./components/Card/Card.js";
 
 function CardDisplay() {
-  return <Card heading="Yeah okay i'll pick up some trash" color="red" body="test this please" />;
+  return <Card header="I need someone to clean up this code" color="#FC786E" body="It's honestly disgusting" />;
 }
 
 export default CardDisplay;
