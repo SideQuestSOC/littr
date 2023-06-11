@@ -14,6 +14,7 @@ function SignUp({ formData, handleChange, setSignUpRedirect }) {
   const [ signUpError, setSignUpError ] = useState(false);
   const [ signUpSuccess, setSignUpSuccess ] = useState(true);
 
+
   // This function is used to handle the form submission.
   // It is triggered when the form is submitted.
   async function handleSubmit(e) {
@@ -27,10 +28,7 @@ function SignUp({ formData, handleChange, setSignUpRedirect }) {
       // This function contains the logic and DB query for creating a new user.
       // also sets signUpSuccess variable to true if new user could not be created.
       setSignUpSuccess(await supabaseSignUp(formData));
-      if(!signUpSuccess) {
-        // toggle SignUpRedirect to true to switch to the SignUp component with SignUp success message
-        setSignUpRedirect(true);
-      }
+      setSignUpRedirect(true);
     }
     // show SignMessage component
     else {
