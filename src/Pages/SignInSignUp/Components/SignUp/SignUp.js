@@ -27,8 +27,10 @@ function SignUp({ formData, handleChange, setSignUpRedirect }) {
       // This function contains the logic and DB query for creating a new user.
       // also sets signUpSuccess variable to true if new user could not be created.
       setSignUpSuccess(await supabaseSignUp(formData));
-      // toggle SignUpRedirect to true to switch to the SignUp component with SignUp success message
-      setSignUpRedirect(true);
+      if(!signUpSuccess) {
+        // toggle SignUpRedirect to true to switch to the SignUp component with SignUp success message
+        setSignUpRedirect(true);
+      }
     }
     // show SignMessage component
     else {
