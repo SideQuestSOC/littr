@@ -7,6 +7,8 @@ import { IconButton, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
+import { createTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
@@ -18,8 +20,10 @@ export default function Card(props) {
   };
 
   //placeholder thumbs up function
+
   const handleThumbsUp = () => {
     setThumbsUp(thumbsUp + 1);
+
   };
 
   const falseReport = () => {
@@ -119,7 +123,7 @@ export default function Card(props) {
             badgeContent={thumbsUp}
             color="primary"
             sx={{
-              marginLeft: "10px",
+            /* marginLeft: "10px", */
             }}
           >
             <Button
