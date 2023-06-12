@@ -1,67 +1,79 @@
-import './SignUp.css';
-
-import { useState } from 'react';
-
+// import css
+import '../../SignInSignUp.css';
+// import react dependencies
+import { useState } from 'react'
+// import MaterialUI dependencies
+import { Button } from '@mui/material';
 // import queries
 import { supabaseSignUp } from '../../../../Models/queries';
+// import components
+import SignMessage from '../../Components/SignMessage/SignMessage';
 
-function SignUp() {
-      // This state variable 'formData' is used to store form data for the signup.
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  });
+function SignUp({ formData, handleChange, setSignUpRedirect }) {
+  // useStates to track if SignIn error messages should be displayed
+  const [ signUpError, setSignUpError ] = useState(false);
+  const [ signUpSuccess, setSignUpSuccess ] = useState(true);
 
-  // This function is used to handle changes in the form inputs.
-  // It is triggered when an input value is changed.
-  function handleChange(event) {
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [event.target.name]: event.target.value,
-      };
-    });
-  }
 
   // This function is used to handle the form submission.
   // It is triggered when the form is submitted.
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     // The 'e.preventDefault()' prevents the default form submission behavior.
     // It ensures that the form does not cause a page reload.
     e.preventDefault();
-    // supabaseSignUp() is called, passing the 'formData' as a parameter.
-    // This function contains the logic and DB query for creating a new user.
-    supabaseSignUp(formData);
+
+    // Check if Sign Up form has been filled out
+    if (formData.firstName !== "" && formData.lastName !== "" && formData.email !== "" && formData.password !== "") {
+      // supabaseSignUp() is called, passing the 'formData' as a parameter.
+      // This function contains the logic and DB query for creating a new user.
+      // also sets signUpSuccess variable to true if new user could not be created.
+      let checkSuccess = await supabaseSignUp(formData);
+      setSignUpSuccess(checkSuccess);
+      // if sign up succeeded redirect to sign in component
+      if(checkSuccess) {
+        setSignUpRedirect(true);
+      }
+    }
+    // show SignMessage component
+    else {
+      setSignUpError(true);
+    }
   }
 
   return (
-    <div id='sign-up-form'>
+    <div className='sign-form'>
+      <h1>Sign Up</h1>
+
+      {/* Check if signInError has been changed to true and display error if so */}
+      {signUpError && (<SignMessage message="Please complete all form fields."/>)}
+      {/* Check if signUpSuccess has been changed to true and display error if so */}
+      {!signUpSuccess && (<SignMessage message="Failed to sign up."/>)}
+
       <form onSubmit={handleSubmit}>
+        <label htmlFor="firstName">First Name</label>
         <input
-          placeholder='firstName'
           name='firstName'
           onChange={handleChange}
         />
+        <label htmlFor="lastName">Last Name</label>
         <input
-          placeholder='lastName'
           name='lastName'
           onChange={handleChange}
         />
+        <label htmlFor="email">Email</label>
         <input
-          placeholder='email'
           name='email'
           onChange={handleChange}
         />
+        <label htmlFor="password">Password</label>
         <input
-          placeholder='password'
           name='password'
           type='password'
           onChange={handleChange}
         />
-
-        <button type='submit'>Submit</button>
+        <div className="submit-button">
+          <Button variant="contained" type='submit' onClick={() => {setSignUpError(false)}}>Submit</Button>
+        </div>
       </form>
     </div>
   );
