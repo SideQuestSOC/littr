@@ -4,6 +4,7 @@ import Collapse from "@mui/material/Collapse";
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
+import Stack from "@mui/material/Stack";
 
 export default function Card4(props) {
   const [open, setOpen] = useState(false);
@@ -14,13 +15,13 @@ export default function Card4(props) {
     setOpen(!open);
   };
 
-  //placeholder thumbs up function 
+  //placeholder thumbs up function
   const handleThumbsUp = () => {
     setThumbsUp(thumbsUp + 1);
   };
 
   const falseReport = () => {
-    alert("You have reported this post as false");
+    alert("This post has been reported. Thank you for your feedback.");
   };
 
   return (
@@ -37,20 +38,28 @@ export default function Card4(props) {
         justifyContent: "center",
       }}
     >
-      <List component="nav" aria-labelledby="nested-list-subheader" 
-      style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", paddingBottom: 0}}>
-
-        <h3
-          style={{
-            marginTop: 0,
-            marginBottom: 0,
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
+      <List
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          paddingBottom: 0,
+        }}
+      >
+          <h3
+            style={{
+              marginTop: 0,
+              marginBottom: 0,
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
           ^^
         </h3>
-        <div style={{justifyContent: "center", display: "flex"}}>
+        <div style={{ justifyContent: "center", display: "flex" }}>
           <h5
             style={{
               backgroundColor: "#D9D9D9",
@@ -67,15 +76,11 @@ export default function Card4(props) {
             {props.header}
           </h5>
         </div>
-        <div
-          className="button-div"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "5px",
-            padding: "5px",
-          }}
+        <Stack
+          direction="row"
+          spacing={2}
+          padding={2}
+          sx={{ display: "flex", justifyContent: "space-around" }}
         >
           <Button
             onClick={handleExpand}
@@ -127,7 +132,7 @@ export default function Card4(props) {
                 height: 30,
                 minWidth: 0,
                 padding: 0,
-                marginLeft: "60px",
+                marginLeft: "30px",
                 "& .MuiButton-label": {
                   width: "100%",
                 },
@@ -150,7 +155,7 @@ export default function Card4(props) {
             </Button>
           </Badge>
           <Button
-            onClick={(falseReport)}
+            onClick={falseReport}
             variant="contained"
             sx={{
               bgcolor: "#2F3E46",
@@ -184,7 +189,7 @@ export default function Card4(props) {
           >
             !
           </Button>
-        </div>
+        </Stack>
         <Collapse
           in={open}
           timeout="auto"
@@ -212,6 +217,7 @@ export default function Card4(props) {
                 display: "flex",
                 justifyContent: "center",
                 wordBreak: "break-word",
+
               }}
             >
               {props.body}
