@@ -33,10 +33,6 @@ function SignUp({ formData, handleChange, setSignUpRedirect }) {
         setSignUpRedirect(true);
       }
     }
-    // show SignMessage component
-    else {
-      // setSignUpError(true);
-    }
   }
 
   return (
