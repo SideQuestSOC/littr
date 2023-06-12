@@ -16,7 +16,7 @@ return (
             <Route path="/src/pages/carddisplay" element={<CardDisplay />}/>
             <Route path="/src/pages/createpostform" element={<CreateCardForm />}/>
             <Route path="/src/pages/signsignup" element={<SignInSignUp />}/>
-          </Routes>
+        </Routes>
     </BrowserRouter>
 )
 };

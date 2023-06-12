@@ -14,7 +14,7 @@ export async function insertPublicUser(user_id, first_name, last_name) {
 // supabaseSignUp() - is used to sign up a user using the Supabase authentication service.
 // It takes in a formData object containing user signup data.
 export async function supabaseSignUp(formData) {
-    await supabase.auth.signUp({
+    const data = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
         // additional 'metadata' can be inserted into the auth.users table 
@@ -25,15 +25,22 @@ export async function supabaseSignUp(formData) {
                 last_name: formData.lastName,
             }
         }
-    })
-    // After the signup is successful, the 'then' block is executed.
-    .then((response) => {
-        // The 'response' parameter contains information about the signed-up user.
-        let user_id = response.data.user.id;
-        let first_name = response.data.user.user_metadata.first_name;
-        let last_name = response.data.user.user_metadata.last_name;
+    });
+
+    if(data.error)
+    {
+        console.log(data.error); 
+        // return false to toggle on error message display for user
+        return false;
+    }
+    // If no user sign up error, insert data into the public.users table
+    else
+    {
+        let user_id = data.data.user.id;
+        let first_name = data.data.user.user_metadata.first_name;
+        let last_name = data.data.user.user_metadata.last_name;
         // insertPublicUser() is called to insert the signed-up user into the public.users table.
         insertPublicUser(user_id, first_name, last_name);
-    })
-    .catch((err) => { alert(err); });
+        return true;
+    }
 }
