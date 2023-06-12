@@ -5,7 +5,6 @@ import { Button } from "@mui/material";
 
 function LandingPage() {
   return (
-
     <div id="landing-page-outer-container">
       <h1 id="title"> LITTR</h1>
       <div id="landing-page-button-container"> 
