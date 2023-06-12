@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { IconButton, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
@@ -189,7 +190,7 @@ export default function Card(props) {
               },
             }}
           >
-            !
+            <FlagOutlinedIcon />
           </Button>
         </Stack>
         <Collapse
