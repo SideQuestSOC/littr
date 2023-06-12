@@ -19,6 +19,10 @@ export default function Card4(props) {
     setThumbsUp(thumbsUp + 1);
   };
 
+  const falseReport = () => {
+    alert("You have reported this post as false");
+  };
+
   return (
     <div
       style={{
@@ -146,6 +150,7 @@ export default function Card4(props) {
             </Button>
           </Badge>
           <Button
+            onClick={(falseReport)}
             variant="contained"
             sx={{
               bgcolor: "#2F3E46",
