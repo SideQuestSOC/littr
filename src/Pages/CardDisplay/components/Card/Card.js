@@ -206,7 +206,7 @@ export default function Card4(props) {
                 height: "auto",
                 display: "flex",
                 justifyContent: "center",
-                wordWrap: "break-word",
+                wordBreak: "break-word",
               }}
             >
               {props.body}
