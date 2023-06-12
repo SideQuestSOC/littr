@@ -52,17 +52,22 @@ function SignIn({ formData, handleChange, signUpRedirect }) {
             {signUpRedirect && (<SignMessage message="Successfully signed up. Please log in." signUpRedirect={signUpRedirect}/>)}
             
             <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Email</label>
-                <input
-                    name='email'
-                    onChange={handleChange}
-                />
-                <label htmlFor="password">Password</label>
-                <input
-                    name='password'
-                    type='password'
-                    onChange={handleChange}
-                />
+            <label htmlFor="email">Email</label>
+            <input
+              name="email"
+              type="email"
+              onChange={handleChange}
+              required
+            />
+              <label htmlFor="password">Password</label>
+            <input
+              name="password"
+              type="password"
+              pattern=".{6,}"
+              title="Please enter at least 6 characters"
+              onChange={handleChange}
+              required
+            />
                 <div className="submit-button">
                     <Button variant="contained" type='submit'>Submit</Button>
                 </div>

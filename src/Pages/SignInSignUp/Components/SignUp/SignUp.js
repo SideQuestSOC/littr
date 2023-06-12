@@ -41,42 +41,52 @@ function SignUp({ formData, handleChange, setSignUpRedirect }) {
   }
 
   return (
-    <div className='sign-form'>
-      <h1>Sign Up</h1>
-
-      {/* Check if signInError has been changed to true and display error if so */}
-      {signUpError && (<SignMessage message="Please complete all form fields."/>)}
-      {/* Check if signUpSuccess has been changed to true and display error if so */}
-      {!signUpSuccess && (<SignMessage message="Failed to sign up."/>)}
-
-      <form onSubmit={handleSubmit}>
+      <div className='sign-form'>
+        <h1>Sign Up</h1>
+  
+        {/* Check if signInError has been changed to true and display error if so */}
+        {signUpError && (<SignMessage message="Please complete all form fields."/>)}
+        {/* Check if signUpSuccess has been changed to true and display error if so */}
+        {!signUpSuccess && (<SignMessage message="Failed to sign up."/>)}
+  
+        <form onSubmit={handleSubmit}>
         <label htmlFor="firstName">First Name</label>
-        <input
-          name='firstName'
-          onChange={handleChange}
-        />
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          name='lastName'
-          onChange={handleChange}
-        />
-        <label htmlFor="email">Email</label>
-        <input
-          name='email'
-          onChange={handleChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          name='password'
-          type='password'
-          onChange={handleChange}
-        />
-        <div className="submit-button">
-          <Button variant="contained" type='submit' onClick={() => {setSignUpError(false)}}>Submit</Button>
-        </div>
-      </form>
-    </div>
-  );
-}
-
+            <input
+              name="firstName"
+              onChange={handleChange}
+              required
+            />
+  
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              name="lastName"
+              onChange={handleChange}
+              required
+            />
+  
+            <label htmlFor="email">Email</label>
+            <input
+              name="email"
+              type="email"
+              onChange={handleChange}
+              required
+            />
+  
+            <label htmlFor="password">Password</label>
+            <input
+              name="password"
+              type="password"
+              pattern=".{6,}"
+              title="Please enter at least 6 characters"
+              onChange={handleChange}
+              required
+            />
+          <div className="submit-button">
+            <Button variant="contained" type='submit' onClick={() => {setSignUpError(false)}}>Submit</Button>
+          </div>
+        </form>
+      </div>
+    );
+  }
+  
 export default SignUp;
