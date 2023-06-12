@@ -49,16 +49,18 @@ export default function Card4(props) {
           paddingBottom: 0,
         }}
       >
-          <h3
-            style={{
-              marginTop: 0,
-              marginBottom: 0,
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{
+            display: "flex",
+            flexGrow: 1,
+            justifyContent: "center",
+            marginY: 0,
+          }}
+        >
           ^^
-        </h3>
+        </Typography>
         <div style={{ justifyContent: "center", display: "flex" }}>
           <h5
             style={{
@@ -132,7 +134,6 @@ export default function Card4(props) {
                 height: 30,
                 minWidth: 0,
                 padding: 0,
-                marginLeft: "30px",
                 "& .MuiButton-label": {
                   width: "100%",
                 },
@@ -168,7 +169,6 @@ export default function Card4(props) {
               height: 30,
               minWidth: 0,
               padding: 0,
-              marginLeft: "30px",
               "& .MuiButton-label": {
                 width: "100%",
               },
@@ -217,7 +217,6 @@ export default function Card4(props) {
                 display: "flex",
                 justifyContent: "center",
                 wordBreak: "break-word",
-
               }}
             >
               {props.body}
