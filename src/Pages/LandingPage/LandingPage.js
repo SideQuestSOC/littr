@@ -5,15 +5,19 @@ import { Button } from "@mui/material";
 
 function LandingPage() {
   return (
+
     <div id="landing-page-outer-container">
-      <Button variant="contained">
-        <Link to="/src/pages/carddisplay">Find a clean up</Link>
-      </Button>
-      <Button variant="contained">
-        <Link to="/src/pages/signsignup">Create a clean up</Link>
-      </Button>
+      <h1 id="title"> LITTR</h1>
+      <div id="landing-page-button-container"> 
+        <Button variant="contained">
+         <Link to="/src/pages/carddisplay">Find a clean up</Link>
+        </Button>
+        <Button variant="contained">
+         <Link to="/src/pages/signsignup">Create a clean up</Link>
+        </Button> 
+      </div>
       <div id="landing-page-banner">
-        <h1>Unite, Transform and Clean Up your community.</h1>
+        <h2>Unite, Transform and Clean Up your community.</h2>
       </div>
     </div>
   );
