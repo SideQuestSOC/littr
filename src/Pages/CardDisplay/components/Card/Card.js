@@ -7,8 +7,7 @@ import { IconButton, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
-import { createTheme } from "@mui/material/styles";
-import { styled } from "@mui/material/styles";
+
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
@@ -221,6 +220,9 @@ export default function Card(props) {
                 fontSize: "12px",
                 width: 350,
                 height: "auto",
+                marginLeft: 1.5,
+                marginRight: 1.5,
+                align: "center",
                 display: "flex",
                 justifyContent: "center",
                 wordBreak: "break-word",
