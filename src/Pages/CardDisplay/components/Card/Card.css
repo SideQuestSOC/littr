@@ -1,6 +1,14 @@
+:root {
+    --neonBlue: #55DADB;
+    --sunburstYellow: #F5BB02;
+    --neonGreen: #6AAF88;
+    --strawberry: #FC786E;
+    --navyBlue: #2F3E46;
+    --offWhite: #D9D9D9;
+}
+
 #card-outer-container {
     width: 350px;
-    /* backgroundColor: props.color, */
     border-radius: 10px;
     border: none;
     box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.55);
@@ -30,7 +38,7 @@
 }
 
 #card-title {
-    background-color: #D9D9D9;
+    background-color: var(--offWhite);
     border-radius: 5px;
     margin-top: 0;
     margin-bottom: 0;
@@ -47,8 +55,8 @@
 }
 
 #details-button {
-    background-color: #2F3E46;
-    color: #D9D9D9;
+    background-color: var(--navyBlue);
+    color: var(--offWhite);
     box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.55);
     border-radius: 5px;
     font-size: 12px;
@@ -58,23 +66,23 @@
 }
 
 #details-button:hover {
-    background-color: #D9D9D9;
-    color: #2F3E46;
+    background-color: var(--offWhite);
+    color: var(--navyBlue);
     box-shadow: 2px 2px 1px 0px rgba(0, 0, 0, 0.55);
     transition: 0.2s;
 }
 
 #details-button:active {
-    background-color: #D9D9D9;
-    color: #2F3E46;
+    background-color: var(--offWhite);
+    color: var(--navyBlue);
     transform: translate(2px, 2px);
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.55);
     transition: 0.1s;
 }
 
 #like-button {
-    background-color: #2F3E46;
-    color: #D9D9D9;
+    background-color: var(--navyBlue);
+    color: var(--offWhite);
     box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.55);
     border-radius: 5px;
     font-size: 12px;
@@ -86,23 +94,23 @@
 }
 
 #like-button:hover {
-    background-color: #D9D9D9;
-    color: #2F3E46;
+    background-color: var(--offWhite);
+    color: var(--navyBlue);
     box-shadow: 2px 2px 1px 0px rgba(0, 0, 0, 0.55);
     transition: 0.2s;
 }
 
 #like-button:active {
-    background-color: #D9D9D9;
-    color: #2F3E46;
+    background-color: var(--offWhite);
+    color: var(--navyBlue);
     transform: translate(2px, 2px);
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.55);
     transition: 0.1s;
 }
 
 #report-button {
-    background-color: #2F3E46;
-    color: #D9D9D9;
+    background-color: var(--navyBlue);
+    color: var(--offWhite);
     box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.55);
     border-radius: 5px;
     font-size: 12px;
@@ -114,15 +122,15 @@
 }
 
 #report-button:hover {
-    background-color: #D9D9D9;
-    color: #2F3E46;
+    background-color: var(--offWhite);
+    color: var(--navyBlue);
     box-shadow: 2px 2px 1px 0px rgba(0, 0, 0, 0.55);
     transition: 0.2s;
 }
 
 #report-button:active {
-    background-color: #D9D9D9;
-    color: #2F3E46;
+    background-color: var(--offWhite);
+    color: var(--navyBlue);
     transform: translate(2px, 2px);
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.55);
     transition: 0.1s;
@@ -134,7 +142,7 @@
 }
 
 #collapsed-card-container {
-    background-color: #D9D9D9;
+    background-color: var(--offWhite);
     width: 350px;
     padding: 8px;
     border-radius: 5px;
