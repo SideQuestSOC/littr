@@ -7,12 +7,14 @@ import { Typography } from "@mui/material";
 
 export default function Card4(props) {
   const [open, setOpen] = useState(false);
+  //placeholder thumbs up state
   const [thumbsUp, setThumbsUp] = useState(0);
 
   const handleExpand = () => {
     setOpen(!open);
   };
 
+  //placeholder thumbs up function 
   const handleThumbsUp = () => {
     setThumbsUp(thumbsUp + 1);
   };
@@ -31,7 +33,9 @@ export default function Card4(props) {
         justifyContent: "center",
       }}
     >
-      <List component="nav" aria-labelledby="nested-list-subheader">
+      <List component="nav" aria-labelledby="nested-list-subheader" 
+      style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", paddingBottom: 0}}>
+
         <h3
           style={{
             marginTop: 0,
@@ -42,21 +46,23 @@ export default function Card4(props) {
         >
           ^^
         </h3>
-        <h5
-          style={{
-            backgroundColor: "#D9D9D9",
-            borderRadius: 5,
-            marginTop: 0,
-            marginBottom: 0,
-            padding: 5,
-            width: 300,
-            boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.35)",
-            justifyContent: "center",
-            display: "flex",
-          }}
-        >
-          {props.header}
-        </h5>
+        <div style={{justifyContent: "center", display: "flex"}}>
+          <h5
+            style={{
+              backgroundColor: "#D9D9D9",
+              borderRadius: 5,
+              marginTop: 0,
+              marginBottom: 0,
+              padding: 5,
+              width: "300px",
+              boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.35)",
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
+            {props.header}
+          </h5>
+        </div>
         <div
           className="button-div"
           style={{
