@@ -74,19 +74,15 @@
   bottom: -3vh;
 }
 
-
 /* Desktop media queries*/
-
 @media only screen and (max-width: 992px)
 {
-
   #landing-page-button-container {
-    bottom: 12vh;
+    bottom: -10vh;
   }
+
   #landing-page-banner  {
    bottom: 4vh;
    height: 100px;
   }
-  
-
 }
