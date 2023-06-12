@@ -10,8 +10,7 @@ import { supabaseSignUp } from '../../../../Models/queries';
 import SignMessage from '../../Components/SignMessage/SignMessage';
 
 function SignUp({ formData, handleChange, setSignUpRedirect }) {
-  // useStates to track if SignIn error messages should be displayed
-  const [ signUpError, setSignUpError ] = useState(false);
+  // useState to track if SignIn error message should be displayed
   const [ signUpSuccess, setSignUpSuccess ] = useState(true);
 
 
@@ -36,7 +35,7 @@ function SignUp({ formData, handleChange, setSignUpRedirect }) {
     }
     // show SignMessage component
     else {
-      setSignUpError(true);
+      // setSignUpError(true);
     }
   }
 
@@ -44,35 +43,30 @@ function SignUp({ formData, handleChange, setSignUpRedirect }) {
       <div className='sign-form'>
         <h1>Sign Up</h1>
   
-        {/* Check if signInError has been changed to true and display error if so */}
-        {signUpError && (<SignMessage message="Please complete all form fields."/>)}
         {/* Check if signUpSuccess has been changed to true and display error if so */}
         {!signUpSuccess && (<SignMessage message="Failed to sign up."/>)}
   
         <form onSubmit={handleSubmit}>
-        <label htmlFor="firstName">First Name</label>
+          <label htmlFor="firstName">First Name</label>
             <input
               name="firstName"
               onChange={handleChange}
               required
             />
-  
-            <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="lastName">Last Name</label>
             <input
               name="lastName"
               onChange={handleChange}
               required
             />
-  
-            <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email</label>
             <input
               name="email"
               type="email"
               onChange={handleChange}
               required
             />
-  
-            <label htmlFor="password">Password</label>
+          <label htmlFor="password">Password</label>
             <input
               name="password"
               type="password"
@@ -82,7 +76,7 @@ function SignUp({ formData, handleChange, setSignUpRedirect }) {
               required
             />
           <div className="submit-button">
-            <Button variant="contained" type='submit' onClick={() => {setSignUpError(false)}}>Submit</Button>
+            <Button variant="contained" type='submit'>Submit</Button>
           </div>
         </form>
       </div>
