@@ -3,10 +3,11 @@ import List from "@mui/material/List";
 import Collapse from "@mui/material/Collapse";
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 
-export default function Card4(props) {
+export default function Card(props) {
   const [open, setOpen] = useState(false);
   //placeholder thumbs up state
   const [thumbsUp, setThumbsUp] = useState(0);
@@ -123,6 +124,7 @@ export default function Card4(props) {
             <Button
               onClick={handleThumbsUp}
               variant="contained"
+              
               sx={{
                 bgcolor: "#2F3E46",
                 color: "#D9D9D9",
@@ -152,7 +154,7 @@ export default function Card4(props) {
                 },
               }}
             >
-              +
+              <ThumbUpOffAltIcon />
             </Button>
           </Badge>
           <Button
