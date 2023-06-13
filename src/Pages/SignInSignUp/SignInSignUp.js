@@ -62,17 +62,19 @@ function SignInSignUp() {
                     <h2>Connect, Clean, Transform Spaces</h2>
                 </div>
             </div>
-            <div id="sign-up-in-container">
-                <div id="sign-up-in-button-container">
-                    <Button variant="contained" onClick={handleSignUpClick}>Sign Up</Button>
-                    <Button variant="contained" onClick={handleSignInClick}>Sign In</Button>
-                </div>
-            
-                {/* Render the SignUp component only if showSignUp is true and signUpRedirect is false */}
-                {showSignUp && !signUpRedirect && (<SignUp formData={formData} handleChange={handleChange} setSignUpRedirect={setSignUpRedirect} />)}
+            <div id="sign-up-in-components-container">
+                <div id="sign-up-in-container">
+                    <div id="sign-up-in-button-container">
+                        <Button variant="contained" onClick={handleSignUpClick}>Sign Up</Button>
+                        <Button variant="contained" onClick={handleSignInClick}>Sign In</Button>
+                    </div>
+                
+                    {/* Render the SignUp component only if showSignUp is true and signUpRedirect is false */}
+                    {showSignUp && !signUpRedirect && (<SignUp formData={formData} handleChange={handleChange} setSignUpRedirect={setSignUpRedirect} />)}
 
-                {/* Render the SignIn component if either showSignIn is true or signUpRedirect is true (where a new user has just signed up) */}
-                {(showSignIn || signUpRedirect) && (<SignIn formData={formData} handleChange={handleChange} signUpRedirect={signUpRedirect}/>)}
+                    {/* Render the SignIn component if either showSignIn is true or signUpRedirect is true (where a new user has just signed up) */}
+                    {(showSignIn || signUpRedirect) && (<SignIn formData={formData} handleChange={handleChange} signUpRedirect={signUpRedirect}/>)}
+                </div>
             </div>
         </div>
     );
