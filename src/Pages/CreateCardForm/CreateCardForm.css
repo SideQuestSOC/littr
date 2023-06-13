@@ -1,0 +1,17 @@
+:root {
+    --neonBlue: #55DADB;
+    --sunburstYellow: #F5BB02;
+    --neonGreen: #6AAF88;
+    --strawberry: #FC786E;
+    --navyBlue: #2F3E46;
+}
+
+body {
+    background-color: 
+}
+
+#CreateCardForm-outer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
