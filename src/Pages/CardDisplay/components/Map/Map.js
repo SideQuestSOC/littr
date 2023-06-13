@@ -8,7 +8,7 @@ function Map() {
     // encodeURIComponent() - This ensures that any special characters in those values are properly encoded and will be interpreted correctly by the Google Maps Embed API.
     // Encoding is requested by google in the best practice docs: https://developers.google.com/maps/documentation/geocoding/web-service-best-practices#BuildingURLs
 
-    const mapType = "satellite"; // or "roadmap"
+    const mapType = "roadmap"; // or "satellite"
 
     return (
         <iframe 
@@ -19,4 +19,4 @@ function Map() {
     )
 }
 
-export default Map
+export default Map;
