@@ -4,7 +4,7 @@
     border-radius: 10px;
 
     /* Embedded maps are not supported at sizes below 200px */
-    height: 200px; /* vh - view height - responsive to screen size */
+    height: 200px;
     width: 100%;
     margin-bottom: 10px;
 }

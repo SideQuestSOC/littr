@@ -10,18 +10,6 @@ function Map() {
 
     const mapType = "satellite"; // or "roadmap"
 
-    // Options to hide controls on map (TODO: fix this)
-    // const mapOptions = {
-    //     // Add the options you want to hide here
-    //     disableDefaultUI: true, // Hide all default controls
-    //     zoomControl: false, // Hide the zoom control
-    //     streetViewControl: false, // Hide the street view control
-    //     fullscreenControl: false // Hide the fullscreen control
-    // };
-
-    // const mapOptionsString = encodeURIComponent(JSON.stringify(mapOptions));
-
-
     return (
         <iframe 
             id="google-map-frame"
@@ -32,5 +20,3 @@ function Map() {
 }
 
 export default Map
-
-// {&options=${mapOptionsString} (URI component to add to url for map control options TODO: fix this)
