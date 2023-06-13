@@ -1,47 +1,73 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
 import "./CreateCardForm.css";
-import { Stack, Typography, TextField } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {
+  Stack,
+  Typography,
+  TextField,
+  Divider,
+  Checkbox,
+  FormGroup,
+  FormControlLabel,
+} from "@mui/material";
+
+// import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // This was the only way I could change the colour of the text field highlight
 // const jankTheme = createTheme({
 //   palette: {
 //     primary: {
-//       main: "#55DADB" 
+//       main: "#6AAF88"
 //     }
 //   }
 // });
 
 export default function CreateCardForm() {
   return (
-    // <ThemeProvider theme={jankTheme}> 
-      <div id="create-card-outer-container">
-        <Navbar />
-        <Typography variant="h3" id="create-card-title">
-          Create a Post
+    // <ThemeProvider theme={jankTheme}>
+    <div id="create-card-outer-container">
+      <Navbar />
+      <Typography variant="h4" id="create-card-title">
+        Create a Post
+      </Typography>
+      <Stack spacing={2} direction="column" id="create-card-form-container">
+        <TextField
+          id="post-title"
+          label="Title"
+          defaultValue=""
+          variant="filled"
+        />
+        <TextField
+          id="location-address"
+          label="Location address"
+          defaultValue=""
+          variant="filled"
+        />
+        <TextField
+          id="location-postcode"
+          label="Location Postcode"
+          defaultValue=""
+          variant="filled"
+        />
+
+        {/* Somewhere here we can add a date/time picker or some individual ones */}
+        <Divider />
+        <Typography id="accessability-title" variant="h5">
+          Accessability information
         </Typography>
-        <Stack spacing={2} direction="column" id="create-card-form-container">
-          <TextField
-            id="post-title"
-            label="Title"
-            defaultValue=""
-            variant="filled"
+        {/* Accessability checkboxes */}
+        <FormGroup id="accessability-checkboxes">
+          <FormControlLabel control={<Checkbox />} label="Nearby Bathrooms" />
+          <FormControlLabel control={<Checkbox />} label="Uneven ground" />
+          <FormControlLabel control={<Checkbox />} label="Remote location" />
+          <FormControlLabel
+            //  I added a defaultChecked prop to the checkbox to show how it works
+            control={<Checkbox defaultChecked />}
+            label="Nearby Parking"
           />
-          <TextField
-            id="location-address"
-            label="Location address"
-            defaultValue=""
-            variant="filled"
-          />
-          <TextField
-            id="location-postcode"
-            label="Location Postcode"
-            defaultValue=""
-            variant="filled"
-          />
-        </Stack>
-      </div>
+        </FormGroup>
+      </Stack>
+    </div>
     // </ThemeProvider>
   );
 }

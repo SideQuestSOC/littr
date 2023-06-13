@@ -33,6 +33,8 @@
 
 }
 
-.muiFilledInput-underline:before, .MuiFilledInput-underline:after {
-    border-bottom: none;
+
+#accessibility-checkboxes {
+    margin: 0px;
+    padding: 0px;
 }
