@@ -9,6 +9,7 @@ import {
   Checkbox,
   FormGroup,
   FormControlLabel,
+  Button,
 } from "@mui/material";
 
 // import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -52,7 +53,7 @@ export default function CreateCardForm() {
 
         {/* Somewhere here we can add a date/time picker or some individual ones */}
         <Divider />
-        <Typography id="accessability-title" variant="h5">
+        <Typography id="accessability-title" variant="h6">
           Accessability information
         </Typography>
         {/* Accessability checkboxes */}
@@ -66,6 +67,41 @@ export default function CreateCardForm() {
             label="Nearby Parking"
           />
         </FormGroup>
+        <Divider />
+        <Typography id="recommended-equipment-title" variant="h8">
+          Recommended equipment
+        </Typography>
+        {/* The below text field does not like being styled */}
+        <TextField
+          id="recommended-equipment"
+          multiline
+          rows={3}
+          variant="standard"
+        />
+        <TextField
+          id="disposal-method"
+          label="How will litter be disposed of?"
+          defaultValue=""
+          variant="filled"
+        />
+        <Typography id="additional-information-title" variant="h8">
+          Additional information
+        </Typography>
+        <TextField
+          id="additional-information"
+          multiline
+          rows={3}
+          variant="standard"
+        />
+
+        <Stack spacing={2} direction="row" id="create-card-button-container">
+          <Button id="discard-button" variant="contained">
+            Discard
+          </Button>
+          <Button id="create-button" variant="contained">
+            Create Post
+          </Button>
+        </Stack>
       </Stack>
     </div>
     // </ThemeProvider>
