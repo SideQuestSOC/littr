@@ -8,7 +8,6 @@
 }
 
 
-
 #landing-page-outer-container {
   height: 100vh;
   width: 100vw;
@@ -81,7 +80,7 @@
     bottom: -10vh;
   }
 
-  #landing-page-banner  {
+  #landing-page-banner {
    bottom: 4vh;
    height: 100px;
   }

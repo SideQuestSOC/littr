@@ -6,13 +6,13 @@ import { Button } from "@mui/material";
 function LandingPage() {
   return (
     <div id="landing-page-outer-container">
-      <h1 id="title"> LITTR</h1>
+      <h1 id="title">LITTR</h1>
       <div id="landing-page-button-container"> 
         <Button variant="contained">
-         <Link to="/src/pages/carddisplay">Find a clean up</Link>
+          <Link to="/src/pages/carddisplay">Find a clean up</Link>
         </Button>
         <Button variant="contained">
-         <Link to="/src/pages/signsignup">Create a clean up</Link>
+          <Link to="/src/pages/signsignup">Create a clean up</Link>
         </Button> 
       </div>
       <div id="landing-page-banner">
