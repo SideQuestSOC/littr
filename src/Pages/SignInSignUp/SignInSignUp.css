@@ -123,3 +123,35 @@ button {
 input {
     width: 80vw;
 }
+
+/* Desktop media queries*/
+@media only screen and (min-width: 992px)
+{
+    /* Hide the welcome message on desktop */
+    #welcome-message-container {
+        display: none;
+    }
+    /* Hide the X close button on desktop */
+    #sign-up-in-close {
+        display: none;
+    }
+
+    #sign-up-in-components-container {
+        /* Center vertically and horizontally within the viewport */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #sign-up-in-container {
+        width: 40vw;
+        position: static;
+        border-radius: 10px;
+        padding: 15px 0 15px 0;
+    }
+    
+    input {
+        width: 30vw;
+    }
+}
