@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 
-// Import the LandingPage component correctly
+// Import the App component
 import App from '../../Pages/App/App';
 
 test("Navigate from the landing page to the Card Display page, expand the first Card - the google map will be present.", function() {
