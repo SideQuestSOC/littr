@@ -7,7 +7,7 @@
 
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Card from '../../../src/Pages/CardDisplay/components/Card/Card.js';
+import Card from '../../Pages/CardDisplay/components/Card/Card.js';
 
 test('Clicking the like button increments the count by 1', () => {
   render(<Card />);
@@ -30,37 +30,3 @@ test('Clicking the like button increments the count by 1', () => {
   // Assert that the count is incremented by 1
   expect(updatedCount).toBe(initialCount + 1);
 });
-
-
-
-
-
-
-
-// test("Click like button, badge increases by 1", async () => {
-//     render(<Card />);
-//     const likeButton = screen.getByTestId("like-button");
-//     const thumbsUpElement = screen.getByTestId("badge");
-  
-//     await act(() => {
-//       userEvent.click(likeButton);
-//     });
-  
-//     expect(thumbsUpElement).toHaveTextContent("1");
-//   });
-  
-//   test("Click report button, alert appears", async () => {
-//     render(<Card />);
-//     const reportButton = screen.getByTestId("report-button");
-  
-//     const Alert = jest.spyOn(window, "alert").mockImplementation();  
-  
-//     await act(async () => {
-//       userEvent.click(reportButton);
-//     });
-  
-//     expect(Alert).toHaveBeenCalledWith(
-//       "This post has been reported. Thank you for your feedback."
-//     );
-  
-//   });
