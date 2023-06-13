@@ -11,6 +11,9 @@ import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
 // import css
 import './Card.css';
 
+// import component
+import Map from '../../components/Map/Map';
+
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
@@ -41,8 +44,9 @@ export default function Card(props) {
           <Button id="details-button" onClick={handleExpand} variant="contained">
             Details
           </Button>
-          <Badge badgeContent={thumbsUp} sx={{ "& .MuiBadge-badge": { backgroundColor: "#D9D9D9", color: "black"} }}>
-            <Button id="like-button" onClick={handleThumbsUp} variant="contained">
+          <Badge badgeContent={thumbsUp} sx={{ "& .MuiBadge-badge": { backgroundColor: "#D9D9D9", color: "black"} }} data-testid="like-badge">
+            <Button id="like-button" onClick={handleThumbsUp} variant="contained"
+            data-testid="like-button"> {/* Added data-testid to test the like button */}
               <ThumbUpOffAltIcon />
             </Button>
           </Badge>
@@ -54,6 +58,7 @@ export default function Card(props) {
           <List id="collapsed-card-container" component="div">
             <Typography id="card-content-container">
               {/* INSERT DETAILS COMPONENTS HERE */}
+              <Map />
               {props.body}
             </Typography>
           </List>
