@@ -20,12 +20,19 @@
 #create-card-form-container {
     color: var(--offWhite);
     width : 80%;
+    max-width: 500px;
     margin: 0 auto;
+    
 }
 
 #post-title, #location-address, #location-postcode{
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: var(--offWhite);
     border: none;
     box-shadow: inset 2px 2px 4px 0px rgba(0, 0, 0, 0.55);
+
+}
+
+.muiFilledInput-underline:before, .MuiFilledInput-underline:after {
+    border-bottom: none;
 }
