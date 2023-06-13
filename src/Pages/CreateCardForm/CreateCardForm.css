@@ -22,3 +22,10 @@
     width : 80%;
     margin: 0 auto;
 }
+
+#first-name, #second-name {
+    border-radius: 10px;
+    background-color: var(--offWhite);
+    border: none;
+    box-shadow: inset 2px 2px 4px 0px rgba(0, 0, 0, 0.55);
+}

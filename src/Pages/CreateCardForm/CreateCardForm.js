@@ -19,6 +19,7 @@ export default function CreateCardForm() {
           label="First name"
           defaultValue=""
           variant="filled"
+          sx={{ "& .MuiFilledInput-input:focus": { backgroundColor: "#D9D9D9", color: "black"} }}
         />
         <TextField
           //   required
