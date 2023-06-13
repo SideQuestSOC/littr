@@ -8,6 +8,9 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { Link } from "react-router-dom";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -23,11 +26,6 @@ const Search = styled('div')(({ theme }) => ({
     width: 'auto',
     maxWidth: '240px', // Adjusted for less search bar width
   },
-//   [theme.breakpoints.down('xs')]: {
-//     width: '200px', // Adjusted for less search bar width in mobile
-//     marginLeft: 'auto',
-//     marginRight: 'auto',
-//   },
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -57,7 +55,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
 export default function SearchAppBar() {
+    // Make fucntion to hold menu this.state
+
+const [anchorEl, setAnchorEl] = React.useState(null);
+
+const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    console.log(event.currentTarget);
+};
+
+const handleClose = () => {
+    setAnchorEl(null);
+};
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ background: '#6AAF88' }}>
@@ -68,9 +79,25 @@ export default function SearchAppBar() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={handleClick} // Add menu functionality
           >
             <MenuIcon />
           </IconButton>
+          {/* Add menu fucntionality */}
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+            paperProps={{
+                elevation: 1,
+            }}
+            >
+                <MenuItem className="menu-item" onClick={handleClose} >
+                    <Link to="../">Home</Link>
+                    </MenuItem>
+            </Menu>
+
           {/* <Typography
             variant="h6"
             noWrap
