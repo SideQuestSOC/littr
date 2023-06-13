@@ -12,6 +12,10 @@ body {
 
 #card-display-outer-container {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 /* Desktop media queries*/
@@ -21,9 +25,9 @@ body {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-evenly;
+        align-content: flex-start;
         column-gap: 0;
         padding: 0 400px 0 400px;
     }
-
 }
