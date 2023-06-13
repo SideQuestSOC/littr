@@ -5,7 +5,7 @@
 // Simulate a click on the like button
 // Test if the like button increments the number of likes by 1
 
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Card from '../../../src/Pages/CardDisplay/components/Card/Card.js';
 
