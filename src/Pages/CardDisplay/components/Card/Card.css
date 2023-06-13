@@ -9,6 +9,7 @@
 
 #card-outer-container {
     width: 350px;
+    height: fit-content;
     border-radius: 10px;
     border: none;
     box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.55);
@@ -161,5 +162,6 @@
     text-align: left;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     word-break: break-word;
 }
