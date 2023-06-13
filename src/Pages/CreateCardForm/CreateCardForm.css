@@ -23,7 +23,7 @@
     margin: 0 auto;
 }
 
-#first-name, #second-name {
+#post-title, #location-address, #location-postcode{
     border-radius: 10px;
     background-color: var(--offWhite);
     border: none;
