@@ -44,8 +44,9 @@ export default function Card(props) {
           <Button id="details-button" onClick={handleExpand} variant="contained">
             Details
           </Button>
-          <Badge badgeContent={thumbsUp} sx={{ "& .MuiBadge-badge": { backgroundColor: "#D9D9D9", color: "black"} }}>
-            <Button id="like-button" onClick={handleThumbsUp} variant="contained">
+          <Badge badgeContent={thumbsUp} sx={{ "& .MuiBadge-badge": { backgroundColor: "#D9D9D9", color: "black"} }} data-testid="like-badge">
+            <Button id="like-button" onClick={handleThumbsUp} variant="contained"
+            data-testid="like-button"> {/* Added data-testid to test the like button */}
               <ThumbUpOffAltIcon />
             </Button>
           </Badge>
