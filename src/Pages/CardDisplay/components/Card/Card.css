@@ -161,5 +161,6 @@
     text-align: left;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     word-break: break-word;
 }

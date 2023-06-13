@@ -11,6 +11,9 @@ import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
 // import css
 import './Card.css';
 
+// import component
+import Map from '../../components/Map/Map';
+
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
@@ -54,6 +57,7 @@ export default function Card(props) {
           <List id="collapsed-card-container" component="div">
             <Typography id="card-content-container">
               {/* INSERT DETAILS COMPONENTS HERE */}
+              <Map />
               {props.body}
             </Typography>
           </List>
