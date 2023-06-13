@@ -7,6 +7,7 @@ import { Stack, Typography, TextField } from "@mui/material";
 export default function CreateCardForm() {
   return (
     <div id="create-card-outer-container">
+    
       <Navbar />
       <Typography variant="h3" id="create-card-title">
         Create a Post
@@ -27,6 +28,7 @@ export default function CreateCardForm() {
           variant="filled"
         />
       </Stack>
+
     </div>
   );
 }

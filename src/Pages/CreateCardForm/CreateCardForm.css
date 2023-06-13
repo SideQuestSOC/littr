@@ -4,14 +4,21 @@
     --neonGreen: #6AAF88;
     --strawberry: #FC786E;
     --navyBlue: #2F3E46;
+    --offWhite: #D9D9D9;
 }
 
-body {
-    background-color: 
-}
 
-#CreateCardForm-outer-container {
+#create-card-title {
+    color: var(--offWhite);
+    text-shadow:  2px 2px 4px rgba(0, 0, 0, 0.55);
     display: flex;
-    align-items: center;
     justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#create-card-form-container {
+    color: var(--offWhite);
+    width : 80%;
+    margin: 0 auto;
 }
