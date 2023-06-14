@@ -116,7 +116,7 @@ export default function SearchAppBar() {
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
             onClose={handleClose}
-            paperProps={{
+            paperprops={{
               elevation: 1,
             }}
           >
