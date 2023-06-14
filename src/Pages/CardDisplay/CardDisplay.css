@@ -1,33 +1,35 @@
 :root {
-    --neonBlue: #55DADB;
-    --sunburstYellow: #F5BB02;
-    --neonGreen: #6AAF88;
-    --strawberry: #FC786E;
-    --navyBlue: #2F3E46;
+  --neonBlue: #55dadb;
+  --sunburstYellow: #f5bb02;
+  --neonGreen: #6aaf88;
+  --strawberry: #fc786e;
+  --navyBlue: #2f3e46;
 }
 
 body {
-    background-color: var(--navyBlue);
+  background-color: var(--navyBlue);
 }
 
 #card-display-outer-container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  height: 100vh;
 }
 
 /* Desktop media queries*/
-@media only screen and (min-width: 992px)
-{
-    #card-display-outer-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        align-content: flex-start;
-        column-gap: 0;
-        padding: 0 400px 0 400px;
-    }
+@media only screen and (min-width: 992px) {
+  #card-display-outer-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 0;
+    padding: 0 400px 0 400px;
+  }
 }
+
+.create-post-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
