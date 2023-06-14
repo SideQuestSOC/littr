@@ -6,7 +6,11 @@
   --navyBlue: #2F3E46;
 }
 
-a:visited{
+a {
+  color: white;
+  text-decoration: none;
+}
+a:visited {
   color: white;
   text-decoration: none;
 }
