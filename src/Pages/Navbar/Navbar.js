@@ -68,7 +68,7 @@ export default function SearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ background: "#6AAF88" }}>
         <Toolbar>
-          <Search>
+          <Search sx={{ borderRadius: "10px" }}>
             <IconButton
               size="large"
               edge="start"
@@ -78,9 +78,8 @@ export default function SearchAppBar() {
               "&:hover": { backgroundColor: "#F5BB02" },
               "&:active": { backgroundColor: "#F5BB02" },
               "&:focus": { backgroundColor: "#F5BB02" },
-              borderRadius: "10px", padding: "5px", }}
+              borderRadius: "10px", padding: "5px", marginRight: "0" }}
               onClick={handleSearchClick}
-
             >
               <SearchIcon />
             </IconButton>
@@ -88,6 +87,7 @@ export default function SearchAppBar() {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
+                sx={{ borderRadius: "10px" }}
               />
             )}
           </Search>
@@ -110,7 +110,11 @@ export default function SearchAppBar() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, background: "#2F3E46", 
+              "&:hover": { backgroundColor: "#F5BB02" },
+              "&:active": { backgroundColor: "#F5BB02" },
+              "&:focus": { backgroundColor: "#F5BB02" },
+              borderRadius: "10px", padding: "5px", marginRight: "0" }}
             onClick={handleClick} // Add menu functionality
           >
             <MenuIcon />
