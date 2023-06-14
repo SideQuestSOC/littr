@@ -66,11 +66,15 @@ export default function CreateCardForm() {
           />
           {/* Date picker below */}
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker label="Basic date picker" />
+            <DatePicker
+              label="Please Select a Date"
+              className="date-picker" // Add className to style the date picker
+            />
             <MultiInputTimeRangeField
               slotProps={{
                 textField: ({ position }) => ({
                   label: position === 'start' ? 'From' : 'To',
+                  className: 'time-range-field' 
                 }),
               }}
             />
@@ -78,10 +82,10 @@ export default function CreateCardForm() {
           {/* Somewhere here we can add a date/time picker or some individual ones */}
           <Divider />
           <Typography id="accessability-title" variant="h6">
-            Accessability information
+            Accessibility information
           </Typography>
-          {/* Accessability checkboxes */}
-          <FormGroup id="accessability-checkboxes">
+          {/* Accessibility checkboxes */}
+          <FormGroup id="accessibility-checkboxes">
             <FormControlLabel control={<Checkbox />} label="Nearby Bathrooms" />
             <FormControlLabel control={<Checkbox />} label="Uneven ground" />
             <FormControlLabel control={<Checkbox />} label="Remote location" />
@@ -110,6 +114,7 @@ export default function CreateCardForm() {
               value={age}
               label="method"
               onChange={handleChange}
+              className="dropdown" // Add className to style the dropdown
             >
               <MenuItem value={1}>Pickers must dispose of their own litter</MenuItem>
               <MenuItem value={2}>Council pick-up</MenuItem>
