@@ -1,7 +1,5 @@
 // import css
 import './SignInSignUp.css';
-// import react dependencies
-import { Link } from "react-router-dom";
 import { useState } from 'react';
 // import MaterialUI dependencies
 import { Button } from '@mui/material';
