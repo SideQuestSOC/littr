@@ -6,9 +6,8 @@
   --navyBlue: #2F3E46;
 }
 
-/* Hide the nav bar on screens smaller than 992px */
-#nav-bar {
-  display: none;
+a:visited{
+  color: white;
 }
 
 #nav-bar a, #nav-bar a:visited {

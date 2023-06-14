@@ -53,9 +53,6 @@ function SignInSignUp() {
     return <>
         <div id="sign-up-in-outer-container">
             <SearchAppBar />
-            <div id="sign-up-in-close">
-                <Button variant="contained"><Link to="/src/pages/carddisplay">X</Link></Button>
-            </div>
             <div id="welcome-message-container">
                 <div id="welcome-title">
                     <h1>WELCOME</h1>
