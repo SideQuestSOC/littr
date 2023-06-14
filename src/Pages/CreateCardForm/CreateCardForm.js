@@ -12,22 +12,23 @@ import {
   Button,
 } from "@mui/material";
 
-// import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // This was the only way I could change the colour of the text field highlight
-// const jankTheme = createTheme({
-//   palette: {
-//     primary: {
-//       main: "#6AAF88"
-//     }
-//   }
-// });
+const jankTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#6AAF88"
+    }
+  }
+});
 
 export default function CreateCardForm() {
   return (
-    // <ThemeProvider theme={jankTheme}>
+    
     <div id="create-card-outer-container">
       <Navbar />
+      <ThemeProvider theme={jankTheme}>
       <Typography variant="h4" id="create-card-title">
         Create a Post
       </Typography>
@@ -103,7 +104,8 @@ export default function CreateCardForm() {
           </Button>
         </Stack>
       </Stack>
+      </ThemeProvider>
     </div>
-    // </ThemeProvider>
+    
   );
 }
