@@ -100,6 +100,7 @@ export default function SearchAppBar() {
               fontFamily: "Montserrat, sans-serif",
               fontWeight: "bold",
               textShadow: '2px 2px 2px rgba(0, 0, 0, 0.25)',
+              marginLeft: "10px",
             }}
           >
             LITTR
