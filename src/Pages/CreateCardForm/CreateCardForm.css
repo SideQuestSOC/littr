@@ -25,13 +25,31 @@
     
 }
 
-#post-title, #location-address, #location-postcode, #recommended-equipment, #disposal-method, #additional-information{
+#post-title, #location-address, #location-postcode, #recommended-equipment, #additional-information, #time-range, #disposal-select{
     border-radius: 5px;
     background-color: var(--offWhite);
     border: none;
     box-shadow: inset 2px 2px 4px 0px rgba(0, 0, 0, 0.35);
     font-weight: bold;
+}
 
+#accessibility-checkboxes {
+
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 ;
+}
+
+.checkbox{
+    margin: 0;
+    padding: 0;
+}
+
+#create-card-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #discard-button {
