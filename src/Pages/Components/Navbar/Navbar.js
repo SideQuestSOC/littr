@@ -10,13 +10,18 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+// import MaterialUI dependencies
+import { Button } from '@mui/material';
+
+import './Navbar.css';
+
 import { Link } from "react-router-dom";
 
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0),
+  backgroundColor: alpha(theme.palette.common.white, 0.25),
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
@@ -38,16 +43,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("xs")]: {
-      width: "12ch",
+      width: "17ch",
       "&:focus": {
-        width: "12ch",
+        width: "13ch",
       },
     },
   },
 }));
 
 export default function SearchAppBar() {
-  // Make fucntion to hold menu this.state
+  // Make function to hold menu this.state
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isSearchOpen, setSearchOpen] = React.useState(false);
@@ -68,13 +73,17 @@ export default function SearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ background: "#6AAF88" }}>
         <Toolbar>
-          <Search>
+          <Search sx={{ borderRadius: "10px" }}>
             <IconButton
               size="large"
               edge="start"
               color="inherit"
               aria-label="open drawer"
-              sx={{ mr: 2 }}
+              sx={{ mr: 2, background: "#2F3E46", 
+              "&:hover": { backgroundColor: "#F5BB02" },
+              "&:active": { backgroundColor: "#F5BB02" },
+              "&:focus": { backgroundColor: "#F5BB02" },
+              borderRadius: "10px", padding: "5px", marginRight: "0" }}
               onClick={handleSearchClick}
             >
               <SearchIcon />
@@ -83,6 +92,7 @@ export default function SearchAppBar() {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
+                sx={{ borderRadius: "10px" }}
               />
             )}
           </Search>
@@ -95,9 +105,10 @@ export default function SearchAppBar() {
               fontFamily: "Montserrat, sans-serif",
               fontWeight: "bold",
               textShadow: '2px 2px 2px rgba(0, 0, 0, 0.25)',
+              marginLeft: "10px",
             }}
           >
-            LITTR
+            <Link to="/">LITTR</Link>
           </Typography>
 
           <IconButton
@@ -105,12 +116,15 @@ export default function SearchAppBar() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, background: "#2F3E46", 
+              "&:hover": { backgroundColor: "#F5BB02" },
+              "&:active": { backgroundColor: "#F5BB02" },
+              "&:focus": { backgroundColor: "#F5BB02" },
+              borderRadius: "10px", padding: "5px", marginRight: "0" }}
             onClick={handleClick} // Add menu functionality
           >
-            <MenuIcon />
+          <MenuIcon />
           </IconButton>
-          {/* Add menu fucntionality */}
           <Menu
             id="simple-menu"
             anchorEl={anchorEl}
@@ -120,8 +134,13 @@ export default function SearchAppBar() {
               elevation: 1,
             }}
           >
-            <MenuItem className="menu-item" onClick={handleClose}>
-              <Link to="../">Home</Link>
+            <MenuItem id="dropdown-menu" onClick={handleClose}>
+              {/* TODO: Change the content here based on whether user is logged in or not */}
+              <Link to="/src/pages/createpostform">Create a Post</Link>
+              <Button variant="contained">
+                {/* Change the Content here based on whether user is logged in or not */}
+                FIX THIS BUTTON
+              </Button>
             </MenuItem>
           </Menu>
         </Toolbar>
