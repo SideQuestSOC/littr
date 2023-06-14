@@ -74,8 +74,13 @@ export default function SearchAppBar() {
               edge="start"
               color="inherit"
               aria-label="open drawer"
-              sx={{ mr: 2, background: "#2F3E46", borderRadius: "10px", padding: "5px", }}
+              sx={{ mr: 2, background: "#2F3E46", 
+              "&:hover": { backgroundColor: "#F5BB02" },
+              "&:active": { backgroundColor: "#F5BB02" },
+              "&:focus": { backgroundColor: "#F5BB02" },
+              borderRadius: "10px", padding: "5px", }}
               onClick={handleSearchClick}
+
             >
               <SearchIcon />
             </IconButton>
