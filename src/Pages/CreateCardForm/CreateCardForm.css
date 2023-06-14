@@ -24,13 +24,16 @@
     margin: 0 auto;
     
 }
+#additional-information, #recommended-equipment{
+    padding: 12px;
+}
 
 #post-title, #location-address, #location-postcode, #recommended-equipment, #additional-information, #time-range, #disposal-select{
     border-radius: 5px;
     background-color: var(--offWhite);
     border: none;
     box-shadow: inset 2px 2px 4px 0px rgba(0, 0, 0, 0.35);
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 #accessibility-checkboxes {

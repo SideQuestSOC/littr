@@ -87,6 +87,7 @@ export default function CreateCardForm() {
           </Typography>
           <TextField
             id="additional-information"
+            className="multi-line-input"
             multiline
             rows={3}
             variant="standard"
@@ -142,6 +143,7 @@ export default function CreateCardForm() {
             Recommended equipment
           </Typography>
           <TextField
+            className="multi-line-input"
             id="recommended-equipment"
             multiline
             rows={3}
