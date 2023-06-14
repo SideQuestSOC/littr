@@ -1,0 +1,23 @@
+:root {
+  --neonBlue: #55dadb;
+  --sunburstYellow: #f5bb02;
+  --neonGreen: #6aaf88;
+  --strawberry: #fc786e;
+  --navyBlue: #2f3e46;
+  --neonGreenTransparent60: #6aaf8860;
+}
+
+.create-post-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: var(--neonGreen);
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
