@@ -18,7 +18,8 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { MultiInputTimeRangeField } from "@mui/x-date-pickers-pro/MultiInputTimeRangeField";
+
+import { SingleInputTimeRangeField } from "@mui/x-date-pickers-pro/SingleInputTimeRangeField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // This was the only way I could change the colour of the text field highlight
@@ -72,22 +73,23 @@ export default function CreateCardForm() {
               format="DD/MM/YYYY"
               variant="inline"
             />
-            <MultiInputTimeRangeField
+            <SingleInputTimeRangeField 
               id="time-range"
               slotProps={{
                 textField: ({ position }) => ({
-                  label: position === "start" ? "Start time" : "End time",
-                  className: "time-range-field",
+                label:"Start Time - End Time",
+                className: "time-range-field"
                 }),
               }}
             />
+
           </LocalizationProvider>
           <Typography id="additional-information-title" variant="h8">
-            Details
           </Typography>
           <TextField
             id="additional-information"
             className="multi-line-input"
+            placeholder="Additional information"
             multiline
             rows={3}
             variant="standard"
