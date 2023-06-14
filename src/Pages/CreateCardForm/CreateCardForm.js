@@ -32,6 +32,7 @@ export default function CreateCardForm() {
       <Typography variant="h4" id="create-card-title">
         Create a Post
       </Typography>
+      {/* Top input fields */}
       <Stack spacing={2} direction="column" id="create-card-form-container">
         <TextField
           id="post-title"
