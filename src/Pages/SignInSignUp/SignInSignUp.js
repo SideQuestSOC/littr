@@ -52,7 +52,6 @@ function SignInSignUp() {
 
     return <>
         <div id="sign-up-in-outer-container">
-            {/* TODO: Conditionally render <SearchAppBar /> based on screen size - hide on sizes smaller than 992px */}
             <SearchAppBar />
             <div id="sign-up-in-close">
                 <Button variant="contained"><Link to="/src/pages/carddisplay">X</Link></Button>

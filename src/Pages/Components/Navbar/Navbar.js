@@ -70,7 +70,7 @@ export default function SearchAppBar() {
     setSearchOpen(!isSearchOpen);
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box id="nav-bar" sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ background: "#6AAF88" }}>
         <Toolbar>
           <Search sx={{ borderRadius: "10px" }}>
@@ -125,7 +125,6 @@ export default function SearchAppBar() {
           >
           <MenuIcon />
           </IconButton>
-          {/* Add menu fucntionality */}
           <Menu
             id="simple-menu"
             anchorEl={anchorEl}
