@@ -45,18 +45,21 @@ function SignUp({ formData, handleChange, setSignUpRedirect }) {
         <form onSubmit={handleSubmit}>
           <label htmlFor="firstName">First Name</label>
             <input
+              data-testid="firstName-input"
               name="firstName"
               onChange={handleChange}
               required
             />
           <label htmlFor="lastName">Last Name</label>
             <input
+              data-testid="lastName-input"
               name="lastName"
               onChange={handleChange}
               required
             />
           <label htmlFor="email">Email</label>
             <input
+              data-testid="email-input"
               name="email"
               type="email"
               onChange={handleChange}
@@ -64,6 +67,7 @@ function SignUp({ formData, handleChange, setSignUpRedirect }) {
             />
           <label htmlFor="password">Password</label>
             <input
+              data-testid="password-input"
               name="password"
               type="password"
               pattern=".{6,}"

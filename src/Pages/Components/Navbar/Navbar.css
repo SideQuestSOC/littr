@@ -1,0 +1,45 @@
+:root {
+  --neonBlue: #55DADB;
+  --sunburstYellow: #F5BB02;
+  --neonGreen: #6AAF88;
+  --strawberry: #FC786E;
+  --navyBlue: #2F3E46;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.littr {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#simple-menu ul {
+  background-color: var(--neonGreen);
+}
+
+#simple-menu a {
+  color: #2F3E46;
+}
+#simple-menu a:visited {
+  color: white;
+}
+
+#dropdown-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop media queries*/
+@media only screen and (min-width: 992px)
+{
+  /* Only display nav bar on desktop sized screens */
+  #nav-bar {
+    display: block;
+  }
+}

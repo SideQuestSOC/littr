@@ -14,24 +14,6 @@
     background-size: cover;
 }
 
-#sign-up-in-close {
-    padding: 5px;
-    /* Flexbox properties */
-    display: flex;
-    justify-content: flex-end;
-}
-
-#sign-up-in-close button {
-    height: 30px;
-    width: 30px;
-    /* min-width: 0 needed to override MUI default min-width */
-    min-width: 0;
-    border-radius: 20px;
-    background-color: var(--navyBlue);
-    color: white;
-    border: none;
-}
-
 #sign-up-in-close button a {
     /* Remove default link styling */
     text-decoration: none;
@@ -123,6 +105,8 @@ button {
 input {
     width: 80vw;
 }
+
+
 
 /* Desktop media queries*/
 @media only screen and (min-width: 992px)
