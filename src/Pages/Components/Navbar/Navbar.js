@@ -10,6 +10,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+// import MaterialUI dependencies
+import { Button } from '@mui/material';
+
+import './Navbar.css';
+
 import { Link } from "react-router-dom";
 
 
@@ -130,8 +135,13 @@ export default function SearchAppBar() {
               elevation: 1,
             }}
           >
-            <MenuItem className="menu-item" onClick={handleClose}>
-              <Link to="../">Home</Link>
+            <MenuItem id="dropdown-menu" onClick={handleClose}>
+              {/* TODO: Change the content here based on whether user is logged in or not */}
+              <Link to="/src/pages/createpostform">Create a Post</Link>
+              <Button variant="contained">
+                {/* Change the Content here based on whether user is logged in or not */}
+                FIX THIS BUTTON
+              </Button>
             </MenuItem>
           </Menu>
         </Toolbar>
