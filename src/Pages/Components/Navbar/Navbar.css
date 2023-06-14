@@ -8,11 +8,7 @@
 
 a:visited{
   color: white;
-}
-
-#nav-bar a, #nav-bar a:visited {
   text-decoration: none;
-  color: white;
 }
 
 .littr {
