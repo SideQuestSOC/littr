@@ -11,6 +11,11 @@
   display: none;
 }
 
+#nav-bar a, #nav-bar a:visited {
+  text-decoration: none;
+  color: white;
+}
+
 .littr {
     font-family: 'Montserrat', sans-serif;
 }

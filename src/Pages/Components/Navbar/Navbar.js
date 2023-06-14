@@ -108,7 +108,7 @@ export default function SearchAppBar() {
               marginLeft: "10px",
             }}
           >
-          LITTR
+            <Link to="/">LITTR</Link>
           </Typography>
 
           <IconButton
