@@ -38,9 +38,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("xs")]: {
-      width: "12ch",
+      width: "17ch",
       "&:focus": {
-        width: "12ch",
+        width: "13ch",
       },
     },
   },
@@ -103,7 +103,7 @@ export default function SearchAppBar() {
               marginLeft: "10px",
             }}
           >
-            LITTR
+          LITTR
           </Typography>
 
           <IconButton
@@ -118,7 +118,7 @@ export default function SearchAppBar() {
               borderRadius: "10px", padding: "5px", marginRight: "0" }}
             onClick={handleClick} // Add menu functionality
           >
-            <MenuIcon />
+          <MenuIcon />
           </IconButton>
           {/* Add menu fucntionality */}
           <Menu
