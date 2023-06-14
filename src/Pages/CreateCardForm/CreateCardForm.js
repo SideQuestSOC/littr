@@ -11,7 +11,10 @@ import {
   FormControlLabel,
   Button,
 } from "@mui/material";
-
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { MultiInputTimeRangeField } from '@mui/x-date-pickers-pro/MultiInputTimeRangeField';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // This was the only way I could change the colour of the text field highlight
@@ -52,7 +55,17 @@ export default function CreateCardForm() {
           defaultValue=""
           variant="filled"
         />
-
+         {/* Date picker below */}
+         <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DatePicker label="Basic date picker" />
+        <MultiInputTimeRangeField
+          slotProps={{
+          textField: ({ position }) => ({
+          label: position === 'start' ? 'From' : 'To',
+         }),
+        }}
+        />
+      </LocalizationProvider>
         {/* Somewhere here we can add a date/time picker or some individual ones */}
         <Divider />
         <Typography id="accessability-title" variant="h6">
