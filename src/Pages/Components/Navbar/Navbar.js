@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import { MenuItem, Button, Menu, InputBase, Typography, IconButton, Toolbar, Box, AppBar } from "@mui/material";
+import { MenuItem, Button, Menu, InputBase, Typography, IconButton, Toolbar, Box, AppBar, Avatar } from "@mui/material";
 
 // Initialise MUI search component
 const Search = styled("div")(({ theme }) => ({}));
@@ -95,10 +95,13 @@ export default function SearchAppBar() {
             {/* DROPDOWN MENU */}
             {/* TODO: Change the Content here based on whether user is logged in or not */}
             <MenuItem id="dropdown-menu" onClick={handleClose}>
-              <Link to="/src/pages/createpostform">Create a Post</Link>
-              <Button variant="contained">
-                FIX THIS BUTTON
-              </Button>
+                <Link id="dropdown-user-settings-link" to="">User Settings</Link>
+                <Link id="dropdown-createapost-link" to="/src/pages/createpostform">Create a Post</Link>
+                <Link id="dropdown-createagroup-link" to="">Create a Group</Link>
+                <Button id="dropdown-menu-button" variant="contained">
+                  Sign Up / Sign In
+                </Button>
+                <Avatar id="dropdown-menu-avatar">??</Avatar>
             </MenuItem>
           </Menu>
 
