@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0),
+  backgroundColor: alpha(theme.palette.common.white, 0.25),
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
@@ -74,7 +74,7 @@ export default function SearchAppBar() {
               edge="start"
               color="inherit"
               aria-label="open drawer"
-              sx={{ mr: 2 }}
+              sx={{ mr: 2, background: "#2F3E46", borderRadius: "10px", padding: "5px", }}
               onClick={handleSearchClick}
             >
               <SearchIcon />
