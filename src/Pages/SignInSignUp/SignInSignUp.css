@@ -14,9 +14,9 @@
     background-size: cover;
 }
 
+/* TODO: REMOVE THIS */
 #sign-up-in-close {
     padding: 5px;
-    /* Flexbox properties */
     display: flex;
     justify-content: flex-end;
 }

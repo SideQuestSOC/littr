@@ -47,7 +47,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
-  // Make fucntion to hold menu this.state
+  // Make function to hold menu this.state
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isSearchOpen, setSearchOpen] = React.useState(false);

@@ -3,7 +3,7 @@ import './CardDisplay.css';
 
 import React from "react";
 import Card from "./components/Card/Card.js";
-import SearchAppBar from "../Navbar/Navbar.js";
+import SearchAppBar from "../Components/Navbar/Navbar";
 
 function CardDisplay() {
   return (

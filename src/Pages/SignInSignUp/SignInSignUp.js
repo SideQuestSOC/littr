@@ -8,6 +8,7 @@ import { Button } from '@mui/material';
 // import components
 import SignIn from "./Components/SignIn/SignIn";
 import SignUp from "./Components/SignUp/SignUp";
+import SearchAppBar from "../Components/Navbar/Navbar";
 
 function SignInSignUp() {
     // This state variable 'formData' is used to store form data for the signup and sign in.
@@ -49,8 +50,10 @@ function SignInSignUp() {
         setShowSignIn(true); // Set showSignIn to true to show the sign in component
     }
 
-    return (
+    return <>
         <div id="sign-up-in-outer-container">
+            {/* TODO: Conditionally render <SearchAppBar /> based on screen size - hide on sizes smaller than 992px */}
+            <SearchAppBar />
             <div id="sign-up-in-close">
                 <Button variant="contained"><Link to="/src/pages/carddisplay">X</Link></Button>
             </div>
@@ -77,7 +80,7 @@ function SignInSignUp() {
                 </div>
             </div>
         </div>
-    );
+    </>
 }
 
 export default SignInSignUp;
