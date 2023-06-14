@@ -14,6 +14,7 @@ test("When a new user successfully signs up, the Sign In component is automatica
     // Simulate a click on the Sign Up button
     fireEvent.click(screen.getByText("Sign Up"));
 
+    // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
         // Fill in the sign up form
         const firstNameInput = screen.getByTestId("firstName-input");
