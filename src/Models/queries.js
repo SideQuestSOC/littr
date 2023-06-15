@@ -1,5 +1,4 @@
 import { supabase } from './client';
-const table = "Event";
 
 // insertPublicUser() - inserts data into the public.users table, it is called after
 // the supabaseSignUp() function has inserted a new user into the auth.users table
@@ -43,19 +42,5 @@ export async function supabaseSignUp(formData) {
         // insertPublicUser() is called to insert the signed-up user into the public.users table.
         insertPublicUser(user_id, first_name, last_name);
         return true;
-    }
-}
-
-//  supabaseEventInsert() - inserts new events into public.Events table from Create a Post page
-export async function supabaseEventInsert(PostData) {
-    try {
-        const { data, error } = await supabase.from(table).insert(PostData);
-        if (error) {
-            console.error("Error making post:", error);
-        } else {
-            console.log("Post successful!:", data);
-        } 
-    } catch (error) {
-        console.error("Error with post:", error);
     }
 }
