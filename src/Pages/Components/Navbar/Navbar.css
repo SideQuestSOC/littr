@@ -95,7 +95,7 @@
   background-color: var(--navyBlue);
 }
 
-{/* TODO: Change the Content here based on whether user is logged in or not */}
+/* TODO: Change the Content here based on whether user is logged in or not */
 /* CSS GRID SETTINGS */
 #dropdown-menu-signedin {
   display: grid;
