@@ -89,6 +89,7 @@ export default function CreateCardForm() {
       date_timestamp: new Date(date),
     };
 
+    // Call function to run SQL query for public.Events table insertion
     supabaseEventInsert(PostData);
   };
 
