@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { createClient } from "@supabase/supabase-js";
 import Navbar from "../Components/Navbar/Navbar";
+
+// import SQL queries
+import {supabaseEventInsert } from '../../Models/queries';
+
 import "./CreateCardForm.css";
 import {
   Stack,
@@ -22,12 +25,6 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 import { SingleInputTimeRangeField } from "@mui/x-date-pickers-pro/SingleInputTimeRangeField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
-const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
-
-const supabase = createClient(supabaseUrl, supabaseKey);
-const table = "Event";
 
 const jankTheme = createTheme({
   palette: {
@@ -75,9 +72,8 @@ export default function CreateCardForm() {
   };
 
   const handleCreatePost = async () => {
-    const dummyPostData = {
-      // event_id: "cd7dad86-96c0-434c-a913-0cd1c3c061ca",
-      // creator_user_id: "XXX",
+    const PostData = {
+      creator_user_id: "XXX",
       location: locationAddress,
       address: locationPostcode,
       created_at: new Date(),
@@ -93,16 +89,7 @@ export default function CreateCardForm() {
       date_timestamp: new Date(date),
     };
 
-    try {
-      const { data, error } = await supabase.from(table).insert(dummyPostData);
-      if (error) {
-        console.error("Error making post:", error);
-      } else {
-        console.log("Post successfull!:", data);
-      }
-    } catch (error) {
-      console.error("Error with post:", error);
-    }
+    supabaseEventInsert(PostData);
   };
 
   return (
