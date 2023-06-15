@@ -4,7 +4,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import CreatePostButton from '../../Pages/CardDisplay/components/CreatePostButton/CreatePostButton.js';
 import CreateCardForm from '../../Pages/CreateCardForm/CreateCardForm.js';
-import { act } from 'react-dom/test-utils';
 
 // Check if create post button renders
 test("renders create post button", () => {
