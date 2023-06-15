@@ -119,12 +119,14 @@ export default function SearchAppBar() {
               </div>
               <div id={idSignedoutVariable}>
                 <Button variant="contained" id="dropdown-menu-susi-button">
-                  Sign Up / Sign In
+                  <Link to="/src/pages/signsignup">
+                    Sign Up / Sign In
+                  </Link>
                 </Button>
               </div>   
-
             </MenuItem>
           </Menu>
+          
         </Toolbar>
       </AppBar>
     </Box>

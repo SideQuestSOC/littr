@@ -62,11 +62,7 @@
   background-color: var(--sunburstYellow);
 }
 
-#navbar-title a {
-  color: white;
-  text-decoration: none;
-}
-#navbar-title a:visited {
+#navbar-title a, #navbar-title a:visited, #dropdown-menu-susi-button a {
   color: white;
   text-decoration: none;
 }
