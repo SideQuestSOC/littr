@@ -14,6 +14,7 @@ import SignInSignUp from '../SignInSignUp/SignInSignUp';
 function App() {
 const [isSignedIn, setIsSignedIn ] = useState(false);
 
+// check if user is logged in
 useEffect(() => {
   async function updateSignInState() {
     setIsSignedIn(await isSessionSignedIn());

@@ -40,7 +40,6 @@ export async function isSessionSignedIn() {
       return false;
     }
     else {
-      console.log(data.session);
       if(data.session) {
         console.log("A user is logged in.", data);
         return true;
