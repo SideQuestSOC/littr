@@ -1,8 +1,10 @@
 // import css
 import './Navbar.css';
 // import react dependencies
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+// import Supabase functions
+import { signOut } from '../../../Models/client';
 // import MaterialUI dependencies
 import { styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -24,16 +26,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isSearchOpen, setSearchOpen] = useState(false);
-  // TODO: check if user is signed in and set the useState here
-  const [isSignedIn, setIsSignedIn ] = useState(false);
-
+  
   // Vary components displayed in dropdown menu depending on whether user is signed in using css ids
   let idSignedinVariable;
   let idSignedoutVariable;
-  if(isSignedIn) {
+  if(isSignedIn === true) {
     idSignedinVariable = "dropdown-menu-signedin";
     idSignedoutVariable = "dropdown-menu-signedin-toggle"
   }
@@ -113,7 +113,7 @@ export default function SearchAppBar() {
                 <Avatar id="dropdown-menu-avatar">??</Avatar>
                 <Link id="dropdown-createapost-link" to="/src/pages/createpostform">Create a Post</Link>
                 <Link id="dropdown-createagroup-link" to="">Create a Group</Link>
-                <Button id="dropdown-menu--signout-button" variant="contained">
+                <Button id="dropdown-menu-signout-button" variant="contained" onClick={() => { signOut(); setIsSignedIn(false); }}>
                   Sign Out
                 </Button>
               </div>

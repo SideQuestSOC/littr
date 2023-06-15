@@ -1,21 +1,34 @@
 import './App.css';
+// import react dependencies
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import Supabase functions
+import { isSessionSignedIn } from '../../Models/client';
 
-// // Components
+// import Components
 import LandingPage from '../LandingPage/LandingPage';
 import CardDisplay from '../CardDisplay/CardDisplay';
 import CreateCardForm from '../CreateCardForm/CreateCardForm';
 import SignInSignUp from '../SignInSignUp/SignInSignUp';
 
 function App() {
+const [isSignedIn, setIsSignedIn ] = useState(false);
+
+useEffect(() => {
+  async function updateSignInState() {
+    setIsSignedIn(await isSessionSignedIn());
+  }
+  updateSignInState();
+}, []);
+
 return (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />}/>
             <Route path="/src/pages/landingpage" element={<LandingPage />}/>
-            <Route path="/src/pages/carddisplay" element={<CardDisplay />}/>
+            <Route path="/src/pages/carddisplay" element={<CardDisplay isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />}/>
             <Route path="/src/pages/createpostform" element={<CreateCardForm />}/>
-            <Route path="/src/pages/signsignup" element={<SignInSignUp />}/>
+            <Route path="/src/pages/signsignup" element={<SignInSignUp isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />}/>
         </Routes>
     </BrowserRouter>
 )
