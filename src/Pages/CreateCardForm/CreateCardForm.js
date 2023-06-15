@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Navbar/Navbar";
 
-// import SQL queries
-import {supabaseEventInsert } from '../../Models/queries';
+// Import SQL queries
+import { supabaseEventInsert } from "../../Models/queries";
 
 import "./CreateCardForm.css";
 import {
@@ -80,10 +80,13 @@ export default function CreateCardForm() {
       likes: 0,
       is_flagged: false,
       post_introduction: postTitle,
-      has_uneven_ground: document.getElementById("checkbox-uneven-ground")?.checked || false,
-      has_bathrooms: document.getElementById("checkbox-bathrooms")?.checked || false,
+      has_uneven_ground:
+        document.getElementById("checkbox-uneven-ground")?.checked || false,
+      has_bathrooms:
+        document.getElementById("checkbox-bathrooms")?.checked || false,
       has_parking: document.getElementById("checkbox-parking")?.checked || false,
-      is_remote_location: document.getElementById("checkbox-remote-location")?.checked || false,
+      is_remote_location:
+        document.getElementById("checkbox-remote-location")?.checked || false,
       disposal_method: disposalMethod,
       equipment: recommendedEquipment,
       date_timestamp: new Date(date),
@@ -103,7 +106,7 @@ export default function CreateCardForm() {
         <Stack spacing={2} direction="column" id="create-card-form-container">
           <TextField
             id="post-title"
-            label="Title"
+            placeholder="Title"
             variant="standard"
             value={postTitle}
             onChange={handlePostTitleChange}
@@ -133,6 +136,7 @@ export default function CreateCardForm() {
               value={date}
               onChange={handleDateChange}
               TextField={(params) => <TextField {...params} />}
+              className="custom-date-picker" 
             />
             <SingleInputTimeRangeField
               id="time-range"
@@ -199,8 +203,12 @@ export default function CreateCardForm() {
                 Pickers must dispose of their own litter
               </MenuItem>
               <MenuItem value={"Council pick-up"}>Council pick-up</MenuItem>
-              <MenuItem value={"On-site Refuse disposal"}>On-site Refuse disposal</MenuItem>
-              <MenuItem value={"Literal dumpster fire"}>Literal dumpster fire</MenuItem>
+              <MenuItem value={"On-site Refuse disposal"}>
+                On-site Refuse disposal
+              </MenuItem>
+              <MenuItem value={"Literal dumpster fire"}>
+                Literal dumpster fire
+              </MenuItem>
             </Select>
           </FormControl>
           <Typography id="recommended-equipment-title" variant="h8">
@@ -218,7 +226,11 @@ export default function CreateCardForm() {
 
           {/* Buttons */}
           <Stack spacing={2} direction="row" id="create-card-button-container">
-            <Button id="create-card-button" variant="contained" onClick={handleCreatePost}>
+            <Button
+              id="create-card-button"
+              variant="contained"
+              onClick={handleCreatePost}
+            >
               Create Card
             </Button>
           </Stack>
