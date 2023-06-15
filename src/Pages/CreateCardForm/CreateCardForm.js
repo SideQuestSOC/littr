@@ -18,7 +18,6 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
 import { SingleInputTimeRangeField } from "@mui/x-date-pickers-pro/SingleInputTimeRangeField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -91,8 +90,8 @@ export default function CreateCardForm() {
             className="multi-line-input"
             placeholder="Additional information"
             multiline
-            rows={3}
-            variant="standard"
+            // rows={3}
+            // variant="standard"
           />
           <Divider />
           <Typography id="accessability-title" variant="h6">
