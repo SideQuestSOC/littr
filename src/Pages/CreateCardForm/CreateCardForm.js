@@ -20,6 +20,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { SingleInputTimeRangeField } from "@mui/x-date-pickers-pro/SingleInputTimeRangeField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 // This was the only way I could change the colour of the text field highlight
 const jankTheme = createTheme({
@@ -48,7 +49,7 @@ export default function CreateCardForm() {
         <Stack spacing={2} direction="column" id="create-card-form-container">
           <TextField
             id="post-title"
-            label="Title"
+            label="Title of post"
             defaultValue=""
             variant="filled"
           />
@@ -90,8 +91,8 @@ export default function CreateCardForm() {
             className="multi-line-input"
             placeholder="Additional information"
             multiline
-            // rows={3}
-            // variant="standard"
+            rows={3}
+            variant="standard"
           />
           <Divider />
           <Typography id="accessability-title" variant="h6">
@@ -154,9 +155,11 @@ export default function CreateCardForm() {
           {/* Buttons */}
           <Stack spacing={2} direction="row" id="create-card-button-container">
             <Button id="discard-button" variant="contained">
+            <Link id="link" variant="contained"  to="/src/pages/carddisplay">
               Discard
+              </Link>
             </Button>
-            <Button id="create-button" variant="contained">
+            <Button id="create-button" variant="contained" >
               Create Post
             </Button>
           </Stack>

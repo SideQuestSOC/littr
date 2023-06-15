@@ -7,8 +7,7 @@ import { Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
-import eyesHappy from "./eyesHappy.svg";
-
+import eyesHappy from "../../../../Assets/eyesHappy.svg";
 // import css
 import "./Card.css";
 
@@ -37,8 +36,12 @@ export default function Card(props) {
   return (
     <div id="card-outer-container" style={{ backgroundColor: props.color }}>
       <List id="MUInav" component="nav" aria-labelledby="nested-list-subheader">
-        <Stack id="eyes-container" direction="row" >
-          <img id="eyes" src={eyesHappy} alt="eyesHappy" />
+        <Stack id="eyes-container" direction="row">
+          <img
+            id="eyes"
+            src={eyesHappy}
+            alt="eyesHappy"
+          />
         </Stack>
         <div id="title-container">
           <h5 id="card-title">{props.header}</h5>
