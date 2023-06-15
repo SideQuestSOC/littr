@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import CreatePostButton from '../../Pages/CardDisplay/components/CreatePostButton/CreatePostButton.js';
 import CreateCardForm from '../../Pages/CreateCardForm/CreateCardForm.js';
+import { act } from 'react-dom/test-utils';
 
 // Check if create post button renders
 test("renders create post button", () => {
@@ -20,24 +21,26 @@ test("renders create post button", () => {
 });
 // Above test passes
 
-// test('renders create post button and navigates to create card form', async () => {
-//     // Render the CreatePostButton component within a Router
-//     render(
-//       <Router>
-//         <CreatePostButton />
-//         <CreateCardForm />
-//       </Router>
-//     );
-//     // Get the create post button using screen.getByTestId
-//     const createPostButton = screen.getByTestId('create-post-button');
-//     // Assert that the create post button is rendered
-//     expect(createPostButton).toBeInTheDocument();
-//     // Simulate a click event on the create post button
-//     await
-//       userEvent.click(createPostButton);
-//     //Assert that the  CreateCardForm component is rendered
-//     const createCardFormTitle = screen.getByText('Create a Post');
-//     expect(createCardFormTitle).toBeInTheDocument();
-// });
+test('renders create post button and navigates to create card form', async () => {
+    // Render the CreatePostButton component within a Router
+    render(
+      <Router>
+        <CreatePostButton />
+        <CreateCardForm />
+      </Router>
+    );
+    // Get the create post button using screen.getByTestId
+    const createPostButton = screen.getByTestId('create-post-button');
+    // Assert that the create post button is rendered
+    expect(createPostButton).toBeInTheDocument();
+    // Simulate a click event on the create post button
+    
+    userEvent.click(createPostButton);
+
+
+    //Assert that the  CreateCardForm component is rendered
+    const createCardFormTitle = screen.getByText('Create a Post');
+    expect(createCardFormTitle).toBeInTheDocument();
+});
 
 
