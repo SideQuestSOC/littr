@@ -13,7 +13,6 @@ import "./Card.css";
 
 // import component
 import Map from "../../components/Map/Map";
-import { Image } from "@mui/icons-material";
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
