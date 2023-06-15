@@ -1,4 +1,3 @@
-import { tableCellClasses } from '@mui/material';
 import { supabase } from './client';
 const table = "Event";
 
