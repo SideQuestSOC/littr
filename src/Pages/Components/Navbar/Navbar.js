@@ -27,6 +27,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchAppBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isSearchOpen, setSearchOpen] = useState(false);
+  const [isSignedIn, setIsSignedIn ] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -94,14 +95,21 @@ export default function SearchAppBar() {
             }}>
             {/* DROPDOWN MENU */}
             {/* TODO: Change the Content here based on whether user is logged in or not */}
-            <MenuItem id="dropdown-menu" onClick={handleClose}>
+            <MenuItem  onClick={handleClose}>
+              <div id="dropdown-menu-signedin">
                 <Link id="dropdown-user-settings-link" to="">User Settings</Link>
+                <Avatar id="dropdown-menu-avatar">??</Avatar>
                 <Link id="dropdown-createapost-link" to="/src/pages/createpostform">Create a Post</Link>
                 <Link id="dropdown-createagroup-link" to="">Create a Group</Link>
-                <Button id="dropdown-menu-button" variant="contained">
+                <Button id="dropdown-menu--signout-button" variant="contained">
+                  Sign Out
+                </Button>
+              </div>
+              <div id="dropdown-menu-signedin-toggle">
+                <Button variant="contained">
                   Sign Up / Sign In
                 </Button>
-                <Avatar id="dropdown-menu-avatar">??</Avatar>
+              </div>   
             </MenuItem>
           </Menu>
 
