@@ -27,7 +27,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchAppBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isSearchOpen, setSearchOpen] = useState(false);
+  // TODO: check if user is signed in and set the useState here
   const [isSignedIn, setIsSignedIn ] = useState(false);
+
+  // Vary components displayed in dropdown menu depending on whether user is signed in using css ids
+  let idSignedinVariable;
+  let idSignedoutVariable;
+  if(isSignedIn) {
+    idSignedinVariable = "dropdown-menu-signedin";
+    idSignedoutVariable = "dropdown-menu-signedin-toggle"
+  }
+  else {
+    idSignedinVariable = "dropdown-menu-signedin-toggle";
+  }
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -95,8 +107,8 @@ export default function SearchAppBar() {
             }}>
             {/* DROPDOWN MENU */}
             {/* TODO: Change the Content here based on whether user is logged in or not */}
-            <MenuItem  onClick={handleClose}>
-              <div id="dropdown-menu-signedin">
+            <MenuItem onClick={handleClose}>
+              <div id={idSignedinVariable}>
                 <Link id="dropdown-user-settings-link" to="">User Settings</Link>
                 <Avatar id="dropdown-menu-avatar">??</Avatar>
                 <Link id="dropdown-createapost-link" to="/src/pages/createpostform">Create a Post</Link>
@@ -105,14 +117,14 @@ export default function SearchAppBar() {
                   Sign Out
                 </Button>
               </div>
-              <div id="dropdown-menu-signedin-toggle">
-                <Button variant="contained">
+              <div id={idSignedoutVariable}>
+                <Button variant="contained" id="dropdown-menu-susi-button">
                   Sign Up / Sign In
                 </Button>
               </div>   
+
             </MenuItem>
           </Menu>
-
         </Toolbar>
       </AppBar>
     </Box>

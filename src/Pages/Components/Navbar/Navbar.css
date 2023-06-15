@@ -91,7 +91,7 @@
   box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.55)!important;
 }
 
-#dropdown-menu-susi-button, #dropdown-menu--signout-button {
+#dropdown-menu-susi-button, #dropdown-menu-signout-button {
   background-color: var(--navyBlue);
 }
 
