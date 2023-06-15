@@ -50,7 +50,7 @@ function SignInSignUp({ isSignedIn, setIsSignedIn }) {
 
     return <>
         <div id="sign-up-in-outer-container">
-            <SearchAppBar />
+            <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
             <div id="welcome-message-container">
                 <div id="welcome-title">
                     <h1>WELCOME</h1>

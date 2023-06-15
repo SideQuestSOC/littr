@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import Navbar from "../Components/Navbar/Navbar";
+import React, { useState, useEffect } from "react";
+// useNavigate() is used to redirect to a different page
+import { useNavigate } from 'react-router-dom';
+import SearchAppBar from "../Components/Navbar/Navbar";
 import "./CreateCardForm.css";
 import {
   Stack,
@@ -31,7 +33,17 @@ const jankTheme = createTheme({
   },
 });
 
-export default function CreateCardForm() {
+export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
+
+  // initialize the navigate object using the useNavigate 'hook'
+  const navigate = useNavigate();
+  // Redirect to Card display page if a user is not logged in
+  useEffect(() => {
+    if (!isSignedIn) {
+      navigate('/src/pages/carddisplay');
+    }
+  }, [isSignedIn, navigate]);
+
   const [age, setAge] = useState(""); // Declare the 'age' state variable
 
   const handleChange = (event) => {
@@ -40,7 +52,7 @@ export default function CreateCardForm() {
 
   return (
     <div id="create-card-outer-container">
-      <Navbar />
+      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>
       <ThemeProvider theme={jankTheme}>
         <Typography variant="h4" id="create-card-title">
           Create a Post

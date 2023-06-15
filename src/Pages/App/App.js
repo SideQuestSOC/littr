@@ -14,7 +14,7 @@ import SignInSignUp from '../SignInSignUp/SignInSignUp';
 function App() {
 const [isSignedIn, setIsSignedIn ] = useState(false);
 
-// check if user is logged in
+// Check if user is logged in
 useEffect(() => {
   async function updateSignInState() {
     setIsSignedIn(await isSessionSignedIn());
@@ -25,10 +25,10 @@ useEffect(() => {
 return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingPage />}/>
-            <Route path="/src/pages/landingpage" element={<LandingPage />}/>
+          <Route path="/" element={<LandingPage isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>}/>
+            <Route path="/src/pages/landingpage" element={<LandingPage isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>}/>
             <Route path="/src/pages/carddisplay" element={<CardDisplay isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />}/>
-            <Route path="/src/pages/createpostform" element={<CreateCardForm />}/>
+            <Route path="/src/pages/createpostform" element={<CreateCardForm isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />}/>
             <Route path="/src/pages/signsignup" element={<SignInSignUp isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />}/>
         </Routes>
     </BrowserRouter>

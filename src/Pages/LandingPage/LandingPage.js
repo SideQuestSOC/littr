@@ -3,7 +3,7 @@ import "./LandingPage.css";
 // import MaterialUI dependencies
 import { Button } from "@mui/material";
 
-function LandingPage() {
+function LandingPage({ isSignedIn }) {
   return (
     <div id="landing-page-outer-container">
       <h1 id="title">LITTR</h1>
@@ -12,7 +12,8 @@ function LandingPage() {
           <Link to="/src/pages/carddisplay">Find a clean up</Link>
         </Button>
         <Button variant="contained">
-          <Link to="/src/pages/signsignup">Create a clean up</Link>
+          {/* If signed in go to Create Card Form, if not go to signinup page */}
+          {isSignedIn ? <Link to="/src/pages/createpostform">Create a clean up</Link> : <Link to="/src/pages/signsignup">Create a clean up</Link>}
         </Button>
       </div>
       <div id="landing-page-banner">

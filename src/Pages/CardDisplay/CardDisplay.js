@@ -1,4 +1,3 @@
-// import { Link } from "react-router-dom";
 import "./CardDisplay.css";
 // import React dependencies
 import React from "react";
@@ -49,9 +48,12 @@ function CardDisplay( { isSignedIn, setIsSignedIn } ) {
     Let's do something about it! If I can get some of you to assist me, I can provide gloves and bin bags!`}
         />
       </div>
-      <div className="create-post-container">
-        <CreatePostButton />
-      </div>
+      {/* Only render this button when user is signed in */}
+      {isSignedIn && (
+        <div className="create-post-container">
+          <CreatePostButton />
+        </div>
+      )}
     </div>
   );
 }

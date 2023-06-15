@@ -1,7 +1,7 @@
 // import css
 import './Navbar.css';
 // import react dependencies
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from "react-router-dom";
 // import Supabase functions
 import { signOut } from '../../../Models/client';
@@ -30,7 +30,7 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isSearchOpen, setSearchOpen] = useState(false);
   
-  // Vary components displayed in dropdown menu depending on whether user is signed in using css ids
+  // Vary components displayed in dropdown menu depending on whether user is signed in using css
   let idSignedinVariable;
   let idSignedoutVariable;
   if(isSignedIn === true) {
