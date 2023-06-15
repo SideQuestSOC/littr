@@ -24,3 +24,4 @@ test("clicks the like button", () => {
   // Assert that the thumbsUp state has been updated
   expect(screen.getByTestId('like-badge')).toHaveTextContent('1');
 });
+
