@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Navbar/Navbar";
-// Import SQL queries
-import { supabaseEventInsert } from "../../Models/queries";
 import "./CreateCardForm.css";
 import {
   Stack,
@@ -36,38 +34,8 @@ const jankTheme = createTheme({
 export default function CreateCardForm() {
   const [age, setAge] = useState(""); // Declare the 'age' state variable
 
-
-  const handleDisposalMethodChange = (event) => {
-    setDisposalMethod(event.target.value);
-  };
-
-  const handleDateChange = (date) => {
-    setDate(date);
-  };
-
-  const handleCreatePost = async () => {
-    const PostData = {
-      creator_user_id: "XXX",
-      location: locationAddress,
-      address: locationPostcode,
-      created_at: new Date(),
-      likes: 0,
-      is_flagged: false,
-      post_introduction: postTitle,
-      has_uneven_ground:
-        document.getElementById("checkbox-uneven-ground")?.checked || false,
-      has_bathrooms:
-        document.getElementById("checkbox-bathrooms")?.checked || false,
-      has_parking: document.getElementById("checkbox-parking")?.checked || false,
-      is_remote_location:
-        document.getElementById("checkbox-remote-location")?.checked || false,
-      disposal_method: disposalMethod,
-      equipment: recommendedEquipment,
-      date_timestamp: new Date(date),
-    };
-
-    // Call function to run SQL query for public.Events table insertion
-    supabaseEventInsert(PostData);
+  const handleChange = (event) => {
+    setAge(event.target.value); // Define the 'handleChange' function
   };
 
   return (
@@ -81,11 +49,9 @@ export default function CreateCardForm() {
         <Stack spacing={2} direction="column" id="create-card-form-container">
           <TextField
             id="post-title"
-
-            placeholder="Title"
-            variant="standard"
-            value={postTitle}
-            onChange={handlePostTitleChange}
+            label="Title of post"
+            defaultValue=""
+            variant="filled"
           />
           <TextField
             id="location-address"
@@ -102,13 +68,10 @@ export default function CreateCardForm() {
           {/* Date picker below */}
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
-
-              id="date-picker"
-              label="Date"
-              value={date}
-              onChange={handleDateChange}
-              TextField={(params) => <TextField {...params} />}
-              className="custom-date-picker" 
+              label="Date of event"
+              className="date-picker"
+              format="DD/MM/YYYY"
+              variant="inline"
             />
             <SingleInputTimeRangeField 
               id="time-range"
@@ -173,14 +136,9 @@ export default function CreateCardForm() {
               <MenuItem value={1}>
                 Pickers must dispose of their own litter
               </MenuItem>
-
-              <MenuItem value={"Council pick-up"}>Council pick-up</MenuItem>
-              <MenuItem value={"On-site Refuse disposal"}>
-                On-site Refuse disposal
-              </MenuItem>
-              <MenuItem value={"Literal dumpster fire"}>
-                Literal dumpster fire
-              </MenuItem>
+              <MenuItem value={2}>Council pick-up</MenuItem>
+              <MenuItem value={3}>On-site Refuse disposal</MenuItem>
+              <MenuItem value={4}>Literal dumpster fire</MenuItem>
             </Select>
           </FormControl>
           <Typography id="recommended-equipment-title" variant="h8">
@@ -201,7 +159,7 @@ export default function CreateCardForm() {
               Discard
               </Link>
             </Button>
-            <Button id="create-button" variant="contained"  onClick={handleCreatePost}>
+            <Button id="create-button" variant="contained" >
               Create Post
             </Button>
           </Stack>
