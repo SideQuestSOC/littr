@@ -12,53 +12,29 @@ import { selectEvent } from '../../Models/queries';
 async function fetchData() {
   try {
     const data = await selectEvent();
-    console.log(data);
+    return data;
   } catch (error) {
     console.error(error);
   }
 }
-fetchData();
+let cardData = await fetchData();
+
 
 function CardDisplay( { isSignedIn, setIsSignedIn } ) {
   return (
     <div>
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
       <div id="card-display-outer-container">
-        <Card
-          header="Let's clean up Pentewan beach!"
-          color="#FC786E"
-          body={`Hi guys!
-    You've likely noticed the horrific state of our beloved beach as of late!
-    Let's do something about it! If I can get some of you to assist me, I can provide gloves and bin bags!`}
-        />
-        <Card
-          header="Let's clean up Pentewan beach!"
-          color="#55DADB"
-          body={`Hi guys!
-    You've likely noticed the horrific state of our beloved beach as of late!
-    Let's do something about it! If I can get some of you to assist me, I can provide gloves and bin bags!`}
-        />
-        <Card
-          header="Let's clean up Pentewan beach!"
-          color="#6AAF88"
-          body={`Hi guys!
-    You've likely noticed the horrific state of our beloved beach as of late!
-    Let's do something about it! If I can get some of you to assist me, I can provide gloves and bin bags!`}
-        />
-        <Card
-          header="Let's clean up Pentewan beach!"
-          color="#F5BB02"
-          body={`Hi guys!
-    You've likely noticed the horrific state of our beloved beach as of late!
-    Let's do something about it! If I can get some of you to assist me, I can provide gloves and bin bags!`}
-        />
-        <Card
-          header="Let's clean up Pentewan beach!"
-          color="#FC786E"
-          body={`Hi guys!
-    You've likely noticed the horrific state of our beloved beach as of late!
-    Let's do something about it! If I can get some of you to assist me, I can provide gloves and bin bags!`}
-        />
+
+      {cardData.map((card, index) => (
+          <Card
+            key={index}
+            header={card.title}
+            color="#FC786E"
+            body={card.description}
+          />
+        ))}
+
       </div>
       {/* Only render this button when user is signed in */}
       {isSignedIn && (
