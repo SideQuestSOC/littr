@@ -244,7 +244,7 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
               Discard
               </Link>
             </Button>
-            <Button id="create-button" variant="contained" onClick={handleCreatePost}>
+            <Button id="create-button" variant="contained" onClick={() => { handleCreatePost(); alert("Post created, thank you."); navigate('/src/pages/carddisplay'); }}>
               Create Post
             </Button>
           </Stack>
