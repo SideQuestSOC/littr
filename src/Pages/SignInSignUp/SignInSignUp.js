@@ -8,7 +8,7 @@ import SignIn from "./Components/SignIn/SignIn";
 import SignUp from "./Components/SignUp/SignUp";
 import SearchAppBar from "../Components/Navbar/Navbar";
 
-function SignInSignUp() {
+function SignInSignUp({ isSignedIn, setIsSignedIn }) {
     // This state variable 'formData' is used to store form data for the signup and sign in.
     const [formData, setFormData] = useState({
         firstName: '',
@@ -50,7 +50,7 @@ function SignInSignUp() {
 
     return <>
         <div id="sign-up-in-outer-container">
-            <SearchAppBar />
+            <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
             <div id="welcome-message-container">
                 <div id="welcome-title">
                     <h1>WELCOME</h1>
@@ -70,7 +70,7 @@ function SignInSignUp() {
                     {showSignUp && !signUpRedirect && (<SignUp formData={formData} handleChange={handleChange} setSignUpRedirect={setSignUpRedirect} />)}
 
                     {/* Render the SignIn component if either showSignIn is true or signUpRedirect is true (where a new user has just signed up) */}
-                    {(showSignIn || signUpRedirect) && (<SignIn formData={formData} handleChange={handleChange} signUpRedirect={signUpRedirect}/>)}
+                    {(showSignIn || signUpRedirect) && (<SignIn formData={formData} handleChange={handleChange} signUpRedirect={signUpRedirect} isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>)}
                 </div>
             </div>
         </div>

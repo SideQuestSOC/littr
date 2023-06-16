@@ -12,7 +12,7 @@ import { SignInUser } from '../../../../Models/client';
 import SignMessage from '../../Components/SignMessage/SignMessage';
 
 
-function SignIn({ formData, handleChange, signUpRedirect }) {
+function SignIn({ formData, handleChange, signUpRedirect, isSignedIn, setIsSignedIn }) {
     // initialize the navigate object using the useNavigate 'hook'
     const navigate = useNavigate();
 
@@ -32,6 +32,8 @@ function SignIn({ formData, handleChange, signUpRedirect }) {
         const signInSuccessful = await SignInUser(formData.email, formData.password);
         // if (signInSuccessful === true) redirect to Card Display Page
         if (signInSuccessful) {
+            // Change isSignedIn useState to true
+            setIsSignedIn(true);
             // Redirect to card display page on successful log in
             navigate('/src/pages/carddisplay');
         }

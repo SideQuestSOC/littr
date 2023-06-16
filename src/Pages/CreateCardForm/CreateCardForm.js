@@ -1,5 +1,9 @@
-import React, { useState } from "react";
-import Navbar from "../Components/Navbar/Navbar";
+
+import React, { useState, useEffect } from "react";
+// useNavigate() is used to redirect to a different page
+import { useNavigate } from 'react-router-dom';
+import SearchAppBar from "../Components/Navbar/Navbar";
+import { supabaseEventInsert } from "../../Models/queries";
 import "./CreateCardForm.css";
 import {
   Stack,
@@ -18,11 +22,10 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
+import {Link} from "react-router-dom";
 import { SingleInputTimeRangeField } from "@mui/x-date-pickers-pro/SingleInputTimeRangeField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-// This was the only way I could change the colour of the text field highlight
 const jankTheme = createTheme({
   palette: {
     primary: {
@@ -30,94 +33,169 @@ const jankTheme = createTheme({
     },
   },
 });
+export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
 
-export default function CreateCardForm() {
-  const [age, setAge] = useState(""); // Declare the 'age' state variable
+  // initialize the navigate object using the useNavigate 'hook'
+  const navigate = useNavigate();
+  // Redirect to Card display page if a user is not logged in
+  useEffect(() => {
+    if (!isSignedIn) {
+      navigate('/src/pages/carddisplay');
+    }
+  }, [isSignedIn, navigate]);
 
-  const handleChange = (event) => {
-    setAge(event.target.value); // Define the 'handleChange' function
+  const [postTitle, setPostTitle] = useState("");
+  const [locationAddress, setLocationAddress] = useState("");
+  const [locationPostcode, setLocationPostcode] = useState("");
+  const [additionalInformation, setAdditionalInformation] = useState("");
+  const [recommendedEquipment, setRecommendedEquipment] = useState("");
+  const [disposalMethod, setDisposalMethod] = useState("");
+  const [date, setDate] = useState(null);
+
+  const handlePostTitleChange = (event) => {
+    setPostTitle(event.target.value);
+  };
+
+  const handleLocationAddressChange = (event) => {
+    setLocationAddress(event.target.value);
+  };
+
+
+  const handleLocationPostcodeChange = (event) => {
+    setLocationPostcode(event.target.value);
+  };
+
+  const handleAdditionalInformationChange = (event) => {
+    setAdditionalInformation(event.target.value);
+  };
+
+  const handleRecommendedEquipmentChange = (event) => {
+    setRecommendedEquipment(event.target.value);
+  };
+
+  const handleDisposalMethodChange = (event) => {
+    setDisposalMethod(event.target.value);
+  };
+
+  const handleDateChange = (date) => {
+    setDate(date);
+  };
+
+  const handleCreatePost = async () => {
+    const PostData = {
+      creator_user_id: "XXX",
+      location: locationAddress,
+      address: locationPostcode,
+      created_at: new Date(),
+      likes: 0,
+      is_flagged: false,
+      post_introduction: additionalInformation,
+      title: postTitle,
+      has_uneven_ground:
+        document.getElementById("checkbox-uneven-ground")?.checked || false,
+      has_bathrooms:
+        document.getElementById("checkbox-bathrooms")?.checked || false,
+      has_parking: document.getElementById("checkbox-parking")?.checked || false,
+      is_remote_location:
+        document.getElementById("checkbox-remote-location")?.checked || false,
+      disposal_method: disposalMethod,
+      equipment: recommendedEquipment,
+      date_timestamp: new Date(date),
+    };
+
+    // Call function to run SQL query for public.Events table insertion
+    supabaseEventInsert(PostData);
   };
 
   return (
     <div id="create-card-outer-container">
-      <Navbar />
+      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>
       <ThemeProvider theme={jankTheme}>
         <Typography variant="h4" id="create-card-title">
           Create a Post
         </Typography>
-        {/* Top input fields */}
         <Stack spacing={2} direction="column" id="create-card-form-container">
           <TextField
             id="post-title"
-            label="Title"
-            defaultValue=""
-            variant="filled"
+            placeholder="Title of Post"
+            variant="standard"
+            value={postTitle}
+            onChange={handlePostTitleChange}
           />
           <TextField
             id="location-address"
-            label="Location address"
-            defaultValue=""
-            variant="filled"
+            placeholder="Address"
+            variant="standard"
+            value={locationAddress}
+            onChange={handleLocationAddressChange}
           />
           <TextField
             id="location-postcode"
-            label="Location Postcode"
-            defaultValue=""
-            variant="filled"
+            placeholder="Postcode"
+            variant="standard"
+            value={locationPostcode}
+            onChange={handleLocationPostcodeChange}
           />
-          {/* Date picker below */}
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              label="Date of event"
-              className="date-picker"
-              format="DD/MM/YYYY"
-              variant="inline"
-            />
-            <SingleInputTimeRangeField 
-              id="time-range"
-              slotProps={{
-                textField: ({ position }) => ({
-                label:"Start Time - End Time",
-                className: "time-range-field"
-                }),
-              }}
-            />
-
-          </LocalizationProvider>
-          <Typography id="additional-information-title" variant="h8">
-          </Typography>
-          <TextField
+           <TextField
             id="additional-information"
             className="multi-line-input"
-            placeholder="Additional information"
+            placeholder="Describe Your Event"
             multiline
             rows={3}
             variant="standard"
+            value={additionalInformation}
+            onChange={handleAdditionalInformationChange}
           />
           <Divider />
-          <Typography id="accessability-title" variant="h6">
+          <Typography id="date-time-title" variant="h6">
+            Date and Time
+          </Typography>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              id="date-picker"
+              label="Date of Your Event"
+              value={date}
+              onChange={handleDateChange}
+              TextField={(params) => <TextField {...params} />}
+              className="custom-date-picker" 
+              format="DD/MM/YYYY"
+            />
+         <SingleInputTimeRangeField
+         id="time-range"
+  slotProps={{
+    textField: ({ position }) => ({
+          label: "Start Time - End Time (24-Hour-Format)",
+          className: "time-range-field",
+          ampm: false,
+        }),
+      }}
+    />
+
+          </LocalizationProvider>
+         
+          <Divider />
+          <Typography id="accessibility-title" variant="h6">
             Accessibility information
           </Typography>
           {/* Accessibility checkboxes */}
           <FormGroup id="accessibility-checkboxes">
             <FormControlLabel
-              control={<Checkbox />}
+              control={<Checkbox id="checkbox-bathrooms" />}
               className="checkbox"
               label="Nearby Bathrooms"
             />
             <FormControlLabel
-              control={<Checkbox />}
+              control={<Checkbox id="checkbox-uneven-ground" />}
               className="checkbox"
               label="Uneven ground"
             />
             <FormControlLabel
-              control={<Checkbox />}
+              control={<Checkbox id="checkbox-remote-location" />}
               className="checkbox"
               label="Remote location"
             />
             <FormControlLabel
-              //  I added a defaultChecked prop to the checkbox to show how it works
-              control={<Checkbox defaultChecked />}
+              control={<Checkbox id="checkbox-parking" />}
               className="checkbox"
               label="Nearby Parking"
             />
@@ -127,37 +205,46 @@ export default function CreateCardForm() {
           <FormControl fullWidth>
             <InputLabel id="disposal-method">Disposal Method</InputLabel>
             <Select
-              labelId="-select-label"
+              labelId="disposal-method"
               id="disposal-select"
-              value={age}
+              value={disposalMethod}
               label="method"
-              onChange={handleChange}
+              onChange={handleDisposalMethodChange}
             >
-              <MenuItem value={1}>
+              <MenuItem value={"Pickers must dispose of their own litter"}>
                 Pickers must dispose of their own litter
               </MenuItem>
-              <MenuItem value={2}>Council pick-up</MenuItem>
-              <MenuItem value={3}>On-site Refuse disposal</MenuItem>
-              <MenuItem value={4}>Literal dumpster fire</MenuItem>
+              <MenuItem value={"Council pick-up"}>Council pick-up</MenuItem>
+              <MenuItem value={"On-site Refuse disposal"}>
+                On-site Refuse disposal
+              </MenuItem>
+              <MenuItem value={"Literal dumpster fire"}>
+                Literal dumpster fire
+              </MenuItem>
             </Select>
           </FormControl>
-          <Typography id="recommended-equipment-title" variant="h8">
+          <Typography id="recommended-equipment-title" variant="h6">
             Recommended equipment
           </Typography>
           <TextField
             className="multi-line-input"
             id="recommended-equipment"
             multiline
+            placeholder="e.g. gloves, pickers, water"
             rows={3}
             variant="standard"
+            value={recommendedEquipment}
+            onChange={handleRecommendedEquipmentChange}
           />
 
           {/* Buttons */}
           <Stack spacing={2} direction="row" id="create-card-button-container">
             <Button id="discard-button" variant="contained">
+            <Link id="link" variant="contained"  to="/src/pages/carddisplay">
               Discard
+              </Link>
             </Button>
-            <Button id="create-button" variant="contained">
+            <Button id="create-button" variant="contained" onClick={() => { handleCreatePost(); alert("Post created, thank you."); navigate('/src/pages/carddisplay'); }}>
               Create Post
             </Button>
           </Stack>

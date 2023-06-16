@@ -1,65 +1,48 @@
-import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
+// import css
+import './Navbar.css';
+// import react dependencies
+import { useState } from 'react';
+import { Link } from "react-router-dom";
+// import Supabase functions
+import { signOut } from '../../../Models/client';
+// import MaterialUI dependencies
+import { styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-// import MaterialUI dependencies
-import { Button } from '@mui/material';
+import { MenuItem, Button, Menu, InputBase, Typography, IconButton, Toolbar, Box, AppBar, Avatar } from "@mui/material";
 
-import './Navbar.css';
+// Initialise MUI search component
+const Search = styled("div")(({ theme }) => ({}));
 
-import { Link } from "react-router-dom";
-
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.25),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  marginRight: 5,
-  width: "100%",
-  [theme.breakpoints.up("xs")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-    maxWidth: "240px",
-  },
-}));
-
+// Initialise MUI search input component
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
   "& .MuiInputBase-input": {
-    padding: theme.spacing(0, 0, 0, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(1)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
     [theme.breakpoints.up("xs")]: {
       width: "17ch",
       "&:focus": {
-        width: "13ch",
+        width: "17ch",
       },
     },
   },
 }));
 
-export default function SearchAppBar() {
-  // Make function to hold menu this.state
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [isSearchOpen, setSearchOpen] = React.useState(false);
+export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [isSearchOpen, setSearchOpen] = useState(false);
+  
+  // Vary components displayed in dropdown menu depending on whether user is signed in using css
+  let idSignedinVariable;
+  let idSignedoutVariable;
+  if(isSignedIn === true) {
+    idSignedinVariable = "dropdown-menu-signedin";
+    idSignedoutVariable = "dropdown-menu-signedin-toggle"
+  }
+  else {
+    idSignedinVariable = "dropdown-menu-signedin-toggle";
+  }
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    console.log(event.currentTarget);
   };
 
   const handleClose = () => {
@@ -69,62 +52,51 @@ export default function SearchAppBar() {
   const handleSearchClick = () => {
     setSearchOpen(!isSearchOpen);
   };
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ background: "#6AAF88" }}>
+    <Box id="navbar-outer-container" >
+      <AppBar id="navbar-header-container" position="static">
         <Toolbar>
-          <Search sx={{ borderRadius: "10px" }}>
-            <IconButton
+
+          {/* SEARCH */}
+          <Search id="navbar-search-container">
+            <IconButton 
+              id="search-icon"
               size="large"
               edge="start"
               color="inherit"
               aria-label="open drawer"
-              sx={{ mr: 2, background: "#2F3E46", 
-              "&:hover": { backgroundColor: "#F5BB02" },
-              "&:active": { backgroundColor: "#F5BB02" },
-              "&:focus": { backgroundColor: "#F5BB02" },
-              borderRadius: "10px", padding: "5px", marginRight: "0" }}
-              onClick={handleSearchClick}
-            >
-              <SearchIcon />
+              onClick={handleSearchClick}>
+                <SearchIcon />
             </IconButton>
             {isSearchOpen && (
               <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-                sx={{ borderRadius: "10px" }}
-              />
+                id="search-input"
+                placeholder="Search by location…"
+                inputProps={{ "aria-label": "search" }}/>
             )}
           </Search>
-          <Typography
+          
+          {/* LOGO/TITLE */}
+          <Typography id="navbar-title"
             variant="h5"
             noWrap
-            component="div"
-            sx={{
-              flexGrow: 1,
-              fontFamily: "Montserrat, sans-serif",
-              fontWeight: "bold",
-              textShadow: '2px 2px 2px rgba(0, 0, 0, 0.25)',
-              marginLeft: "10px",
-            }}
-          >
-            <Link to="/">LITTR</Link>
+            component="div">
+              <Link to="/">LITTR</Link>
           </Typography>
 
-          <IconButton
+          {/* BURGER MENU */}
+          <IconButton 
+            id="burger-icon"
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2, background: "#2F3E46", 
-              "&:hover": { backgroundColor: "#F5BB02" },
-              "&:active": { backgroundColor: "#F5BB02" },
-              "&:focus": { backgroundColor: "#F5BB02" },
-              borderRadius: "10px", padding: "5px", marginRight: "0" }}
-            onClick={handleClick} // Add menu functionality
-          >
-          <MenuIcon />
+            onClick={handleClick}>
+              <MenuIcon />
           </IconButton>
+
+          {/* DROPDOWN MENU */}
           <Menu
             id="simple-menu"
             anchorEl={anchorEl}
@@ -132,17 +104,29 @@ export default function SearchAppBar() {
             onClose={handleClose}
             paperprops={{
               elevation: 1,
-            }}
-          >
-            <MenuItem id="dropdown-menu" onClick={handleClose}>
-              {/* TODO: Change the content here based on whether user is logged in or not */}
-              <Link to="/src/pages/createpostform">Create a Post</Link>
-              <Button variant="contained">
-                {/* Change the Content here based on whether user is logged in or not */}
-                FIX THIS BUTTON
-              </Button>
+            }}>
+            {/* DROPDOWN MENU */}
+            {/* TODO: Change the Content here based on whether user is logged in or not */}
+            <MenuItem onClick={handleClose}>
+              <div id={idSignedinVariable}>
+                <Link id="dropdown-user-settings-link" to="">User Settings</Link>
+                <Avatar id="dropdown-menu-avatar">??</Avatar>
+                <Link id="dropdown-createapost-link" to="/src/pages/createpostform">Create a Post</Link>
+                <Link id="dropdown-createagroup-link" to="">Create a Group</Link>
+                <Button id="dropdown-menu-signout-button" variant="contained" onClick={() => { signOut(); setIsSignedIn(false); }}>
+                  Sign Out
+                </Button>
+              </div>
+              <div id={idSignedoutVariable}>
+                <Button variant="contained" id="dropdown-menu-susi-button">
+                  <Link to="/src/pages/signsignup">
+                    Sign Up / Sign In
+                  </Link>
+                </Button>
+              </div>   
             </MenuItem>
           </Menu>
+          
         </Toolbar>
       </AppBar>
     </Box>
