@@ -88,6 +88,18 @@ export default function Card(props) {
             <Typography id="card-content-container">
               {/* INSERT DETAILS COMPONENTS HERE */}
               <Map location={props.location} />
+              {props.location}
+              {props.postcode}
+              {/* {props.creatorName} TODO: */}
+              {props.dateTime}
+              {props.introduction}
+              {props.hasUnevenGround}
+              {props.hasBathrooms}
+              {props.hasParking}
+              {props.isRemoteLocation}
+              {props.disposalMethod}
+              {props.equipment}
+
               
             </Typography>
           </List>

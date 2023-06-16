@@ -62,7 +62,7 @@ export async function supabaseEventInsert(PostData) {
 // selectEvent() - retrieves data from public.Events for the Card Display component
 export async function selectEvent() {
     const { data, error } = await supabase.from('event')
-    .select('location, address, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp')
+    .select('location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp')
     
     if (error) {
       // Handle error

@@ -32,6 +32,16 @@ function CardDisplay( { isSignedIn, setIsSignedIn } ) {
             header={card.title}
             color="#FC786E"
             location={card.location}
+            postcode={card.postcode}
+          // creatorname={card.creator_username} also this is incorrect TODO: fix
+            dateTime={card.date_timestamp}
+            introduction={card.post_introduction}
+            hasUnevenGround={card.has_uneven_ground}
+            hasBathrooms={card.has_bathrooms}
+            hasParking={card.has_parking}
+            isRemoteLocation={card.is_remote_location}
+            disposalMethod={card.disposal_method}
+            equipment={card.equipment}
           />
         ))}
 
