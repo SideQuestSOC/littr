@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Navbar/Navbar";
-
-// Import SQL queries
 import { supabaseEventInsert } from "../../Models/queries";
-
 import "./CreateCardForm.css";
 import {
   Stack,
@@ -22,7 +19,7 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
+import {Link} from "react-router-dom";
 import { SingleInputTimeRangeField } from "@mui/x-date-pickers-pro/SingleInputTimeRangeField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -137,16 +134,19 @@ export default function CreateCardForm() {
               onChange={handleDateChange}
               TextField={(params) => <TextField {...params} />}
               className="custom-date-picker" 
+              format="DD/MM/YYYY"
             />
-            <SingleInputTimeRangeField
-              id="time-range"
-              slotProps={{
-                textField: ({ position }) => ({
-                  label: "Start Time - End Time",
-                  className: "time-range-field",
-                }),
-              }}
-            />
+         <SingleInputTimeRangeField
+         id="time-range"
+  slotProps={{
+    textField: ({ position }) => ({
+          label: "Start Time - End Time",
+          className: "time-range-field",
+          ampm: false,
+        }),
+      }}
+    />
+
           </LocalizationProvider>
           <Typography id="additional-information-title" variant="h6">
             Additional information
@@ -183,7 +183,7 @@ export default function CreateCardForm() {
               label="Remote location"
             />
             <FormControlLabel
-              control={<Checkbox id="checkbox-parking" defaultChecked />}
+              control={<Checkbox id="checkbox-parking" />}
               className="checkbox"
               label="Nearby Parking"
             />
@@ -226,12 +226,13 @@ export default function CreateCardForm() {
 
           {/* Buttons */}
           <Stack spacing={2} direction="row" id="create-card-button-container">
-            <Button
-              id="create-card-button"
-              variant="contained"
-              onClick={handleCreatePost}
-            >
-              Create Card
+            <Button id="discard-button" variant="contained">
+            <Link id="link" variant="contained"  to="/src/pages/carddisplay">
+              Discard
+              </Link>
+            </Button>
+            <Button id="create-button" variant="contained" onClick={handleCreatePost}>
+              Create Post
             </Button>
           </Stack>
         </Stack>
