@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import Navbar from "../Components/Navbar/Navbar";
+
+import React, { useState, useEffect } from "react";
+// useNavigate() is used to redirect to a different page
+import { useNavigate } from 'react-router-dom';
+import SearchAppBar from "../Components/Navbar/Navbar";
 import { supabaseEventInsert } from "../../Models/queries";
 import "./CreateCardForm.css";
 import {
@@ -30,6 +33,17 @@ const jankTheme = createTheme({
     },
   },
 });
+export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
+
+  // initialize the navigate object using the useNavigate 'hook'
+  const navigate = useNavigate();
+  // Redirect to Card display page if a user is not logged in
+  useEffect(() => {
+    if (!isSignedIn) {
+      navigate('/src/pages/carddisplay');
+    }
+  }, [isSignedIn, navigate]);
+
 
 export default function CreateCardForm() {
   const [postTitle, setPostTitle] = useState("");
@@ -47,6 +61,7 @@ export default function CreateCardForm() {
   const handleLocationAddressChange = (event) => {
     setLocationAddress(event.target.value);
   };
+
 
   const handleLocationPostcodeChange = (event) => {
     setLocationPostcode(event.target.value);
@@ -95,7 +110,7 @@ export default function CreateCardForm() {
 
   return (
     <div id="create-card-outer-container">
-      <Navbar />
+      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>
       <ThemeProvider theme={jankTheme}>
         <Typography variant="h4" id="create-card-title">
           Create a Post
