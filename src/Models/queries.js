@@ -44,3 +44,17 @@ export async function supabaseSignUp(formData) {
         return true;
     }
 }
+
+//  supabaseEventInsert() - inserts new events into public.Events table from Create a Post page
+export async function supabaseEventInsert(PostData) {
+    try {
+        const { data, error } = await supabase.from('Event').insert(PostData);
+        if (error) {
+            console.error("Error making post:", error);
+        } else {
+            console.log("Post successful!:", data);
+        } 
+    } catch (error) {
+        console.error("Error with post:", error);
+    }
+}
