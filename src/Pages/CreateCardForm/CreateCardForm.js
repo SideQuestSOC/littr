@@ -44,8 +44,6 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
     }
   }, [isSignedIn, navigate]);
 
-
-export default function CreateCardForm() {
   const [postTitle, setPostTitle] = useState("");
   const [locationAddress, setLocationAddress] = useState("");
   const [locationPostcode, setLocationPostcode] = useState("");
