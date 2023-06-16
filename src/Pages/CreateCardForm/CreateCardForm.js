@@ -89,7 +89,8 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
       created_at: new Date(),
       likes: 0,
       is_flagged: false,
-      post_introduction: postTitle,
+      post_introduction: additionalInformation,
+      title: postTitle,
       has_uneven_ground:
         document.getElementById("checkbox-uneven-ground")?.checked || false,
       has_bathrooms:
