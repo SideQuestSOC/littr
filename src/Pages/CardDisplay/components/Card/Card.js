@@ -5,15 +5,14 @@ import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
-
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
+import eyesHappy from "../../../../Assets/eyesHappy.svg";
 // import css
-import './Card.css';
+import "./Card.css";
 
 // import component
-import Map from '../../components/Map/Map';
-
+import Map from "../../components/Map/Map";
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
@@ -34,19 +33,49 @@ export default function Card(props) {
   };
 
   return (
-    <div id="card-outer-container" style={{backgroundColor: props.color}}>
+    <div id="card-outer-container" style={{ backgroundColor: props.color }}>
       <List id="MUInav" component="nav" aria-labelledby="nested-list-subheader">
-        <Typography id="eyes" variant="h5" component="div">^^</Typography>
+        <Stack id="eyes-container" direction="row">
+          <img
+            id="eyes"
+            src={eyesHappy}
+            alt="eyesHappy"
+          />
+        </Stack>
         <div id="title-container">
           <h5 id="card-title">{props.header}</h5>
         </div>
-        <Stack id="card-button-container" direction="row" spacing={2} padding={2}>
-          <Button id="details-button" onClick={handleExpand} variant="contained">
+        <Stack
+          id="card-button-container"
+          direction="row"
+          spacing={2}
+          padding={2}
+        >
+          <Button
+            id="details-button"
+            onClick={handleExpand}
+            variant="contained"
+          >
             Details
           </Button>
-          <Badge badgeContent={thumbsUp} sx={{ "& .MuiBadge-badge": { backgroundColor: "#D9D9D9", color: "black"} }} data-testid="like-badge">
-            <Button id="like-button" onClick={handleThumbsUp} variant="contained"
-            data-testid="like-button"> {/* Added data-testid to test the like button */}
+          <Badge
+            badgeContent={thumbsUp}
+            sx={{
+              "& .MuiBadge-badge": {
+                backgroundColor: "#D9D9D9",
+                color: "black",
+              },
+            }}
+            data-testid="like-badge"
+          >
+            <Button
+              id="like-button"
+              onClick={handleThumbsUp}
+              variant="contained"
+              data-testid="like-button"
+            >
+              {" "}
+              {/* Added data-testid to test the like button */}
               <ThumbUpOffAltIcon />
             </Button>
           </Badge>

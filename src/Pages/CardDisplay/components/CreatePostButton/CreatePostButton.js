@@ -4,7 +4,7 @@ import "./CreatePostButton.css";
 function CreatePostButton() {
   return (
     <div>
-      <Link to="/src/pages/createpostform" className="create-post-button">
+      <Link to="/src/pages/createpostform" className="create-post-button" data-testid="create-post-button">
         +
       </Link>
     </div>

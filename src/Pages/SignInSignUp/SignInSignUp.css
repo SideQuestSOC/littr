@@ -9,7 +9,7 @@
 #sign-up-in-outer-container {
     height: 100vh;
     width: 100vw;
-    background-image: url("../../../public/Assets/signinupbackground.webp");
+    background-image: url("../../Assets/signinupbackground.webp");
     background-repeat: no-repeat;
     background-size: cover;
 }
