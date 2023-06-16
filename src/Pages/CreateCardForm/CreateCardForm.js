@@ -103,7 +103,7 @@ export default function CreateCardForm() {
         <Stack spacing={2} direction="column" id="create-card-form-container">
           <TextField
             id="post-title"
-            placeholder="Title"
+            placeholder="Title of Post"
             variant="standard"
             value={postTitle}
             onChange={handlePostTitleChange}
@@ -122,6 +122,16 @@ export default function CreateCardForm() {
             value={locationPostcode}
             onChange={handleLocationPostcodeChange}
           />
+           <TextField
+            id="additional-information"
+            className="multi-line-input"
+            placeholder="Describe Your Event"
+            multiline
+            rows={3}
+            variant="standard"
+            value={additionalInformation}
+            onChange={handleAdditionalInformationChange}
+          />
           <Divider />
           <Typography id="date-time-title" variant="h6">
             Date and Time
@@ -129,7 +139,7 @@ export default function CreateCardForm() {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               id="date-picker"
-              label="Date"
+              label="Date of Your Event"
               value={date}
               onChange={handleDateChange}
               TextField={(params) => <TextField {...params} />}
@@ -140,7 +150,7 @@ export default function CreateCardForm() {
          id="time-range"
   slotProps={{
     textField: ({ position }) => ({
-          label: "Start Time - End Time",
+          label: "Start Time - End Time (24-Hour-Format)",
           className: "time-range-field",
           ampm: false,
         }),
@@ -148,19 +158,7 @@ export default function CreateCardForm() {
     />
 
           </LocalizationProvider>
-          <Typography id="additional-information-title" variant="h6">
-            Additional information
-          </Typography>
-          <TextField
-            id="additional-information"
-            className="multi-line-input"
-            placeholder="Additional information"
-            multiline
-            rows={3}
-            variant="standard"
-            value={additionalInformation}
-            onChange={handleAdditionalInformationChange}
-          />
+         
           <Divider />
           <Typography id="accessibility-title" variant="h6">
             Accessibility information
@@ -211,13 +209,14 @@ export default function CreateCardForm() {
               </MenuItem>
             </Select>
           </FormControl>
-          <Typography id="recommended-equipment-title" variant="h8">
+          <Typography id="recommended-equipment-title" variant="h6">
             Recommended equipment
           </Typography>
           <TextField
             className="multi-line-input"
             id="recommended-equipment"
             multiline
+            placeholder="e.g. gloves, pickers, water"
             rows={3}
             variant="standard"
             value={recommendedEquipment}
