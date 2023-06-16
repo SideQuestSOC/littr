@@ -31,7 +31,7 @@ function CardDisplay( { isSignedIn, setIsSignedIn } ) {
             key={index}
             header={card.title}
             color="#FC786E"
-            body={card.description}
+            location={card.location}
           />
         ))}
 

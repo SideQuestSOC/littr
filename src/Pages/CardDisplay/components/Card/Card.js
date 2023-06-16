@@ -87,8 +87,8 @@ export default function Card(props) {
           <List id="collapsed-card-container" component="div">
             <Typography id="card-content-container">
               {/* INSERT DETAILS COMPONENTS HERE */}
-              <Map />
-              {props.body}
+              <Map location={props.location} />
+              
             </Typography>
           </List>
         </Collapse>
