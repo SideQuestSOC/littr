@@ -5,7 +5,19 @@ import React from "react";
 import Card from "./components/Card/Card.js";
 import SearchAppBar from "../Components/Navbar/Navbar";
 import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
+// import SQL queries
+import { selectEvent } from '../../Models/queries';
 
+// Test selecting data from DB and console log it
+async function fetchData() {
+  try {
+    const data = await selectEvent();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+fetchData();
 
 function CardDisplay( { isSignedIn, setIsSignedIn } ) {
   return (
