@@ -11,7 +11,7 @@ function CardDisplay() {
   return (
     <div>
       <SearchAppBar />
-      <div id="card-display-outer-container">
+      <div id="card-display-outer-container" data-testid="card-display">
         <Card
           header="Let's clean up Pentewan beach!"
           color="#FC786E"
