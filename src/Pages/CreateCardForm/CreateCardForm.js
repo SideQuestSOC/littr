@@ -85,7 +85,7 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
     const PostData = {
       creator_user_id: "XXX",
       location: locationAddress,
-      address: locationPostcode,
+      postcode: locationPostcode,
       created_at: new Date(),
       likes: 0,
       is_flagged: false,
