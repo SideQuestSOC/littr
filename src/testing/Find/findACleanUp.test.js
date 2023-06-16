@@ -1,9 +1,10 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+// import userEvent from '@testing-library/user-event';
+// import { MemoryRouter } from 'react-router-dom';
 import LandingPage from '../../Pages/LandingPage/LandingPage';
-import App from '../../Pages/App/App'
+import CardDisplay from '../../Pages/CardDisplay/CardDisplay';
+// import App from '../../Pages/App/App'
 
 // Check if find a clean up button renders
 test("renders find a clean up button", () => {
@@ -24,14 +25,17 @@ test("renders find a clean up button", () => {
 
 // Check if the button can be pressed by simulating a click event and navigates to card display page
 
-test('button click should navigate to CardDisplay page', () => {
+test('button click should navigate to CardDisplay page', async () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
-        <App />
-      </MemoryRouter>
+    <Router>
+      <LandingPage />
+      <CardDisplay />
+    </Router>
     );
   
     fireEvent.click(screen.getByText('Find a clean up'));
   
-    expect(screen.getByTestId('card-display')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId('card-display')).toBeInTheDocument();
+    });
   });
