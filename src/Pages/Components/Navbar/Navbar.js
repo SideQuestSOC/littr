@@ -72,7 +72,7 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
             {isSearchOpen && (
               <StyledInputBase
                 id="search-input"
-                placeholder="Search…"
+                placeholder="Search by location…"
                 inputProps={{ "aria-label": "search" }}/>
             )}
           </Search>
