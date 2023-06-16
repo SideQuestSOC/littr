@@ -75,6 +75,10 @@
     font-weight: bold;
     align-self: center;
 }
+#link {
+    color: var(--navyBlue);
+    font-weight: 600;
+}
 
 #discard-button:hover, #create-button:hover {
     background-color: var(--offWhite);
