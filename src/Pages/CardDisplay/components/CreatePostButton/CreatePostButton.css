@@ -4,7 +4,7 @@
   --neonGreen: #6aaf88;
   --strawberry: #fc786e;
   --navyBlue: #2f3e46;
-  --neonGreenTransparent60: #6aaf8860;
+  --neonGreenTransparent90: #6aaf8890;
 }
 
 .create-post-button {
@@ -20,4 +20,11 @@
   font-weight: 700;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
+  box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.85);
+}
+
+.create-post-button:hover {
+  background-color: var(--neonGreen);
+  transform: scale(1.1);
+  text-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.65);
 }
