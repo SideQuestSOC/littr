@@ -93,10 +93,11 @@ export default function Card(props) {
               {/* {props.creatorName} TODO: */}
               {props.dateTime}
               {props.introduction}
-              {props.hasUnevenGround}
+              {/* Cannot render these directly as they are booleans */}
+              {/* {props.hasUnevenGround}
               {props.hasBathrooms}
               {props.hasParking}
-              {props.isRemoteLocation}
+              {props.isRemoteLocation} */}
               {props.disposalMethod}
               {props.equipment}
 
