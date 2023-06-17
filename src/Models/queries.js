@@ -72,3 +72,13 @@ export async function selectEvent() {
     
     return data;
 };
+
+// Select data from DB to map onto Cards
+export async function fetchData() {
+    try {
+      const data = await selectEvent();
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }

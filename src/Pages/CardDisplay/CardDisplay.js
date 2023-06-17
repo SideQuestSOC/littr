@@ -6,19 +6,9 @@ import Card from "./components/Card/Card.js";
 import SearchAppBar from "../Components/Navbar/Navbar";
 import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
 // import SQL queries
-import { selectEvent } from '../../Models/queries';
+import { fetchData } from '../../Models/queries';
 
-// Test selecting data from DB and console log it
-async function fetchData() {
-  try {
-    const data = await selectEvent();
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
-}
 let cardData = await fetchData();
-
 
 function CardDisplay( { isSignedIn, setIsSignedIn } ) {
   return (
