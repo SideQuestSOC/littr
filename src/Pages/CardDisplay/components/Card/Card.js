@@ -7,6 +7,7 @@ import { Typography, Checkbox, FormControlLabel, FormGroup } from "@mui/material
 import Stack from "@mui/material/Stack";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
+import GroupsIcon from '@mui/icons-material/Groups';
 import eyesHappy from "../../../../Assets/eyesHappy.svg";
 // import css
 import "./Card.css";
@@ -121,24 +122,54 @@ export default function Card(props) {
             <Typography component={'div'} id="card-content-container">
               {/* INSERT DETAILS COMPONENTS HERE */}
               <Map location={props.location} postcode={props.postcode} />
-              {props.location}
-              {props.postcode}
-              {props.date}
-              {props.time}
-              {/* {props.creatorName} TODO: */}
-              {props.introduction}
-            
+              <div className="card-content-space">
+                <h4>Location:</h4>
+                {props.location}, {props.postcode}
+              </div>
+              <div className="card-content-space" id="card-content-row">
+                <h4><pre>Date: </pre></h4>{props.date}
+              </div>
+              <div className="card-content-space" id="card-content-row">
+                <h4><pre>Start Time: </pre></h4>{props.time}
+              </div>
+              <div className="card-content-space" id="card-content-row-creator">
+                <h4><pre>Creator: </pre></h4>{/*TODO: {props.creatorName} */}
+                <Badge 
+                  // TODO: check how many volunteers for this event and insert into badgeContent
+                  badgeContent={1} 
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  sx={{
+                  "& .MuiBadge-badge": {
+                    backgroundColor: "#6AAF88",
+                    color: "black",
+                  }}}>
+                  <GroupsIcon />
+                </Badge>
+              </div>
+              <div className="card-content-space">
+                <h4>Details:</h4>
+                {props.introduction}
+              </div>
+              
               {/* Render checkboxes based on the accessibility boolean props */}
-              <FormGroup>
+              <FormGroup className="card-content-space">
                 {checkBoolean(props.hasUnevenGround, "Uneven Ground")}
                 {checkBoolean(props.hasBathrooms, "Nearby Bathrooms")}
                 {checkBoolean(props.hasParking, "Nearby Parking")}
                 {checkBoolean(props.isRemoteLocation, "Remote Location")}
               </FormGroup>
-              
-              {props.disposalMethod}
-              {props.equipment}
-              
+
+              <div className="card-content-space">
+                <h4>Disposal Method:</h4>
+                {props.disposalMethod}
+              </div>
+              <div className="card-content-space">
+                <h4>Recommended Equipment:</h4>
+                {props.equipment}
+              </div>
             </Typography>
           </List>
         </Collapse>

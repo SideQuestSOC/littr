@@ -186,6 +186,22 @@
     word-break: break-word;
 }
 
+.card-content-space {
+    padding: 2px 5px 2px 5px;
+}
+
+#card-content-row {
+    display: flex;
+    flex-direction: row;
+}
+
+#card-content-row-creator {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 25px;
+}
+
 /* Reduce space MUI checkboxes take up */
 .MuiFormControlLabel-root {
     margin: 0;
