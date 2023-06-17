@@ -150,6 +150,7 @@
     box-shadow: 0px -20px 25px -20px rgba(0,0,0,0.45), 0px -20px 20px -255px rgba(0,0,0,0.45);
 }
 
+/* Added flex-direction: column; to make children stack vertically */
 #collapsed-card-container {
     background-color: var(--offWhite);
     width: 350px;
@@ -158,6 +159,7 @@
     border: none;
     font-size: 12px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -173,3 +175,4 @@
     flex-direction: column;
     word-break: break-word;
 }
+

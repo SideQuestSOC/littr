@@ -8,6 +8,7 @@ import Stack from "@mui/material/Stack";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import eyesHappy from "../../../../Assets/eyesHappy.svg";
+import VolunteerButton from "../VolunteerButton/VolunteerButton";
 // import css
 import "./Card.css";
 
@@ -90,6 +91,9 @@ export default function Card(props) {
               <Map />
               {props.body}
             </Typography>
+            <div id="volunteer-button-container">
+            <VolunteerButton />
+            </div>
           </List>
         </Collapse>
       </List>

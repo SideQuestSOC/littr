@@ -11,11 +11,13 @@ function Map() {
     const mapType = "roadmap"; // or "satellite"
 
     return (
+        <div id="map-container">
         <iframe 
             id="google-map-frame"
             title="google_map" // title is required or there are error messages
             src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_API_KEY}&q=${location}&maptype=${mapType}`}
         />
+        </div>
     )
 }
 
