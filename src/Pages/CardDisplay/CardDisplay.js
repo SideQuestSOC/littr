@@ -5,9 +5,10 @@ import React from "react";
 import Card from "./components/Card/Card.js";
 import SearchAppBar from "../Components/Navbar/Navbar";
 import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
-// import SQL queries
-import { fetchData } from '../../Models/queries';
+// import SQL queries/functions
+import { fetchData, formatDate, formatTime } from '../../Models/queries';
 
+// retrieve event data from DB
 let cardData = await fetchData();
 
 function CardDisplay( { isSignedIn, setIsSignedIn } ) {
@@ -23,7 +24,8 @@ function CardDisplay( { isSignedIn, setIsSignedIn } ) {
             location={card.location}
             postcode={card.postcode}
           // creatorname={card.creator_username} also this is incorrect TODO: fix
-            dateTime={card.date_timestamp}
+            date={formatDate(card.date_timestamp)}
+            time={formatTime(card.date_timestamp)}
             introduction={card.post_introduction}
             hasUnevenGround={card.has_uneven_ground}
             hasBathrooms={card.has_bathrooms}

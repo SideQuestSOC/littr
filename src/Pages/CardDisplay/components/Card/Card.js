@@ -91,7 +91,8 @@ export default function Card(props) {
               {props.location}
               {props.postcode}
               {/* {props.creatorName} TODO: */}
-              {props.dateTime}
+              {props.date}
+              {props.time}
               {props.introduction}
               {/* Cannot render these directly as they are booleans */}
               {/* {props.hasUnevenGround}
@@ -100,7 +101,6 @@ export default function Card(props) {
               {props.isRemoteLocation} */}
               {props.disposalMethod}
               {props.equipment}
-
               
             </Typography>
           </List>

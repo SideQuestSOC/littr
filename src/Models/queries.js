@@ -82,3 +82,32 @@ export async function fetchData() {
       console.error(error);
     }
   }
+
+  export function formatDate(unformattedDate) {
+    // Create a new Date object using the original date string
+    const dateObj = new Date(unformattedDate);
+
+    // Extract the day, month, and year components
+    const day = dateObj.getDate();
+    const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
+    const year = dateObj.getFullYear();
+
+    // Assemble the components in the desired format
+    const formattedDate = `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
+
+    return formattedDate;
+  }
+
+  export function formatTime(unformattedTime) {
+    // Create a new Date object using the original date string
+    const dateObj = new Date(unformattedTime);
+
+    // Extract the hours and minutes components
+    const hours = dateObj.getHours().toString().padStart(2, '0');
+    const minutes = dateObj.getMinutes().toString().padStart(2, '0');
+
+    // Assemble the components in the desired format
+    const formattedTime = `${hours}:${minutes}`;
+    
+    return formattedTime;
+  }
