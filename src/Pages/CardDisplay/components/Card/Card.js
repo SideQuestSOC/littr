@@ -14,20 +14,36 @@ import "./Card.css";
 // import component
 import Map from "../../components/Map/Map";
 
-
-// If the Accessibility prop is true render a checked checkbox
 function checkBoolean(booleanProp, checkLabel) {
-  let checkboxCheck = (booleanProp && 
-  <FormControlLabel 
+  let checkboxCheck = booleanProp
+    ? (
+      <FormControlLabel 
+        control={
+          <Checkbox id="accessibility-checkbox" 
+            disabled 
+            defaultChecked 
+            sx={{
+              "& .css-j204z7-MuiFormControlLabel-root": { color: "black" },
+              "& .MuiFormControlLabel-label.Mui-disabled": { color: "black" }
+            }}
+          /> 
+        }
+        label={checkLabel} 
+      />
+    )
+    : 
+    <FormControlLabel 
     control={
       <Checkbox id="accessibility-checkbox" 
         disabled 
-        defaultChecked 
         sx={{
           "& .css-j204z7-MuiFormControlLabel-root": { color: "black" },
-          "& .MuiFormControlLabel-label.Mui-disabled": { color: "black" }}} />} 
-        label={checkLabel} 
-      /> );
+          "& .MuiFormControlLabel-label.Mui-disabled": { color: "black" }
+        }}
+      /> 
+    }
+    label={checkLabel} 
+  />;
   return checkboxCheck;
 }
 
