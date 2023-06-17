@@ -118,9 +118,9 @@ export default function Card(props) {
         </Stack>
         <Collapse id="collapsed-card" in={open} timeout="auto" unmountOnExit>
           <List id="collapsed-card-container" component="div">
-            <Typography id="card-content-container">
+            <Typography component={'div'} id="card-content-container">
               {/* INSERT DETAILS COMPONENTS HERE */}
-              <Map location={props.location} />
+              <Map location={props.location} postcode={props.postcode} />
               {props.location}
               {props.postcode}
               {props.date}
