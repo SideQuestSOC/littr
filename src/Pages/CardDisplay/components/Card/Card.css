@@ -185,3 +185,8 @@
     flex-direction: column;
     word-break: break-word;
 }
+
+/* Set checkboxes to neonGreen */
+.MuiSvgIcon-root {
+    color: var(--neonGreen);
+}

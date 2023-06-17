@@ -3,7 +3,7 @@ import List from "@mui/material/List";
 import Collapse from "@mui/material/Collapse";
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
+import { Typography, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
@@ -13,6 +13,24 @@ import "./Card.css";
 
 // import component
 import Map from "../../components/Map/Map";
+
+
+// If the Accessibility prop is true render a checked checkbox
+function checkBoolean(booleanProp, checkLabel) {
+  let checkboxCheck = (booleanProp && 
+  <FormControlLabel 
+    control={
+      <Checkbox id="accessibility-checkbox" 
+        disabled 
+        defaultChecked 
+        sx={{
+          "& .css-j204z7-MuiFormControlLabel-root": { color: "black" },
+          "& .MuiFormControlLabel-label.Mui-disabled": { color: "black" }}} />} 
+        label={checkLabel} 
+      /> );
+  return checkboxCheck;
+}
+
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
@@ -90,15 +108,19 @@ export default function Card(props) {
               <Map location={props.location} />
               {props.location}
               {props.postcode}
-              {/* {props.creatorName} TODO: */}
               {props.date}
               {props.time}
+              {/* {props.creatorName} TODO: */}
               {props.introduction}
-              {/* Cannot render these directly as they are booleans */}
-              {/* {props.hasUnevenGround}
-              {props.hasBathrooms}
-              {props.hasParking}
-              {props.isRemoteLocation} */}
+            
+              {/* Render checkboxes based on the accessibility boolean props */}
+              <FormGroup>
+                {checkBoolean(props.hasUnevenGround, "Uneven Ground")}
+                {checkBoolean(props.hasBathrooms, "Nearby Bathrooms")}
+                {checkBoolean(props.hasParking, "Nearby Parking")}
+                {checkBoolean(props.isRemoteLocation, "Remote Location")}
+              </FormGroup>
+              
               {props.disposalMethod}
               {props.equipment}
               
