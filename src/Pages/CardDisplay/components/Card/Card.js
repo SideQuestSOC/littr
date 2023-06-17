@@ -33,7 +33,7 @@ export default function Card(props) {
   };
 
   return (
-    <div id="card-outer-container" style={{ backgroundColor: props.color }}>
+    <div id="card-outer-container">
       <List id="MUInav" component="nav" aria-labelledby="nested-list-subheader">
         <Stack id="eyes-container" direction="row">
           <img

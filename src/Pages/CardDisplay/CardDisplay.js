@@ -30,7 +30,6 @@ function CardDisplay( { isSignedIn, setIsSignedIn } ) {
           <Card
             key={index}
             header={card.title}
-            color="#FC786E"
             location={card.location}
             postcode={card.postcode}
           // creatorname={card.creator_username} also this is incorrect TODO: fix
