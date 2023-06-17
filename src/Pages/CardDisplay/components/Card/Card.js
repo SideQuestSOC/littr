@@ -1,19 +1,18 @@
+// import css
+import "./Card.css";
+// import React dependencies
 import React, { useState } from "react";
-import List from "@mui/material/List";
-import Collapse from "@mui/material/Collapse";
-import Badge from "@mui/material/Badge";
-import Button from "@mui/material/Button";
-import { Typography, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
-import Stack from "@mui/material/Stack";
+// import Material UI dependencies
+import { Typography, Checkbox, FormControlLabel, FormGroup, List, Collapse, Badge, Button, Stack } from "@mui/material";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import GroupsIcon from '@mui/icons-material/Groups';
-import eyesHappy from "../../../../Assets/eyesHappy.svg";
-// import css
-import "./Card.css";
-// import component
+// import Components
 import Map from "../../components/Map/Map";
+import eyesHappy from "../../../../Assets/eyesHappy.svg";
 
+// Function to render a checked or not checked checkbox depending on whether the prop is true or false
+// Sorry this is so long, it wouldn't let me insert a ternary operator into an element tag
 function checkBoolean(booleanProp, checkLabel) {
   let checkboxCheck = booleanProp
     ? (
@@ -65,6 +64,8 @@ export default function Card(props) {
   const falseReport = () => {
     alert("This post has been reported. Thank you for your feedback.");
   };
+
+ console.log(`Creator Name: ${props.creatorname}`);
 
   return (
     <div id="card-outer-container">
@@ -120,7 +121,7 @@ export default function Card(props) {
         <Collapse id="collapsed-card" in={open} timeout="auto" unmountOnExit>
           <List id="collapsed-card-container" component="div">
             <Typography component={'div'} id="card-content-container">
-              {/* INSERT DETAILS COMPONENTS HERE */}
+              {/* CARD CONTENT */}
               <Map location={props.location} postcode={props.postcode} />
               <div className="card-content-space">
                 <h4>Location:</h4>
@@ -133,7 +134,7 @@ export default function Card(props) {
                 <h4><pre>Start Time: </pre></h4>{props.time}
               </div>
               <div className="card-content-space" id="card-content-row-creator">
-                <h4><pre>Creator: </pre></h4>{/*TODO: {props.creatorName} */}
+                <h4><pre>Creator: </pre></h4>{props.creatorname}
                 <Badge 
                   // TODO: check how many volunteers for this event and insert into badgeContent
                   badgeContent={1} 

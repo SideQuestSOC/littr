@@ -10,6 +10,7 @@ import { fetchData, formatDate, formatTime } from '../../Models/queries';
 
 // retrieve event data from DB
 let cardData = await fetchData();
+console.log(cardData);
 
 function CardDisplay( { isSignedIn, setIsSignedIn } ) {
   return (
@@ -23,7 +24,7 @@ function CardDisplay( { isSignedIn, setIsSignedIn } ) {
             header={card.title}
             location={card.location}
             postcode={card.postcode}
-          // creatorname={card.creator_username} also this is incorrect TODO: fix
+            creatorname={card.first_name}
             date={formatDate(card.date_timestamp)}
             time={formatTime(card.date_timestamp)}
             introduction={card.post_introduction}
