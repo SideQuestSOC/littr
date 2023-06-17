@@ -10,7 +10,6 @@ import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import eyesHappy from "../../../../Assets/eyesHappy.svg";
 // import css
 import "./Card.css";
-
 // import component
 import Map from "../../components/Map/Map";
 
