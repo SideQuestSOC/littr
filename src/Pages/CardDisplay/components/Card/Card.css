@@ -185,3 +185,19 @@
     flex-direction: column;
     word-break: break-word;
 }
+
+/* Reduce space MUI checkboxes take up */
+.MuiFormControlLabel-root {
+    margin: 0;
+    padding: 0;
+    height: 25px;
+}
+
+/* Force checkbox labels to not be greyed out */
+.Mui-disabled {
+    color: black!important;
+}
+/* Force checkbexes to be neonGreen */
+.MuiCheckbox-colorPrimary {
+    color: var(--neonGreen)!important;
+}
