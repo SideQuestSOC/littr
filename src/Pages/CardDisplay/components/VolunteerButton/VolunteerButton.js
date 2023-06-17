@@ -13,7 +13,8 @@ const VolunteerButton = () => {
 
     const handleButtonClick = () => {
         setClickCount(clickCount + 1);
-        setButtonDisabled(true);
+        console.log(clickCount);
+        // setButtonDisabled(true);
     };
 
     return (
@@ -24,7 +25,7 @@ const VolunteerButton = () => {
             color="primary" onClick={handleButtonClick} disabled={isButtonDisabled}>
                 Volunteer
             </Button>
-            <p>Number of Volunteers: {clickCount}</p>
+            {/* <p>Number of Volunteers: {clickCount}</p> */}
         </div>
     );
 };

@@ -24,13 +24,13 @@
 
 #volunteer-button {
     background-color: var(--neonGreen);
-    color: var(--offWhite);
+    color: var(--navyBlue);
     box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.55);
-    border-radius: 5px;
-    font-size: 9px;
-    font-weight: semi-bold;
-    width: 90px;
-    height: 30px;
+    border-radius: 11px;
+    font-size: 10px;
+    font-weight: bold;
+    width: 120px;
+    height: 27px;
     text-align: center;
     margin: auto;
     margin-top: 10px;
