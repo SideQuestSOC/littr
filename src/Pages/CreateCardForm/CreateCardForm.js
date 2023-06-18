@@ -34,7 +34,6 @@ async function UserID() {
 }
 // Set the current users ID to a variable to be inserted into the PostData object
 let creatorUserID = await UserID();
-console.log(` User ID: ${creatorUserID}`);
 
 
 
@@ -90,7 +89,6 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
 
   const handleTimeChange = (Time) => {
     setTime(Time);
-    console.log(Time);
   };
 
   const handleCreatePost = async () => {

@@ -65,8 +65,6 @@ export default function Card(props) {
     alert("This post has been reported. Thank you for your feedback.");
   };
 
- console.log(`Creator Name: ${props.creatorname}`);
-
   return (
     <div id="card-outer-container">
       <List id="MUInav" component="nav" aria-labelledby="nested-list-subheader">

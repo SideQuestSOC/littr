@@ -1,6 +1,6 @@
 import "./CardDisplay.css";
 // import React dependencies
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 // import Components
 import Card from "./components/Card/Card.js";
 import SearchAppBar from "../Components/Navbar/Navbar";
@@ -16,9 +16,9 @@ function CardDisplay( { isSignedIn, setIsSignedIn, cardData, setCardData } ) {
     async function setFetchedData() {
         // retrieve event data from DB
         setCardData(await fetchData());
-        console.log(cardData);
     }
     setFetchedData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
