@@ -9,7 +9,7 @@ import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
 
 function CardDisplay( { isSignedIn, setIsSignedIn } ) {
   return (
-    <div>
+    <div data-testid="card-display">
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
       <div id="card-display-outer-container">
         <Card
