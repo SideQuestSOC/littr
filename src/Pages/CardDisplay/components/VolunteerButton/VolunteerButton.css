@@ -9,7 +9,6 @@
 
 
 #volunteer-button-container {
-    font-size: 12px;
     width: 350px;
     height: auto;
     margin-left: 1.5px;
@@ -29,7 +28,7 @@
     border-radius: 11px;
     font-size: 10px;
     font-weight: bold;
-    width: 120px;
+    width: 108px;
     height: 27px;
     text-align: center;
     margin: auto;

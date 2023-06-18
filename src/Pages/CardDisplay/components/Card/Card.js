@@ -69,6 +69,7 @@ export default function Card(props) {
             }}
             data-testid="like-badge"
           >
+          {/* Added data-testid to test the like button */}
             <Button
               id="like-button"
               onClick={handleThumbsUp}
@@ -76,7 +77,6 @@ export default function Card(props) {
               data-testid="like-button"
             >
               {" "}
-              {/* Added data-testid to test the like button */}
               <ThumbUpOffAltIcon />
             </Button>
           </Badge>
