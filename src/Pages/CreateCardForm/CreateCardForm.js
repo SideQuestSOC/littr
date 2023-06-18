@@ -27,16 +27,6 @@ const jankTheme = createTheme({
   },
 });
 
-// Get the current users ID
-async function UserID() {
-  let userId = await getCurrentUserId();
-  return userId.id;
-}
-// Set the current users ID to a variable to be inserted into the PostData object
-let creatorUserID = await UserID();
-
-
-
 export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData }) {
   // Initialize the navigate object using the useNavigate 'hook'
   const navigate = useNavigate();
@@ -46,9 +36,7 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
       navigate('/src/pages/carddisplay');
     }
   }, [isSignedIn, navigate]);
-
   
-
   const [postTitle, setPostTitle] = useState("");
   const [locationAddress, setLocationAddress] = useState("");
   const [locationPostcode, setLocationPostcode] = useState("");
@@ -57,6 +45,14 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
   const [disposalMethod, setDisposalMethod] = useState("");
   const [date, setDate] = useState(null);
   const [Time, setTime] = useState(null);
+  const [currentUserID, setcurrentUserID ] = useState();
+
+  // Get the current users ID
+  async function UserID() {
+    let userId = await getCurrentUserId();
+    setcurrentUserID(userId.id);
+  }
+  UserID();
 
   const handlePostTitleChange = (event) => {
     setPostTitle(event.target.value);
@@ -101,7 +97,7 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
     endDateTime.setHours(Time[1].hour(), Time[1].minute());
 
     const PostData = {
-      creator_user_id: creatorUserID,
+      creator_user_id: currentUserID,
       location: locationAddress,
       postcode: locationPostcode,
       created_at: new Date(),
