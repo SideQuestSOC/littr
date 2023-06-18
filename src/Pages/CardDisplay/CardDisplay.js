@@ -29,7 +29,7 @@ function CardDisplay( { isSignedIn, setIsSignedIn, cardData, setCardData } ) {
       {cardData.map((card, index) => (
           <Card
             key={index}
-            event_id={card.event_id}
+            count={card.count}
             header={card.title}
             location={card.location}
             postcode={card.postcode}

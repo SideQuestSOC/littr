@@ -96,9 +96,20 @@ export async function selectEvent() {
 };
 
 // Select data from DB to map onto Cards
+// Append the count of volunteers to the data array after the promises have resolved
 export async function fetchData() {
     try {
-      const data = await selectEvent();
+      let data = await selectEvent();
+      if (data) {
+        const promises = data.map((card) => {
+          return countVolunteers(card.event_id).then((count) => {
+            card.count = count;
+            return card;
+          });
+        });
+  
+        data = await Promise.all(promises);
+      }
       return data;
     } catch (error) {
       console.error(error);
