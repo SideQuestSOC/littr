@@ -6,10 +6,10 @@ import React, { useState } from "react";
 import { Typography, Checkbox, FormControlLabel, FormGroup, List, Collapse, Badge, Button, Stack } from "@mui/material";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
-import GroupsIcon from '@mui/icons-material/Groups';
 // import Components
 import Map from "../../components/Map/Map";
 import eyesHappy from "../../../../Assets/eyesHappy.svg";
+import VolunteersBadge from "../VolunteersBadge/VolunteersBadge";
 
 // Function to render a checked or not checked checkbox depending on whether the prop is true or false
 // Sorry this is so long, it wouldn't let me insert a ternary operator into an element tag
@@ -133,20 +133,7 @@ export default function Card(props) {
               </div>
               <div className="card-content-space card-content-row" id="card-content-row-creator">
                 <div className="card-content-row"><h4><pre>Creator: </pre></h4>{props.creatorname}</div>
-                <Badge 
-                  // TODO: check how many volunteers for this event and insert into badgeContent
-                  badgeContent={props.count} 
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                  }}
-                  sx={{
-                  "& .MuiBadge-badge": {
-                    backgroundColor: "#6AAF88",
-                    color: "black",
-                  }}}>
-                  <GroupsIcon />
-                </Badge>
+                <VolunteersBadge count={props.count}/>
               </div>
               <div className="card-content-space">
                 <h4>Details:</h4>
