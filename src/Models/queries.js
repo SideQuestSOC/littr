@@ -18,6 +18,15 @@ export async function insertEventVolunteer(user_id, event_id) {
     })
 }
 
+// count how many volunteers there are for an event
+export async function countVolunteers(event_id) {
+    const count = await supabase.from('event_volunteers')
+    .select('user_id', { count: 'exact' })
+    .eq('event_id', event_id);
+
+    return count.count;
+}
+
 // supabaseSignUp() - is used to sign up a user using the Supabase authentication service.
 // It takes in a formData object containing user signup data.
 export async function supabaseSignUp(formData) {
@@ -74,7 +83,7 @@ export async function supabaseEventInsert(PostData) {
 // selectEvent() - retrieves data from public.Events for the Card Display component
 export async function selectEvent() {
     const { data, error } = await supabase.from('event')
-    .select(`location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, 
+    .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, 
     users ( first_name, last_name )`);
     
     if (error) {

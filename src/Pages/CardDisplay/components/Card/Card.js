@@ -7,9 +7,18 @@ import { Typography, Checkbox, FormControlLabel, FormGroup, List, Collapse, Badg
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import GroupsIcon from '@mui/icons-material/Groups';
+// import supabase functions
+import { countVolunteers } from "../../../../Models/queries";
 // import Components
 import Map from "../../components/Map/Map";
 import eyesHappy from "../../../../Assets/eyesHappy.svg";
+
+// get the number of volunteers for an event to display on the badge
+async function getVolunteerCount(){
+  let count = await countVolunteers("16c379ff-4096-4409-9d73-0b840b55959c");
+  return count;
+}
+let badgeVolunteerCount = await getVolunteerCount();
 
 // Function to render a checked or not checked checkbox depending on whether the prop is true or false
 // Sorry this is so long, it wouldn't let me insert a ternary operator into an element tag
@@ -135,7 +144,7 @@ export default function Card(props) {
                 <div className="card-content-row"><h4><pre>Creator: </pre></h4>{props.creatorname}</div>
                 <Badge 
                   // TODO: check how many volunteers for this event and insert into badgeContent
-                  badgeContent={1} 
+                  badgeContent={badgeVolunteerCount} 
                   anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'right',
