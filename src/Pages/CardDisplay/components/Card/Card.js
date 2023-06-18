@@ -127,14 +127,14 @@ export default function Card(props) {
                 <h4>Location:</h4>
                 {props.location}, {props.postcode}
               </div>
-              <div className="card-content-space" id="card-content-row">
+              <div className="card-content-space card-content-row">
                 <h4><pre>Date: </pre></h4>{props.date}
               </div>
-              <div className="card-content-space" id="card-content-row">
-                <h4><pre>Start Time: </pre></h4>{props.time}
+              <div className="card-content-space card-content-row">
+                <h4><pre>Time: </pre></h4>{props.time} - {props.end_time}
               </div>
-              <div className="card-content-space" id="card-content-row-creator">
-                <h4><pre>Creator: </pre></h4>{props.creatorname}
+              <div className="card-content-space card-content-row" id="card-content-row-creator">
+                <div className="card-content-row"><h4><pre>Creator: </pre></h4>{props.creatorname}</div>
                 <Badge 
                   // TODO: check how many volunteers for this event and insert into badgeContent
                   badgeContent={1} 

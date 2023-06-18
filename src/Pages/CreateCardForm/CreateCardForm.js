@@ -14,7 +14,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { SingleInputTimeRangeField } from "@mui/x-date-pickers-pro/SingleInputTimeRangeField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import supabase functions
-import { supabaseEventInsert } from "../../Models/queries";
+import { supabaseEventInsert, fetchData } from "../../Models/queries";
 import { getCurrentUserId } from "../../Models/client";
 
 
@@ -38,7 +38,7 @@ console.log(` User ID: ${creatorUserID}`);
 
 
 
-export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
+export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData }) {
   // Initialize the navigate object using the useNavigate 'hook'
   const navigate = useNavigate();
   // Redirect to Card display page if a user is not logged in
@@ -57,6 +57,7 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
   const [recommendedEquipment, setRecommendedEquipment] = useState("");
   const [disposalMethod, setDisposalMethod] = useState("");
   const [date, setDate] = useState(null);
+  const [Time, setTime] = useState(null);
 
   const handlePostTitleChange = (event) => {
     setPostTitle(event.target.value);
@@ -87,7 +88,20 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
     setDate(date);
   };
 
+  const handleTimeChange = (Time) => {
+    setTime(Time);
+    console.log(Time);
+  };
+
   const handleCreatePost = async () => {
+    // append the start time to the date_timestamp
+    let startDateTime = new Date(date);
+    startDateTime.setHours(Time[0].hour(), Time[0].minute());
+
+    // append the start time to the date_timestamp
+    let endDateTime = new Date(date);
+    endDateTime.setHours(Time[1].hour(), Time[1].minute());
+
     const PostData = {
       creator_user_id: creatorUserID,
       location: locationAddress,
@@ -106,11 +120,16 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
         document.getElementById("checkbox-remote-location")?.checked || false,
       disposal_method: disposalMethod,
       equipment: recommendedEquipment,
-      date_timestamp: new Date(date),
+      date_timestamp: startDateTime,
+      end_time: endDateTime,
     };
 
     // Call function to run SQL query for public.Events table insertion
-    supabaseEventInsert(PostData);
+    // Rerender the page when a new card is added to database
+    if(supabaseEventInsert(PostData))
+    {
+      setCardData(await fetchData());
+    };
   };
 
   return (
@@ -172,6 +191,8 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
     textField: ({ position }) => ({
           label: "Start Time - End Time (24-Hour-Format)",
           className: "time-range-field",
+          value: Time,
+          onChange: handleTimeChange,
           ampm: false,
         }),
       }}

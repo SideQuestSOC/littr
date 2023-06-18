@@ -1,6 +1,6 @@
 import "./CardDisplay.css";
 // import React dependencies
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import Components
 import Card from "./components/Card/Card.js";
 import SearchAppBar from "../Components/Navbar/Navbar";
@@ -8,11 +8,19 @@ import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
 // import SQL queries/functions
 import { fetchData, formatDate, formatTime } from '../../Models/queries';
 
-// retrieve event data from DB
-let cardData = await fetchData();
-console.log(cardData);
 
-function CardDisplay( { isSignedIn, setIsSignedIn } ) {
+function CardDisplay( { isSignedIn, setIsSignedIn, cardData, setCardData } ) {
+
+// Wrapped in useEffect to trigger rerender of cards when a new card is added by a user
+  useEffect(() => {
+    async function setFetchedData() {
+        // retrieve event data from DB
+        setCardData(await fetchData());
+        console.log(cardData);
+    }
+    setFetchedData();
+  }, [])
+
   return (
     <div>
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
@@ -24,7 +32,7 @@ function CardDisplay( { isSignedIn, setIsSignedIn } ) {
             header={card.title}
             location={card.location}
             postcode={card.postcode}
-            creatorname={card.first_name}
+            creatorname={card.users.first_name + " " + card.users.last_name}
             date={formatDate(card.date_timestamp)}
             time={formatTime(card.date_timestamp)}
             introduction={card.post_introduction}
@@ -34,6 +42,7 @@ function CardDisplay( { isSignedIn, setIsSignedIn } ) {
             isRemoteLocation={card.is_remote_location}
             disposalMethod={card.disposal_method}
             equipment={card.equipment}
+            end_time={formatTime(card.end_time)}
           />
         ))}
 
