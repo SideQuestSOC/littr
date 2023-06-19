@@ -51,9 +51,5 @@ test("Navigate from the landing page to the Card Display page, expand the first 
     // expect the google map iframe to be in the document
     expect(actual).toBeInTheDocument();
 
-    // Expect the map component to be in the document
-    // await waitFor(() => {
-    //     expect(screen.getByTestId('map-displaying')).toBeInTheDocument();
-    // });
 });
 
