@@ -6,10 +6,10 @@ import React, { useState } from "react";
 import { Typography, Checkbox, FormControlLabel, FormGroup, List, Collapse, Badge, Button, Stack } from "@mui/material";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
+import VolunteerButton from "../VolunteerButton/VolunteerButton";
 // import Components
 import Map from "../../components/Map/Map";
 import eyesHappy from "../../../../Assets/eyesHappy.svg";
-import VolunteersBadge from "../VolunteersBadge/VolunteersBadge";
 
 // Function to render a checked or not checked checkbox depending on whether the prop is true or false
 // Sorry this is so long, it wouldn't let me insert a ternary operator into an element tag
@@ -45,7 +45,6 @@ function checkBoolean(booleanProp, checkLabel) {
   />;
   return checkboxCheck;
 }
-
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
@@ -101,6 +100,7 @@ export default function Card(props) {
             }}
             data-testid="like-badge"
           >
+          {/* Added data-testid to test the like button */}
             <Button
               id="like-button"
               onClick={handleThumbsUp}
@@ -108,7 +108,6 @@ export default function Card(props) {
               data-testid="like-button"
             >
               {" "}
-              {/* Added data-testid to test the like button */}
               <ThumbUpOffAltIcon />
             </Button>
           </Badge>
@@ -157,6 +156,9 @@ export default function Card(props) {
                 {props.equipment}
               </div>
             </Typography>
+            <div id="volunteer-button-container">
+            <VolunteerButton />
+            </div>
           </List>
         </Collapse>
       </List>
