@@ -1,29 +1,44 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Button from '@mui/material/Button';
+// import css
 import "./VolunteerButton.css";
+// import React dependencies
+import React, { useState, useEffect } from 'react';
+// import Material UI dependencies
+import Button from '@mui/material/Button';
+// import SQL queries/functions
+import { insertEventVolunteer } from "../../../../Models/queries";
+import { getCurrentUserId } from "../../../../Models/client";
+
 // import { Badge } from '@mui/material';
 
-// Make MUI button for users to be be able to volunteer
-// I will need to export the button for use in other components
-// The button should be set to zero and increment by one for every button press
-// Button should be limited to one click per user
-    
-const VolunteerButton = () => {
-    const [clickCount, setClickCount] = useState(0);
+const VolunteerButton = ({ event_id, setUpdateVolunteerBadge }) => {
+    // const [clickCount, setClickCount] = useState(0);
     const [isButtonDisabled, setButtonDisabled] = useState(false);
 
-    const handleButtonClick = () => {
-        setClickCount(clickCount + 1);
-        console.log(clickCount);
-        // setButtonDisabled(true);
-    };
+    // const handleButtonClick = () => {
+    //     setClickCount(clickCount + 1);
+    //     console.log(clickCount);
+    //     // setButtonDisabled(true);
+    // };
+
+    const [userID, setUserID] = useState("");
+
+    useEffect(() => {
+        async function getUserID() {
+          setUserID(await getCurrentUserId());
+        }
+    
+        getUserID();
+    }, []);
 
     return (
         <div>
             <Button 
             id="volunteer-button"
             variant="contained" 
-            color="primary" onClick={handleButtonClick} disabled={isButtonDisabled}>
+            color="primary" 
+            // onClick={handleButtonClick}
+            onClick={ async function insertVolunteer() {await insertEventVolunteer(userID.id, event_id); setButtonDisabled(true); setUpdateVolunteerBadge(true) } }
+            disabled={isButtonDisabled}>
                 Volunteer
             </Button>
             {/* <p>Number of Volunteers: {clickCount}</p> */}

@@ -14,6 +14,7 @@ function VolunteersBadge({ count }) {
             "& .MuiBadge-badge": {
             backgroundColor: "#6AAF88",
             color: "black",
+            width: "26px",
             }}}>
             <GroupsIcon />
         </Badge>
