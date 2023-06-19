@@ -59,6 +59,7 @@
 
 #discard-button {
     background-color: var(--strawberry);
+    
 }
 
 #create-button {
@@ -78,6 +79,7 @@
 #link {
     color: var(--navyBlue);
     font-weight: 600;
+    text-decoration: none;
 }
 
 #discard-button:hover, #create-button:hover {
@@ -104,3 +106,8 @@
     font-weight: bold;
     color: var(--navyBlue);
   }
+
+#post-title-label, #additional-information-label, #recommended-equipment-label {
+    color : var(--offWhite);
+    
+}

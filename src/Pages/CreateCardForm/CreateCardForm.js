@@ -3,11 +3,24 @@ import "./CreateCardForm.css";
 // import React dependencies
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom'; // useNavigate() is used to redirect to a different page
+import { useNavigate } from "react-router-dom"; // useNavigate() is used to redirect to a different page
 // import Components
 import SearchAppBar from "../Components/Navbar/Navbar";
 // import Material UI dependencies
-import { Stack, Typography, TextField, Divider, Checkbox, FormGroup, FormControlLabel, Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import {
+  Stack,
+  Typography,
+  TextField,
+  Divider,
+  Checkbox,
+  FormGroup,
+  FormControlLabel,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -16,8 +29,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import supabase functions
 import { supabaseEventInsert, fetchData } from "../../Models/queries";
 import { getCurrentUserId } from "../../Models/client";
-
-
+import { isValid } from "postcode";
 
 const jankTheme = createTheme({
   palette: {
@@ -27,16 +39,20 @@ const jankTheme = createTheme({
   },
 });
 
-export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData }) {
+export default function CreateCardForm({
+  isSignedIn,
+  setIsSignedIn,
+  setCardData,
+}) {
   // Initialize the navigate object using the useNavigate 'hook'
   const navigate = useNavigate();
   // Redirect to Card display page if a user is not logged in
   useEffect(() => {
     if (!isSignedIn) {
-      navigate('/src/pages/carddisplay');
+      navigate("/src/pages/carddisplay");
     }
   }, [isSignedIn, navigate]);
-  
+
   const [postTitle, setPostTitle] = useState("");
   const [locationAddress, setLocationAddress] = useState("");
   const [locationPostcode, setLocationPostcode] = useState("");
@@ -45,7 +61,7 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
   const [disposalMethod, setDisposalMethod] = useState("");
   const [date, setDate] = useState(null);
   const [Time, setTime] = useState(null);
-  const [currentUserID, setcurrentUserID ] = useState();
+  const [currentUserID, setcurrentUserID] = useState();
 
   // Get the current users ID
   async function UserID() {
@@ -62,9 +78,15 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
     setLocationAddress(event.target.value);
   };
 
+  const [isPostcodeValid, setIsPostcodeValid] = useState(true);
 
   const handleLocationPostcodeChange = (event) => {
-    setLocationPostcode(event.target.value);
+    const postcode = event.target.value;
+    setLocationPostcode(postcode);
+
+    // Validate the postcode
+    const isValidPostcode = isValid(postcode);
+    setIsPostcodeValid(isValidPostcode);
   };
 
   const handleAdditionalInformationChange = (event) => {
@@ -88,11 +110,26 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
   };
 
   const handleCreatePost = async () => {
-    // append the start time to the date_timestamp
+    if (
+      postTitle === "" ||
+      locationAddress === "" ||
+      locationPostcode === "" ||
+      additionalInformation === "" ||
+      recommendedEquipment === "" ||
+      disposalMethod === "" ||
+      date === null ||
+      Time === null
+    ) {
+      alert("Please fill it all in!");
+      return;
+    } else {
+      alert("Post created, thank you.");
+      navigate("/src/pages/carddisplay");
+    }
+
     let startDateTime = new Date(date);
     startDateTime.setHours(Time[0].hour(), Time[0].minute());
 
-    // append the start time to the date_timestamp
     let endDateTime = new Date(date);
     endDateTime.setHours(Time[1].hour(), Time[1].minute());
 
@@ -109,7 +146,8 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
         document.getElementById("checkbox-uneven-ground")?.checked || false,
       has_bathrooms:
         document.getElementById("checkbox-bathrooms")?.checked || false,
-      has_parking: document.getElementById("checkbox-parking")?.checked || false,
+      has_parking:
+        document.getElementById("checkbox-parking")?.checked || false,
       is_remote_location:
         document.getElementById("checkbox-remote-location")?.checked || false,
       disposal_method: disposalMethod,
@@ -120,15 +158,14 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
 
     // Call function to run SQL query for public.Events table insertion
     // Rerender the page when a new card is added to database
-    if(supabaseEventInsert(PostData))
-    {
+    if (supabaseEventInsert(PostData)) {
       setCardData(await fetchData());
-    };
+    }
   };
 
   return (
     <div id="create-card-outer-container" data-testid="create-card-form">
-      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>
+      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
       <ThemeProvider theme={jankTheme}>
         <Typography variant="h4" id="create-card-title">
           Create a Post
@@ -137,25 +174,42 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
           <TextField
             id="post-title"
             placeholder="Title of Post"
+            multiline
+            rows={1}
+            InputLabelProps={{ shrink: true }}
             variant="standard"
             value={postTitle}
             onChange={handlePostTitleChange}
+            inputProps={{ maxLength: 50 }}
+            label={
+              postTitle.length < 5 && postTitle.length >= 1
+                ? "Title must be at least 5 characters"
+                : `${postTitle.length}/50`
+            }
+            error={postTitle.length < 5 && postTitle.length >= 1}
           />
           <TextField
             id="location-address"
             placeholder="Address"
+            multiline
+            rows={1}
             variant="standard"
             value={locationAddress}
             onChange={handleLocationAddressChange}
+            inputProps={{ maxLength: 255 }}
           />
           <TextField
             id="location-postcode"
             placeholder="Postcode"
+            multiline
+            rows={1}
             variant="standard"
             value={locationPostcode}
             onChange={handleLocationPostcodeChange}
+            error={!isPostcodeValid}
+            helperText={!isPostcodeValid ? "Invalid postcode" : ""}
           />
-           <TextField
+          <TextField
             id="additional-information"
             className="multi-line-input"
             placeholder="Describe Your Event"
@@ -164,6 +218,14 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
             variant="standard"
             value={additionalInformation}
             onChange={handleAdditionalInformationChange}
+            inputProps={{ maxLength: 500 }}
+            label={
+              additionalInformation.length < 20 && additionalInformation.length >= 1
+                ? "This section must be at least 20 characters"
+                : `${additionalInformation.length}/500`
+            }
+            error={additionalInformation.length < 20 && additionalInformation.length >= 1}
+            InputLabelProps={{ shrink: true }}
           />
           <Divider />
           <Typography id="date-time-title" variant="h6">
@@ -176,24 +238,23 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
               value={date}
               onChange={handleDateChange}
               TextField={(params) => <TextField {...params} />}
-              className="custom-date-picker" 
+              className="custom-date-picker"
               format="DD/MM/YYYY"
             />
-         <SingleInputTimeRangeField
-         id="time-range"
-  slotProps={{
-    textField: ({ position }) => ({
-          label: "Start Time - End Time (24-Hour-Format)",
-          className: "time-range-field",
-          value: Time,
-          onChange: handleTimeChange,
-          ampm: false,
-        }),
-      }}
-    />
-
+            <SingleInputTimeRangeField
+              id="time-range"
+              slotProps={{
+                textField: ({ position }) => ({
+                  label: "Start Time - End Time (24-Hour-Format)",
+                  className: "time-range-field",
+                  value: Time,
+                  onChange: handleTimeChange,
+                  ampm: false,
+                }),
+              }}
+            />
           </LocalizationProvider>
-         
+
           <Divider />
           <Typography id="accessibility-title" variant="h6">
             Accessibility information
@@ -254,18 +315,27 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
             placeholder="e.g. gloves, pickers, water"
             rows={3}
             variant="standard"
+            InputLabelProps={{ shrink: true }}
             value={recommendedEquipment}
+            inputProps={{ maxLength: 255 }}
+            label={`${recommendedEquipment.length}/255`}
             onChange={handleRecommendedEquipmentChange}
           />
 
           {/* Buttons */}
           <Stack spacing={2} direction="row" id="create-card-button-container">
             <Button id="discard-button" variant="contained">
-            <Link id="link" variant="contained"  to="/src/pages/carddisplay">
-              Discard
+              <Link id="link" variant="contained" to="/src/pages/carddisplay">
+                Discard
               </Link>
             </Button>
-            <Button id="create-button" variant="contained" onClick={() => { handleCreatePost(); alert("Post created, thank you."); navigate('/src/pages/carddisplay'); }}>
+            <Button
+              id="create-button"
+              variant="contained"
+              onClick={() => {
+                handleCreatePost();
+              }}
+            >
               Create Post
             </Button>
           </Stack>
