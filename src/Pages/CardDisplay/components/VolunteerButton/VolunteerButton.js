@@ -38,7 +38,8 @@ const VolunteerButton = ({ event_id, setUpdateVolunteerBadge }) => {
             color="primary" 
             // onClick={handleButtonClick}
             onClick={ async function insertVolunteer() {await insertEventVolunteer(userID.id, event_id); setButtonDisabled(true); setUpdateVolunteerBadge(true) } }
-            disabled={isButtonDisabled}>
+            // disabled={isButtonDisabled}
+            >
                 Volunteer
             </Button>
             {/* <p>Number of Volunteers: {clickCount}</p> */}
