@@ -7,6 +7,7 @@ import { Typography, Checkbox, FormControlLabel, FormGroup, List, Collapse, Badg
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import VolunteerButton from "../VolunteerButton/VolunteerButton";
+import VolunteersBadge from "../VolunteersBadge/VolunteersBadge";
 // import Components
 import Map from "../../components/Map/Map";
 import eyesHappy from "../../../../Assets/eyesHappy.svg";
