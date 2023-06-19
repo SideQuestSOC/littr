@@ -1,6 +1,6 @@
 import "./CardDisplay.css";
 // import React dependencies
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import Components
 import Card from "./components/Card/Card.js";
 import SearchAppBar from "../Components/Navbar/Navbar";
@@ -10,6 +10,7 @@ import { fetchData, formatDate, formatTime } from '../../Models/queries';
 
 
 function CardDisplay( { isSignedIn, setIsSignedIn, cardData, setCardData } ) {
+  const [updateVolunteerBadge, setUpdateVolunteerBadge] = useState(false);
 
 // Wrapped in useEffect to trigger rerender of cards when a new card is added by a user
   useEffect(() => {
@@ -19,7 +20,7 @@ function CardDisplay( { isSignedIn, setIsSignedIn, cardData, setCardData } ) {
     }
     setFetchedData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [updateVolunteerBadge])
 
   return (
     <div data-testid="card-display">
@@ -45,6 +46,7 @@ function CardDisplay( { isSignedIn, setIsSignedIn, cardData, setCardData } ) {
             disposalMethod={card.disposal_method}
             equipment={card.equipment}
             end_time={formatTime(card.end_time)}
+            setUpdateVolunteerBadge={setUpdateVolunteerBadge}
           />
         ))}
 

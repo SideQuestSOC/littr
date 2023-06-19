@@ -10,14 +10,9 @@ import { getCurrentUserId } from "../../../../Models/client";
 
 // import { Badge } from '@mui/material';
 
-// Make MUI button for users to be be able to volunteer
-// I will need to export the button for use in other components
-// The button should be set to zero and increment by one for every button press
-// Button should be limited to one click per user
-    
-const VolunteerButton = ({ event_id }) => {
+const VolunteerButton = ({ event_id, setUpdateVolunteerBadge }) => {
     // const [clickCount, setClickCount] = useState(0);
-    // const [isButtonDisabled, setButtonDisabled] = useState(false);
+    const [isButtonDisabled, setButtonDisabled] = useState(false);
 
     // const handleButtonClick = () => {
     //     setClickCount(clickCount + 1);
@@ -33,11 +28,7 @@ const VolunteerButton = ({ event_id }) => {
         }
     
         getUserID();
-      }, []);
-
-    console.log(`User ID: ${userID.id}`);
-    console.log(`Event ID: ${event_id}`);
-
+    }, []);
 
     return (
         <div>
@@ -45,9 +36,9 @@ const VolunteerButton = ({ event_id }) => {
             id="volunteer-button"
             variant="contained" 
             color="primary" 
-            // onClick={handleButtonClick} disabled={isButtonDisabled}
-            onClick={ async function insertVolunteer() {await insertEventVolunteer(userID.id, event_id)} }
-            >
+            // onClick={handleButtonClick}
+            onClick={ async function insertVolunteer() {await insertEventVolunteer(userID.id, event_id); setButtonDisabled(true); setUpdateVolunteerBadge(true) } }
+            disabled={isButtonDisabled}>
                 Volunteer
             </Button>
             {/* <p>Number of Volunteers: {clickCount}</p> */}

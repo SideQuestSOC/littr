@@ -158,7 +158,7 @@ export default function Card(props) {
               </div>
             </Typography>
             <div id="volunteer-button-container">
-            <VolunteerButton event_id={props.event_id} />
+            <VolunteerButton event_id={props.event_id} setUpdateVolunteerBadge={props.setUpdateVolunteerBadge} />
             </div>
           </List>
         </Collapse>
