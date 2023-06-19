@@ -84,7 +84,9 @@ export async function supabaseEventInsert(PostData) {
 export async function selectEvent() {
     const { data, error } = await supabase.from('event')
     .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, 
-    users ( first_name, last_name )`);
+    users ( first_name, last_name )`)
+    // show only events in the future (.gt - column is greater than a value)
+    .gt('end_time', 'now()')
     
     if (error) {
       // Handle error
