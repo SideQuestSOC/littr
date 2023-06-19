@@ -16,8 +16,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import supabase functions
 import { supabaseEventInsert, fetchData } from "../../Models/queries";
 import { getCurrentUserId } from "../../Models/client";
-
-
+import { isValid } from "postcode";
+import { parse } from "postcode";
 
 const jankTheme = createTheme({
   palette: {
@@ -62,10 +62,18 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
     setLocationAddress(event.target.value);
   };
 
+  const [isPostcodeValid, setIsPostcodeValid] = useState(true);
+
 
   const handleLocationPostcodeChange = (event) => {
-    setLocationPostcode(event.target.value);
+    const postcode = event.target.value;
+    setLocationPostcode(postcode);
+  
+    // Validate the postcode
+    const isValidPostcode = isValid(postcode);
+    setIsPostcodeValid(isValidPostcode);
   };
+  
 
   const handleAdditionalInformationChange = (event) => {
     setAdditionalInformation(event.target.value);
@@ -144,7 +152,6 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
             inputProps={{ maxLength: 50 }}
             required= {true}
             label={postTitle.length < 5 && postTitle.length >= 1 ? "Title must be at least 5 characters" : `${postTitle.length}/50`}
-            // label={`${postTitle.length}/50`}
             error={postTitle.length < 5 && postTitle.length >= 1}
           />
           <TextField
@@ -153,6 +160,7 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
             variant="standard"
             value={locationAddress}
             onChange={handleLocationAddressChange}
+            inputProps={{ maxLength: 255 }}
           />
           <TextField
             id="location-postcode"
@@ -160,6 +168,8 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
             variant="standard"
             value={locationPostcode}
             onChange={handleLocationPostcodeChange}
+            error={!isPostcodeValid}
+            helperText={!isPostcodeValid ? "Invalid postcode" : ""}
           />
            <TextField
             id="additional-information"
@@ -170,6 +180,7 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
             variant="standard"
             value={additionalInformation}
             onChange={handleAdditionalInformationChange}
+            inputProps={{ maxLength: 500 }}
           />
           <Divider />
           <Typography id="date-time-title" variant="h6">
