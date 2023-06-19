@@ -115,12 +115,14 @@ export default function CreateCardForm({
       locationAddress === "" ||
       locationPostcode === "" ||
       additionalInformation === "" ||
-      recommendedEquipment === "" ||
       disposalMethod === "" ||
       date === null ||
       Time === null
     ) {
       alert("Please fill it all in!");
+      return;
+    } else if (!isPostcodeValid) {
+      alert("Please enter a valid postcode!");
       return;
     } else {
       alert("Post created, thank you.");
