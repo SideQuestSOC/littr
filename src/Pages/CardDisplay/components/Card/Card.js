@@ -1,18 +1,51 @@
-import React, { useState } from "react";
-import List from "@mui/material/List";
-import Collapse from "@mui/material/Collapse";
-import Badge from "@mui/material/Badge";
-import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
-import Stack from "@mui/material/Stack";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
-import eyesHappy from "../../../../Assets/eyesHappy.svg";
 // import css
 import "./Card.css";
-
-// import component
+// import React dependencies
+import React, { useState } from "react";
+// import Material UI dependencies
+import { Typography, Checkbox, FormControlLabel, FormGroup, List, Collapse, Badge, Button, Stack } from "@mui/material";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
+import VolunteerButton from "../VolunteerButton/VolunteerButton";
+import VolunteersBadge from "../VolunteersBadge/VolunteersBadge";
+// import Components
 import Map from "../../components/Map/Map";
+import eyesHappy from "../../../../Assets/eyesHappy.svg";
+
+// Function to render a checked or not checked checkbox depending on whether the prop is true or false
+// Sorry this is so long, it wouldn't let me insert a ternary operator into an element tag
+function checkBoolean(booleanProp, checkLabel) {
+  let checkboxCheck = booleanProp
+    ? (
+      <FormControlLabel 
+        control={
+          <Checkbox id="accessibility-checkbox" 
+            disabled 
+            defaultChecked 
+            sx={{
+              "& .css-j204z7-MuiFormControlLabel-root": { color: "black" },
+              "& .MuiFormControlLabel-label.Mui-disabled": { color: "black" }
+            }}
+          /> 
+        }
+        label={checkLabel} 
+      />
+    )
+    : 
+    <FormControlLabel 
+    control={
+      <Checkbox id="accessibility-checkbox" 
+        disabled 
+        sx={{
+          "& .css-j204z7-MuiFormControlLabel-root": { color: "black" },
+          "& .MuiFormControlLabel-label.Mui-disabled": { color: "black" }
+        }}
+      /> 
+    }
+    label={checkLabel} 
+  />;
+  return checkboxCheck;
+}
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
@@ -33,7 +66,7 @@ export default function Card(props) {
   };
 
   return (
-    <div id="card-outer-container" style={{ backgroundColor: props.color }}>
+    <div id="card-outer-container" data-testid="card-display">
       <List id="MUInav" component="nav" aria-labelledby="nested-list-subheader">
         <Stack id="eyes-container" direction="row">
           <img
@@ -68,6 +101,7 @@ export default function Card(props) {
             }}
             data-testid="like-badge"
           >
+          {/* Added data-testid to test the like button */}
             <Button
               id="like-button"
               onClick={handleThumbsUp}
@@ -75,7 +109,6 @@ export default function Card(props) {
               data-testid="like-button"
             >
               {" "}
-              {/* Added data-testid to test the like button */}
               <ThumbUpOffAltIcon />
             </Button>
           </Badge>
@@ -85,11 +118,48 @@ export default function Card(props) {
         </Stack>
         <Collapse id="collapsed-card" in={open} timeout="auto" unmountOnExit>
           <List id="collapsed-card-container" component="div">
-            <Typography id="card-content-container">
-              {/* INSERT DETAILS COMPONENTS HERE */}
-              <Map />
-              {props.body}
+            <Typography component={'div'} id="card-content-container">
+              {/* CARD CONTENT */}
+              <Map location={props.location} postcode={props.postcode} />
+              <div className="card-content-space">
+                <h4>Location:</h4>
+                {props.location}, {props.postcode}
+              </div>
+              <div className="card-content-space card-content-row">
+                <h4><pre>Date: </pre></h4>{props.date}
+              </div>
+              <div className="card-content-space card-content-row">
+                <h4><pre>Time: </pre></h4>{props.time} - {props.end_time}
+              </div>
+              <div className="card-content-space card-content-row" id="card-content-row-creator">
+                <div className="card-content-row"><h4><pre>Creator: </pre></h4>{props.creatorname}</div>
+                <VolunteersBadge count={props.count}/>
+              </div>
+              <div className="card-content-space">
+                <h4>Details:</h4>
+                {props.introduction}
+              </div>
+              
+              {/* Render checkboxes based on the accessibility boolean props */}
+              <FormGroup className="card-content-space">
+                {checkBoolean(props.hasUnevenGround, "Uneven Ground")}
+                {checkBoolean(props.hasBathrooms, "Nearby Bathrooms")}
+                {checkBoolean(props.hasParking, "Nearby Parking")}
+                {checkBoolean(props.isRemoteLocation, "Remote Location")}
+              </FormGroup>
+
+              <div className="card-content-space">
+                <h4>Disposal Method:</h4>
+                {props.disposalMethod}
+              </div>
+              <div className="card-content-space">
+                <h4>Recommended Equipment:</h4>
+                {props.equipment}
+              </div>
             </Typography>
+            <div id="volunteer-button-container">
+            <VolunteerButton event_id={props.event_id} setUpdateVolunteerBadge={props.setUpdateVolunteerBadge} />
+            </div>
           </List>
         </Collapse>
       </List>

@@ -1,3 +1,8 @@
+/* Created map-container to add margin */
+#map-container {
+    margin-right: 20px;
+}
+
 #google-map-frame
 {
     border: 0;

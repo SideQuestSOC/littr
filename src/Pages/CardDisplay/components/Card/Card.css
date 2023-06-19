@@ -19,6 +19,18 @@
     justify-content: center;
 }
 
+#card-outer-container:nth-of-type(3n+1) {
+    background-color: var(--strawberry);
+}
+
+#card-outer-container:nth-of-type(3n+2) {
+    background-color: var(--neonBlue);
+}
+
+#card-outer-container:nth-of-type(3n+3) {
+    background-color: var(--sunburstYellow);
+}
+
 #MUInav {
     width: 100%;
     display: flex;
@@ -150,6 +162,7 @@
     box-shadow: 0px -20px 25px -20px rgba(0,0,0,0.45), 0px -20px 20px -255px rgba(0,0,0,0.45);
 }
 
+/* Added flex-direction: column; to make children stack vertically */
 #collapsed-card-container {
     background-color: var(--offWhite);
     width: 350px;
@@ -158,6 +171,7 @@
     border: none;
     font-size: 12px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -172,4 +186,36 @@
     justify-content: center;
     flex-direction: column;
     word-break: break-word;
+}
+
+.card-content-space {
+    padding: 2px 5px 2px 5px;
+}
+
+.card-content-row {
+    display: flex;
+    flex-direction: row;
+}
+
+#card-content-row-creator {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 25px;
+}
+
+/* Reduce space MUI checkboxes take up */
+.MuiFormControlLabel-root {
+    margin: 0;
+    padding: 0;
+    height: 25px;
+}
+
+/* Force checkbox labels to not be greyed out */
+.Mui-disabled {
+    color: black!important;
+}
+/* Force checkbexes to be neonGreen */
+.MuiCheckbox-colorPrimary {
+    color: var(--neonGreen)!important;
 }

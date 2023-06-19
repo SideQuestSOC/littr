@@ -2,20 +2,24 @@ import './Map.css'; // css can be applied to the iframe
 
 // See documentation for Google Maps Embed API: https://developers.google.com/maps/documentation/embed/embedding-map
 
-function Map() {
+function Map( { location, postcode } ) {
     // MAP OPTIONS //
-    let location = encodeURIComponent("Pentewan Beach, Saint Austell, UK");
+    let encodedLocationURI = encodeURIComponent(`${location}, ${postcode}`);
     // encodeURIComponent() - This ensures that any special characters in those values are properly encoded and will be interpreted correctly by the Google Maps Embed API.
     // Encoding is requested by google in the best practice docs: https://developers.google.com/maps/documentation/geocoding/web-service-best-practices#BuildingURLs
+
+    // console.log(encodedLocationURI);
 
     const mapType = "roadmap"; // or "satellite"
 
     return (
+        <div id="map-container">
         <iframe 
             id="google-map-frame"
             title="google_map" // title is required or there are error messages
-            src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_API_KEY}&q=${location}&maptype=${mapType}`}
+            src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_API_KEY}&q=${encodedLocationURI}&maptype=${mapType}`}
         />
+        </div>
     )
 }
 
