@@ -104,3 +104,8 @@
     font-weight: bold;
     color: var(--navyBlue);
   }
+
+#post-title-label {
+    color : var(--offWhite);
+    padding-bottom: 1px;
+}

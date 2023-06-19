@@ -137,9 +137,15 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
           <TextField
             id="post-title"
             placeholder="Title of Post"
+            InputLabelProps={{ shrink: true }} 
             variant="standard"
             value={postTitle}
             onChange={handlePostTitleChange}
+            inputProps={{ maxLength: 50 }}
+            required= {true}
+            label={postTitle.length < 5 && postTitle.length >= 1 ? "Title must be at least 5 characters" : `${postTitle.length}/50`}
+            // label={`${postTitle.length}/50`}
+            error={postTitle.length < 5 && postTitle.length >= 1}
           />
           <TextField
             id="location-address"
