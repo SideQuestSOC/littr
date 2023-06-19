@@ -127,7 +127,7 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
   };
 
   return (
-    <div id="create-card-outer-container">
+    <div id="create-card-outer-container" data-testid="create-card-form">
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>
       <ThemeProvider theme={jankTheme}>
         <Typography variant="h4" id="create-card-title">

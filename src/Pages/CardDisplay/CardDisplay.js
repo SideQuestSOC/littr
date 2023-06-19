@@ -22,7 +22,7 @@ function CardDisplay( { isSignedIn, setIsSignedIn, cardData, setCardData } ) {
   }, [])
 
   return (
-    <div>
+    <div data-testid="card-display">
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
       <div id="card-display-outer-container">
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import CreatePostButton from '../../Pages/CardDisplay/components/CreatePostButton/CreatePostButton.js';
@@ -34,12 +34,13 @@ test('renders create post button and navigates to create card form', async () =>
     expect(createPostButton).toBeInTheDocument();
     // Simulate a click event on the create post button
     
-    userEvent.click(createPostButton);
+    fireEvent.click(screen.getByTestId('create-post-button'));
 
 
     //Assert that the  CreateCardForm component is rendered
-    const createCardFormTitle = screen.getByText('Create a Post');
-    expect(createCardFormTitle).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId('create-card-form')).toBeInTheDocument();
+  });
 });
 
 
