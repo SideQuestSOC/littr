@@ -95,12 +95,25 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
     setTime(Time);
   };
 
+  
   const handleCreatePost = async () => {
-    // append the start time to the date_timestamp
+    if (
+      postTitle === "" ||
+      locationAddress === "" ||
+      locationPostcode === "" ||
+      additionalInformation === "" ||
+      recommendedEquipment === "" ||
+      disposalMethod === "" ||
+      date === null ||
+      Time === null
+    ) {
+      alert("Please fill it all in!");
+      return;
+    }
+  
     let startDateTime = new Date(date);
     startDateTime.setHours(Time[0].hour(), Time[0].minute());
 
-    // append the start time to the date_timestamp
     let endDateTime = new Date(date);
     endDateTime.setHours(Time[1].hour(), Time[1].minute());
 
@@ -150,7 +163,6 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
             value={postTitle}
             onChange={handlePostTitleChange}
             inputProps={{ maxLength: 50 }}
-            required= {true}
             label={postTitle.length < 5 && postTitle.length >= 1 ? "Title must be at least 5 characters" : `${postTitle.length}/50`}
             error={postTitle.length < 5 && postTitle.length >= 1}
           />
@@ -181,6 +193,9 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
             value={additionalInformation}
             onChange={handleAdditionalInformationChange}
             inputProps={{ maxLength: 500 }}
+            label={postTitle.length < 20 && postTitle.length >= 1 ? "This section must be at least 20 characters" : `${postTitle.length}/500`}
+            error={postTitle.length < 20 && postTitle.length >= 1}
+            InputLabelProps={{ shrink: true }}
           />
           <Divider />
           <Typography id="date-time-title" variant="h6">
@@ -272,7 +287,9 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
             rows={3}
             variant="standard"
             value={recommendedEquipment}
+            inputProps={{ maxLength: 255}}
             onChange={handleRecommendedEquipmentChange}
+
           />
 
           {/* Buttons */}
@@ -282,7 +299,8 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData 
               Discard
               </Link>
             </Button>
-            <Button id="create-button" variant="contained" onClick={() => { handleCreatePost(); alert("Post created, thank you."); navigate('/src/pages/carddisplay'); }}>
+            <Button id="create-button" variant="contained" onClick={() => 
+              { handleCreatePost(); alert("Post created, thank you."); navigate('/src/pages/carddisplay'); }}>
               Create Post
             </Button>
           </Stack>
