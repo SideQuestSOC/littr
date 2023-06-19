@@ -1,30 +1,23 @@
-
-import React, { useState, useEffect } from "react";
-// useNavigate() is used to redirect to a different page
-import { useNavigate } from 'react-router-dom';
-import SearchAppBar from "../Components/Navbar/Navbar";
-import { supabaseEventInsert } from "../../Models/queries";
+// import css
 import "./CreateCardForm.css";
-import {
-  Stack,
-  Typography,
-  TextField,
-  Divider,
-  Checkbox,
-  FormGroup,
-  FormControlLabel,
-  Button,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from "@mui/material";
+// import React dependencies
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'; // useNavigate() is used to redirect to a different page
+// import Components
+import SearchAppBar from "../Components/Navbar/Navbar";
+// import Material UI dependencies
+import { Stack, Typography, TextField, Divider, Checkbox, FormGroup, FormControlLabel, Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import {Link} from "react-router-dom";
 import { SingleInputTimeRangeField } from "@mui/x-date-pickers-pro/SingleInputTimeRangeField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+// import supabase functions
+import { supabaseEventInsert, fetchData } from "../../Models/queries";
+import { getCurrentUserId } from "../../Models/client";
+
+
 
 const jankTheme = createTheme({
   palette: {
@@ -33,9 +26,9 @@ const jankTheme = createTheme({
     },
   },
 });
-export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
 
-  // initialize the navigate object using the useNavigate 'hook'
+export default function CreateCardForm({ isSignedIn, setIsSignedIn, setCardData }) {
+  // Initialize the navigate object using the useNavigate 'hook'
   const navigate = useNavigate();
   // Redirect to Card display page if a user is not logged in
   useEffect(() => {
@@ -43,7 +36,7 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
       navigate('/src/pages/carddisplay');
     }
   }, [isSignedIn, navigate]);
-
+  
   const [postTitle, setPostTitle] = useState("");
   const [locationAddress, setLocationAddress] = useState("");
   const [locationPostcode, setLocationPostcode] = useState("");
@@ -51,6 +44,15 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
   const [recommendedEquipment, setRecommendedEquipment] = useState("");
   const [disposalMethod, setDisposalMethod] = useState("");
   const [date, setDate] = useState(null);
+  const [Time, setTime] = useState(null);
+  const [currentUserID, setcurrentUserID ] = useState();
+
+  // Get the current users ID
+  async function UserID() {
+    let userId = await getCurrentUserId();
+    setcurrentUserID(userId.id);
+  }
+  UserID();
 
   const handlePostTitleChange = (event) => {
     setPostTitle(event.target.value);
@@ -81,11 +83,23 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
     setDate(date);
   };
 
+  const handleTimeChange = (Time) => {
+    setTime(Time);
+  };
+
   const handleCreatePost = async () => {
+    // append the start time to the date_timestamp
+    let startDateTime = new Date(date);
+    startDateTime.setHours(Time[0].hour(), Time[0].minute());
+
+    // append the start time to the date_timestamp
+    let endDateTime = new Date(date);
+    endDateTime.setHours(Time[1].hour(), Time[1].minute());
+
     const PostData = {
-      creator_user_id: "XXX",
+      creator_user_id: currentUserID,
       location: locationAddress,
-      address: locationPostcode,
+      postcode: locationPostcode,
       created_at: new Date(),
       likes: 0,
       is_flagged: false,
@@ -100,11 +114,16 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
         document.getElementById("checkbox-remote-location")?.checked || false,
       disposal_method: disposalMethod,
       equipment: recommendedEquipment,
-      date_timestamp: new Date(date),
+      date_timestamp: startDateTime,
+      end_time: endDateTime,
     };
 
     // Call function to run SQL query for public.Events table insertion
-    supabaseEventInsert(PostData);
+    // Rerender the page when a new card is added to database
+    if(supabaseEventInsert(PostData))
+    {
+      setCardData(await fetchData());
+    };
   };
 
   return (
@@ -166,6 +185,8 @@ export default function CreateCardForm({ isSignedIn, setIsSignedIn }) {
     textField: ({ position }) => ({
           label: "Start Time - End Time (24-Hour-Format)",
           className: "time-range-field",
+          value: Time,
+          onChange: handleTimeChange,
           ampm: false,
         }),
       }}
