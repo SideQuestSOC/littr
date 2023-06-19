@@ -66,7 +66,7 @@ export default function Card(props) {
   };
 
   return (
-    <div id="card-outer-container">
+    <div id="card-outer-container" data-testid="card-display">
       <List id="MUInav" component="nav" aria-labelledby="nested-list-subheader">
         <Stack id="eyes-container" direction="row">
           <img
