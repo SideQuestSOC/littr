@@ -11,6 +11,19 @@ body {
   margin-bottom: 35px;
 }
 
+#hat {
+  height: 22px;
+  margin: 0;
+  padding: 0;
+}
+
+#card-display-inner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
 #card-display-outer-container {
   display: flex;
   flex-direction: column;

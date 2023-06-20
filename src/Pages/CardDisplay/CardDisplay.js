@@ -40,8 +40,8 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
         <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
         <div id="card-display-outer-container">
           {cardData.map((card, index) => (
-            <div className="card-display-inner-container">
-              <img className="hat" src={randomHat()} alt="hat" />
+            <div id="card-display-inner-container">
+              <img id="hat" src={randomHat()} alt="hat" />
               <Card
                 key={index}
                 event_id={card.event_id}
