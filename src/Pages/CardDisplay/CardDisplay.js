@@ -11,13 +11,12 @@ import Footer from "../Components/Footer/footer";
 
 // Tristan's really cool hat randomiser
 function randomHat() {
-  const hatContext = require.context( 
-    "../../Assets/Hats", 
-    false,
-    /\.svg$/i 
+  const hatContext = require.context(
+    "../../Assets/Hats",  // Folder where we dump all the hats. This is relative to the src folder so we don't need to include src in the path
+    false,                // This flag is used to prevent searching subdirectories (because we don't have any)
+    /\.svg$/i             // This is a regex that matches all files ending in .svg. We could change this to include .png files too by using /\.svg$|\.png$/i
   );
-  const hatFiles = hatContext.keys(); 
-  const hatImages = hatFiles.map(hatContext); 
+  const hatImages = hatContext.keys().map(hatContext); // hatImages is a list of all images matched by the regex above
   return hatImages[Math.floor(Math.random() * hatImages.length)]; 
 }
 
@@ -35,47 +34,48 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateVolunteerBadge]);
 
-  return <> 
-    <div data-testid="card-display">
-      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
-      <div id="card-display-outer-container">
-
-        {cardData.map((card, index) => (
-          <div className="card-display-inner-container">
-          <img className="hat" src={randomHat()} alt="hat" />
-          <Card
-            key={index}
-            event_id={card.event_id}
-            count={card.count}
-            header={card.title}
-            location={card.location}
-            postcode={card.postcode}
-            creatorname={card.users.first_name + " " + card.users.last_name}
-            date={formatDate(card.date_timestamp)}
-            time={formatTime(card.date_timestamp)}
-            introduction={card.post_introduction}
-            hasUnevenGround={card.has_uneven_ground}
-            hasBathrooms={card.has_bathrooms}
-            hasParking={card.has_parking}
-            isRemoteLocation={card.is_remote_location}
-            disposalMethod={card.disposal_method}
-            equipment={card.equipment}
-            end_time={formatTime(card.end_time)}
-            setUpdateVolunteerBadge={setUpdateVolunteerBadge}
-          />
-          </div>
-        ))}
-      </div>
-      {/* Only render this button when user is signed in */}
-      {isSignedIn && (
-        <div className="create-post-container">
-          <CreatePostButton />
+  return (
+    <>
+      <div data-testid="card-display">
+        <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
+        <div id="card-display-outer-container">
+          {cardData.map((card, index) => (
+            <div className="card-display-inner-container">
+              <img className="hat" src={randomHat()} alt="hat" />
+              <Card
+                key={index}
+                event_id={card.event_id}
+                count={card.count}
+                header={card.title}
+                location={card.location}
+                postcode={card.postcode}
+                creatorname={card.users.first_name + " " + card.users.last_name}
+                date={formatDate(card.date_timestamp)}
+                time={formatTime(card.date_timestamp)}
+                introduction={card.post_introduction}
+                hasUnevenGround={card.has_uneven_ground}
+                hasBathrooms={card.has_bathrooms}
+                hasParking={card.has_parking}
+                isRemoteLocation={card.is_remote_location}
+                disposalMethod={card.disposal_method}
+                equipment={card.equipment}
+                end_time={formatTime(card.end_time)}
+                setUpdateVolunteerBadge={setUpdateVolunteerBadge}
+              />
+            </div>
+          ))}
         </div>
-      )}  
-    </div>
-    
-  <Footer />
-  </>
+        {/* Only render this button when user is signed in */}
+        {isSignedIn && (
+          <div className="create-post-container">
+            <CreatePostButton />
+          </div>
+        )}
+      </div>
+
+      <Footer />
+    </>
+  );
 }
 
 export default CardDisplay;
