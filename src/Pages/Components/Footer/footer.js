@@ -5,10 +5,9 @@ import "./Footer.css";
 
 const Footer = () => {
     return (
-
             <footer className="footer">
-                <FacebookIcon />
-                <LinkedInIcon />
+              <a href="https://www.facebook.com/"target= "_blank" rel="noopener noreferrer"><FacebookIcon className="icon" /></a>
+              <a href="https://www.linkedin.com/"target= "_blank" rel="noopener noreferrer"><LinkedInIcon className="icon" /></a>
             </footer> 
            );
 };
