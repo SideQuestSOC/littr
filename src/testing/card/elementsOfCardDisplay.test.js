@@ -35,5 +35,16 @@ test('renders post title', () => {
     // Assert that the post title is rendered
     expect(postTitle).toBeInTheDocument();
 });
-});
 
+// Not yet working
+// test('renders location', () => {
+//     // Arrange
+//     const locationText = 'card.location';
+//     render(<Card location="Sample Location" />);
+//     // Act
+//     // get the location using screen.getByText
+//     const location = screen.getByText("Sample Location");
+//     // Assert that the location is rendered
+//     expect(location).toBeInTheDocument();
+// })
+});
