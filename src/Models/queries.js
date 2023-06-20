@@ -89,11 +89,9 @@ export async function selectEvent(filter) {
     .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, users ( first_name, last_name )`)
     .gt('end_time', 'now()'); // Show only events in the future (end_time is greater than current time)
 
-  if (filter !== "") {
-    // TODO: search can be done from almost any page, user needs to be navigated to Card Display page if filter is not blank 
-    // TODO: check if filter is a valid postcode, if so filter by postcode
-    query = query.eq('postcode', filter); // Filter events by postcode
-  }
+    if (filter !== "") {
+      query = query.ilike('postcode', `%${filter}%`); // Filter events by partial postcode match
+    }
 
   try {
     const { data, error } = await query;
