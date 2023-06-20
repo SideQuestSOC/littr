@@ -1,4 +1,5 @@
 import { supabase } from './client';
+import { isValid } from "postcode";
 
 // insertPublicUser() - inserts data into the public.users table, it is called after
 // the supabaseSignUp() function has inserted a new user into the auth.users table
@@ -81,27 +82,41 @@ export async function supabaseEventInsert(PostData) {
 }
 
 // selectEvent() - retrieves data from public.Events for the Card Display component
-export async function selectEvent() {
-    const { data, error } = await supabase.from('event')
-    .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, 
-    users ( first_name, last_name )`)
-    // show only events in the future (.gt - column is greater than a value)
-    .gt('end_time', 'now()')
-    
-    if (error) {
-      // Handle error
-      console.error(error);
-      return null;
+
+
+export async function selectEvent(filter) {
+  console.log(filter);
+
+  let query = supabase.from('event')
+    .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, users ( first_name, last_name )`)
+    .gt('end_time', 'now()'); // Show only events in the future (end_time is greater than current time)
+
+    if (filter !== "" && (isValid(filter) === true)) {
+      query = query.ilike('postcode', `%${filter}%`); // Filter events by partial postcode match
     }
-    
+    else {
+      query = query.ilike('location, title, post_introduction', `%${filter}%`); // Filter events by partial postcode match
+    }
+
+  try {
+    const { data, error } = await query;
+
+    console.log(data);
     return data;
-};
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
 
 // Select data from DB to map onto Cards
 // Append the count of volunteers to the data array after the promises have resolved
-export async function fetchData() {
+export async function fetchData(filter) {
+  console.log(filter);
     try {
-      let data = await selectEvent();
+      // TODO: get the filter variable here and pass as argument to selectEvent
+      let data = await selectEvent(filter);
       if (data) {
         const promises = data.map((card) => {
           return countVolunteers(card.event_id).then((count) => {

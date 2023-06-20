@@ -1,7 +1,7 @@
 // import css
 import './Navbar.css';
 // import react dependencies
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 // import Supabase functions
 import { signOut } from '../../../Models/client';
@@ -26,10 +26,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
+export default function SearchAppBar({ isSignedIn, setIsSignedIn, setFilter, filter }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isSearchOpen, setSearchOpen] = useState(false);
-  
+  // const [filter, setFilter] = useState("");
+
+
   // Vary components displayed in dropdown menu depending on whether user is signed in using css
   let idSignedinVariable;
   let idSignedoutVariable;
@@ -53,6 +55,11 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
     setSearchOpen(!isSearchOpen);
   };
 
+  const handleSearchChange = (event) => { 
+    setFilter(event.target.value);
+    // console.log(filter);
+  };
+
   return (
     <Box id="navbar-outer-container" >
       <AppBar id="navbar-header-container" position="static">
@@ -71,12 +78,12 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
             </IconButton>
             {isSearchOpen && (
               <StyledInputBase
+                onChange={handleSearchChange}
                 id="search-input"
                 placeholder="Search by location…"
                 inputProps={{ "aria-label": "search" }}/>
             )}
           </Search>
-          
           {/* LOGO/TITLE */}
           <Typography id="navbar-title"
             variant="h5"
