@@ -23,7 +23,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateVolunteerBadge]);
 
-  return (
+  return <> 
     <div data-testid="card-display">
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
       <div id="card-display-outer-container">
@@ -56,10 +56,10 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
           <CreatePostButton />
         </div>
       )}  
-       <Footer />
     </div>
- 
-  );
+    
+  <Footer />
+  </>
 }
 
 export default CardDisplay;
