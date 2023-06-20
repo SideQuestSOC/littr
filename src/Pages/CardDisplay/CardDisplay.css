@@ -17,7 +17,6 @@ body {
   align-items: center;
   padding: 0 25% 0 25%;
   margin-top: 2%;
-  min-height: 85vh;
 }
 
 .create-post-container {
@@ -30,6 +29,7 @@ body {
 .outermost-container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Desktop media queries*/
