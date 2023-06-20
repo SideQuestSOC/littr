@@ -9,16 +9,17 @@ import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
 import { fetchData, formatDate, formatTime } from "../../Models/queries";
 import Footer from "../Components/Footer/footer";
 
-function randomHat() { 
-  const hats = [
-    require("../../Assets/Hats/heliHat.svg").default,
-    require("../../Assets/Hats/sunHat.svg").default,
-    require("../../Assets/Hats/wizardHat.svg").default,
-    require("../../Assets/Hats/topHat.svg").default,
-    require("../../Assets/Hats/gradHat.svg").default,
-    require("../../Assets/Hats/cowboyHat.svg").default,
-  ];
-  return hats[Math.floor(Math.random() * hats.length)];
+// Tristan's really cool hat randomiser
+function randomHat() {
+  const hatContext = require.context( 
+    "../../Assets/Hats",
+    false,
+    /\.svg$/i 
+  );
+  const hatFiles = hatContext.keys(); // This retrieves the filenames of all the hat images in the Hats folder
+  const hatImages = hatFiles.map(hatContext); // this adds the images to an array
+
+  return hatImages[Math.floor(Math.random() * hatImages.length)]; 
 }
 
 function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
