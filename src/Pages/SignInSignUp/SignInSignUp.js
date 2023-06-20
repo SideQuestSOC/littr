@@ -72,10 +72,10 @@ function SignInSignUp({ isSignedIn, setIsSignedIn, setFilter }) {
 
                     {/* Render the SignIn component if either showSignIn is true or signUpRedirect is true (where a new user has just signed up) */}
                     {(showSignIn || signUpRedirect) && (<SignIn formData={formData} handleChange={handleChange} signUpRedirect={signUpRedirect} isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>)}
+                    <Footer />
                 </div>
             </div>
         </div>
-        <Footer />
     </>
 }
 

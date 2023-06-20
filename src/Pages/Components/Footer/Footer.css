@@ -9,7 +9,8 @@
      justify-content: flex-end;
      align-items: center;
      gap: 15px;
-    padding-right: 16px;
+     padding-right: 16px;
+     margin-top: auto;
 }
 
 .footer a {
