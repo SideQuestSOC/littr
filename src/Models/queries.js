@@ -109,10 +109,10 @@ export async function selectEvent(filter) {
 
 // Select data from DB to map onto Cards
 // Append the count of volunteers to the data array after the promises have resolved
-export async function fetchData() {
+export async function fetchData(filter) {
     try {
       // TODO: get the filter variable here and pass as argument to selectEvent
-      let data = await selectEvent("B138RD");
+      let data = await selectEvent(filter);
       if (data) {
         const promises = data.map((card) => {
           return countVolunteers(card.event_id).then((count) => {

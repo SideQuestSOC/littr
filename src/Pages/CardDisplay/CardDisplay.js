@@ -9,14 +9,14 @@ import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
 import { fetchData, formatDate, formatTime } from "../../Models/queries";
 import Footer from "../Components/Footer/footer";
 
-function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
+function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilter, filter }) {
   const [updateVolunteerBadge, setUpdateVolunteerBadge] = useState(false);
 
   // Wrapped in useEffect to trigger rerender of cards when a new card is added by a user
   useEffect(() => {
     async function setFetchedData() {
       // retrieve event data from DB
-      setCardData(await fetchData());
+      setCardData(await fetchData(filter));
       setUpdateVolunteerBadge(false);
     }
     setFetchedData();
@@ -25,7 +25,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
 
   return <> 
     <div data-testid="card-display">
-      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
+      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} setFilter={setFilter} filter={filter} />
       <div id="card-display-outer-container">
         {cardData.map((card, index) => (
           <Card

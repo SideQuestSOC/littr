@@ -26,10 +26,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
+export default function SearchAppBar({ isSignedIn, setIsSignedIn, setFilter, filter }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isSearchOpen, setSearchOpen] = useState(false);
-  const [filter, setFilter] = useState("");
+  // const [filter, setFilter] = useState("");
 
 
   // Vary components displayed in dropdown menu depending on whether user is signed in using css
@@ -57,6 +57,7 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
 
   const handleSearchChange = (event) => { 
     setFilter(event.target.value);
+    console.log(filter);
   };
 
   return (

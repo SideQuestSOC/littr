@@ -44,6 +44,7 @@ export default function CreateCardForm({
   isSignedIn,
   setIsSignedIn,
   setCardData,
+  setFilter
 }) {
   // Initialize the navigate object using the useNavigate 'hook'
   const navigate = useNavigate();
@@ -168,7 +169,7 @@ export default function CreateCardForm({
 
   return (
     <div id="create-card-outer-container" data-testid="create-card-form">
-      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
+      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} setFilter={setFilter} />
       <ThemeProvider theme={jankTheme}>
         <Typography variant="h4" id="create-card-title">
           Create a Post
