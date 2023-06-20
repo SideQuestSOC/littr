@@ -16,8 +16,8 @@ function randomHat() {
     false,
     /\.svg$/i 
   );
-  const hatFiles = hatContext.keys(); // This retrieves the filenames of all the hat images in the Hats folder
-  const hatImages = hatFiles.map(hatContext); // this adds the images to an array
+  const hatFiles = hatContext.keys(); 
+  const hatImages = hatFiles.map(hatContext); 
 
   return hatImages[Math.floor(Math.random() * hatImages.length)]; 
 }
