@@ -8,6 +8,7 @@
 
 body {
   background-color: var(--navyBlue);
+  margin-bottom: 35px;
 }
 
 #card-display-outer-container {
@@ -38,3 +39,5 @@ body {
   right: 20px;
   z-index: 100;
 }
+
+

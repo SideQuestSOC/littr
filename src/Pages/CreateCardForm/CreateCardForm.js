@@ -30,6 +30,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { supabaseEventInsert, fetchData } from "../../Models/queries";
 import { getCurrentUserId } from "../../Models/client";
 import { isValid } from "postcode";
+import Footer from "../Components/Footer/footer";
 
 const jankTheme = createTheme({
   palette: {
@@ -222,11 +223,15 @@ export default function CreateCardForm({
             onChange={handleAdditionalInformationChange}
             inputProps={{ maxLength: 500 }}
             label={
-              additionalInformation.length < 20 && additionalInformation.length >= 1
+              additionalInformation.length < 20 &&
+              additionalInformation.length >= 1
                 ? "This section must be at least 20 characters"
                 : `${additionalInformation.length}/500`
             }
-            error={additionalInformation.length < 20 && additionalInformation.length >= 1}
+            error={
+              additionalInformation.length < 20 &&
+              additionalInformation.length >= 1
+            }
             InputLabelProps={{ shrink: true }}
           />
           <Divider />
@@ -343,6 +348,7 @@ export default function CreateCardForm({
           </Stack>
         </Stack>
       </ThemeProvider>
+      <Footer />
     </div>
   );
 }

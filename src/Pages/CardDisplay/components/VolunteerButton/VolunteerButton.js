@@ -12,7 +12,7 @@ import { getCurrentUserId } from "../../../../Models/client";
 
 const VolunteerButton = ({ event_id, setUpdateVolunteerBadge }) => {
     // const [clickCount, setClickCount] = useState(0);
-    const [isButtonDisabled, setButtonDisabled] = useState(false);
+   // const [isButtonDisabled, setButtonDisabled] = useState(false);
 
     // const handleButtonClick = () => {
     //     setClickCount(clickCount + 1);
@@ -37,7 +37,7 @@ const VolunteerButton = ({ event_id, setUpdateVolunteerBadge }) => {
             variant="contained" 
             color="primary" 
             // onClick={handleButtonClick}
-            onClick={ async function insertVolunteer() {await insertEventVolunteer(userID.id, event_id); setButtonDisabled(true); setUpdateVolunteerBadge(true) } }
+            onClick={ async function insertVolunteer() {await insertEventVolunteer(userID.id, event_id); setUpdateVolunteerBadge(true) } }
             // disabled={isButtonDisabled}
             >
                 Volunteer

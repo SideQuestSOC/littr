@@ -7,6 +7,7 @@ import { Button } from '@mui/material';
 import SignIn from "./Components/SignIn/SignIn";
 import SignUp from "./Components/SignUp/SignUp";
 import SearchAppBar from "../Components/Navbar/Navbar";
+import Footer from "../Components/Footer/footer";
 
 function SignInSignUp({ isSignedIn, setIsSignedIn }) {
     // This state variable 'formData' is used to store form data for the signup and sign in.
@@ -74,6 +75,7 @@ function SignInSignUp({ isSignedIn, setIsSignedIn }) {
                 </div>
             </div>
         </div>
+        <Footer />
     </>
 }
 
