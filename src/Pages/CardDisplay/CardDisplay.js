@@ -6,29 +6,28 @@ import Card from "./components/Card/Card.js";
 import SearchAppBar from "../Components/Navbar/Navbar";
 import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
 // import SQL queries/functions
-import { fetchData, formatDate, formatTime } from '../../Models/queries';
+import { fetchData, formatDate, formatTime } from "../../Models/queries";
+import Footer from "../Components/Footer/footer";
 
-
-function CardDisplay( { isSignedIn, setIsSignedIn, cardData, setCardData } ) {
+function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
   const [updateVolunteerBadge, setUpdateVolunteerBadge] = useState(false);
 
-// Wrapped in useEffect to trigger rerender of cards when a new card is added by a user
+  // Wrapped in useEffect to trigger rerender of cards when a new card is added by a user
   useEffect(() => {
     async function setFetchedData() {
-        // retrieve event data from DB
-        setCardData(await fetchData());
-        setUpdateVolunteerBadge(false);
+      // retrieve event data from DB
+      setCardData(await fetchData());
+      setUpdateVolunteerBadge(false);
     }
     setFetchedData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [updateVolunteerBadge])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [updateVolunteerBadge]);
 
   return (
     <div data-testid="card-display">
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
       <div id="card-display-outer-container">
-
-      {cardData.map((card, index) => (
+        {cardData.map((card, index) => (
           <Card
             key={index}
             event_id={card.event_id}
@@ -50,15 +49,16 @@ function CardDisplay( { isSignedIn, setIsSignedIn, cardData, setCardData } ) {
             setUpdateVolunteerBadge={setUpdateVolunteerBadge}
           />
         ))}
-
       </div>
       {/* Only render this button when user is signed in */}
       {isSignedIn && (
         <div className="create-post-container">
           <CreatePostButton />
         </div>
-      )}
+      )}  
+       <Footer />
     </div>
+ 
   );
 }
 

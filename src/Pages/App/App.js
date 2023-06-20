@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import Supabase functions
 import { isSessionSignedIn } from '../../Models/client';
-
 // import Components
 import LandingPage from '../LandingPage/LandingPage';
 import CardDisplay from '../CardDisplay/CardDisplay';
