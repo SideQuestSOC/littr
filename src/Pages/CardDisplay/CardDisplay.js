@@ -9,6 +9,18 @@ import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
 import { fetchData, formatDate, formatTime } from "../../Models/queries";
 import Footer from "../Components/Footer/footer";
 
+function randomHat() { 
+  const hats = [
+    require("../../Assets/Hats/heliHat.svg").default,
+    require("../../Assets/Hats/sunHat.svg").default,
+    require("../../Assets/Hats/wizardHat.svg").default,
+    require("../../Assets/Hats/topHat.svg").default,
+    require("../../Assets/Hats/gradHat.svg").default,
+    require("../../Assets/Hats/cowboyHat.svg").default,
+  ];
+  return hats[Math.floor(Math.random() * hats.length)];
+}
+
 function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
   const [updateVolunteerBadge, setUpdateVolunteerBadge] = useState(false);
 
@@ -27,7 +39,10 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
     <div data-testid="card-display">
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
       <div id="card-display-outer-container">
+
         {cardData.map((card, index) => (
+          <div id="card-display-inner-container" key={index}>
+          <img className="hat" src={randomHat()} alt="hat" />
           <Card
             key={index}
             event_id={card.event_id}
@@ -48,6 +63,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
             end_time={formatTime(card.end_time)}
             setUpdateVolunteerBadge={setUpdateVolunteerBadge}
           />
+          </div>
         ))}
       </div>
       {/* Only render this button when user is signed in */}
