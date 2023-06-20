@@ -11,7 +11,8 @@
     width: 100vw;
     background-image: url("../../Assets/signinupbackground.webp");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover;   
+    overflow: hidden;  
 }
 
 #sign-up-in-close button a {
@@ -49,10 +50,10 @@
     border-radius: 10px 10px 0 0;
     background-color: var(--navyBlue);
     padding: 5px;
-
     /* Move container to the bottom of the screen on mobile */
     position: fixed;
-    bottom: 0;
+    bottom: 35px;
+
 }
 
 #sign-up-in-button-container {
