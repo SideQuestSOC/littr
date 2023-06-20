@@ -1,7 +1,4 @@
 .footer {
-     display: flex;
-     justify-content: flex-end;
-     bottom: 0;
      height: 35px;
      width: 100vw;
      background-color: #6AAF88;
