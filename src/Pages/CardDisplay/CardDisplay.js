@@ -12,7 +12,7 @@ import Footer from "../Components/Footer/footer";
 // Tristan's really cool hat randomiser
 function randomHat() {
   const hatContext = require.context(
-    "../../Assets/Hats",  // Folder where we dump all the hats. This is relative to the src folder so we don't need to include src in the path
+    "../../Assets/Hats",  // Folder where we dump all the hats. 
     false,                // This flag is used to prevent searching subdirectories (because we don't have any)
     /\.svg$/i             // This is a regex that matches all files ending in .svg. We could change this to include .png files too by using /\.svg$|\.png$/i
   );
