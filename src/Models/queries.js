@@ -1,4 +1,6 @@
 import { supabase } from './client';
+import { isValid } from "postcode";
+
 // insertPublicUser() - inserts data into the public.users table, it is called after
 // the supabaseSignUp() function has inserted a new user into the auth.users table
 export async function insertPublicUser(user_id, first_name, last_name) {
@@ -89,8 +91,11 @@ export async function selectEvent(filter) {
     .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, users ( first_name, last_name )`)
     .gt('end_time', 'now()'); // Show only events in the future (end_time is greater than current time)
 
-    if (filter !== "") {
+    if (filter !== "" && (isValid(filter) === true)) {
       query = query.ilike('postcode', `%${filter}%`); // Filter events by partial postcode match
+    }
+    else {
+      query = query.ilike('location, title, post_introduction', `%${filter}%`); // Filter events by partial postcode match
     }
 
   try {
