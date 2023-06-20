@@ -21,7 +21,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
     }
     setFetchedData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [updateVolunteerBadge]);
+  }, [updateVolunteerBadge, filter]);
 
   return <> 
     <div data-testid="card-display">

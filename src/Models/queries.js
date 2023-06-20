@@ -110,6 +110,7 @@ export async function selectEvent(filter) {
 // Select data from DB to map onto Cards
 // Append the count of volunteers to the data array after the promises have resolved
 export async function fetchData(filter) {
+  console.log(filter);
     try {
       // TODO: get the filter variable here and pass as argument to selectEvent
       let data = await selectEvent(filter);
