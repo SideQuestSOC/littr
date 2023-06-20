@@ -47,6 +47,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
             equipment={card.equipment}
             end_time={formatTime(card.end_time)}
             setUpdateVolunteerBadge={setUpdateVolunteerBadge}
+            isSignedIn={isSignedIn}
           />
         ))}
       </div>

@@ -26,8 +26,6 @@ function SignIn({ formData, handleChange, signUpRedirect, isSignedIn, setIsSigne
         // It ensures that the form does not cause a page reload.
         e.preventDefault();
 
-        console.log(formData);
-
         //  Call SignInUser() from Models/client.js and pass in user inputted email and password set the return value to a variable
         const signInSuccessful = await SignInUser(formData.email, formData.password);
         // if (signInSuccessful === true) redirect to Card Display Page

@@ -1,7 +1,7 @@
 // import css
 import './Navbar.css';
 // import react dependencies
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from "react-router-dom";
 // import Supabase functions
 import { signOut } from '../../../Models/client';
@@ -57,7 +57,6 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn, setFilter, fil
 
   const handleSearchChange = (event) => { 
     setFilter(event.target.value);
-    // console.log(filter);
   };
 
   return (
@@ -113,7 +112,6 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn, setFilter, fil
               elevation: 1,
             }}>
             {/* DROPDOWN MENU */}
-            {/* TODO: Change the Content here based on whether user is logged in or not */}
             <MenuItem onClick={handleClose}>
               <div id={idSignedinVariable}>
                 <Link id="dropdown-user-settings-link" to="">User Settings</Link>
