@@ -76,7 +76,7 @@ export default function Card(props) {
           />
         </Stack>
         <div id="title-container">
-          <h5 id="card-title">{props.header}</h5>
+          <h5 id="card-title" data-testid="card-title">{props.header}</h5>
         </div>
         <Stack
           id="card-button-container"
@@ -122,7 +122,7 @@ export default function Card(props) {
               {/* CARD CONTENT */}
               <Map location={props.location} postcode={props.postcode} />
               <div className="card-content-space">
-                <h4>Location:</h4>
+                <h4 data-testid="card-location">Location:</h4>
                 {props.location}, {props.postcode}
               </div>
               <div className="card-content-space card-content-row">
