@@ -12,13 +12,12 @@ import Footer from "../Components/Footer/footer";
 // Tristan's really cool hat randomiser
 function randomHat() {
   const hatContext = require.context( 
-    "../../Assets/Hats",
+    "../../Assets/Hats", 
     false,
     /\.svg$/i 
   );
   const hatFiles = hatContext.keys(); 
   const hatImages = hatFiles.map(hatContext); 
-
   return hatImages[Math.floor(Math.random() * hatImages.length)]; 
 }
 
@@ -42,7 +41,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
       <div id="card-display-outer-container">
 
         {cardData.map((card, index) => (
-          <div id="card-display-inner-container" key={index}>
+          <div className="card-display-inner-container">
           <img className="hat" src={randomHat()} alt="hat" />
           <Card
             key={index}
