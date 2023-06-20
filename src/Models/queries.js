@@ -83,32 +83,36 @@ export async function supabaseEventInsert(PostData) {
 
 
 export async function selectEvent(filter) {
+  console.log(filter);
+
   let query = supabase.from('event')
     .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, users ( first_name, last_name )`)
     .gt('end_time', 'now()'); // Show only events in the future (end_time is greater than current time)
 
   if (filter !== "") {
+    // TODO: search can be done from almost any page, user needs to be navigated to Card Display page if filter is not blank 
+    // TODO: check if filter is a valid postcode, if so filter by postcode
     query = query.eq('postcode', filter); // Filter events by postcode
   }
 
-  const { data, error } = await query;
+  try {
+    const { data, error } = await query;
 
-  if (error) {
-    // Handle error
+    console.log(data);
+    return data;
+  } catch (error) {
     console.error(error);
     return null;
   }
-
-  return data;
 }
-
 
 
 // Select data from DB to map onto Cards
 // Append the count of volunteers to the data array after the promises have resolved
 export async function fetchData() {
     try {
-      let data = await selectEvent();
+      // TODO: get the filter variable here and pass as argument to selectEvent
+      let data = await selectEvent("B138RD");
       if (data) {
         const promises = data.map((card) => {
           return countVolunteers(card.event_id).then((count) => {

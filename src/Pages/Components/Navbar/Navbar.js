@@ -57,7 +57,6 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
 
   const handleSearchChange = (event) => { 
     setFilter(event.target.value);
-    console.log(filter);
   };
 
   return (
