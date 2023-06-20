@@ -1,5 +1,4 @@
 import { supabase } from './client';
-
 // insertPublicUser() - inserts data into the public.users table, it is called after
 // the supabaseSignUp() function has inserted a new user into the auth.users table
 export async function insertPublicUser(user_id, first_name, last_name) {
@@ -81,21 +80,29 @@ export async function supabaseEventInsert(PostData) {
 }
 
 // selectEvent() - retrieves data from public.Events for the Card Display component
-export async function selectEvent() {
-    const { data, error } = await supabase.from('event')
-    .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, 
-    users ( first_name, last_name )`)
-    // show only events in the future (.gt - column is greater than a value)
-    .gt('end_time', 'now()')
-    
-    if (error) {
-      // Handle error
-      console.error(error);
-      return null;
-    }
-    
-    return data;
-};
+
+
+export async function selectEvent(filter) {
+  let query = supabase.from('event')
+    .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, users ( first_name, last_name )`)
+    .gt('end_time', 'now()'); // Show only events in the future (end_time is greater than current time)
+
+  if (filter !== "") {
+    query = query.eq('postcode', filter); // Filter events by postcode
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    // Handle error
+    console.error(error);
+    return null;
+  }
+
+  return data;
+}
+
+
 
 // Select data from DB to map onto Cards
 // Append the count of volunteers to the data array after the promises have resolved
