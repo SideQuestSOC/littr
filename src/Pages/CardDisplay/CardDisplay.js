@@ -23,7 +23,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateVolunteerBadge, filter]);
 
-  return <> 
+  return <div className="outermost-container">
     <div data-testid="card-display">
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} setFilter={setFilter} filter={filter} />
       <div id="card-display-outer-container">
@@ -59,7 +59,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
     </div>
     
   <Footer />
-  </>
+  </div> 
 }
 
 export default CardDisplay;

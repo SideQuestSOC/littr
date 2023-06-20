@@ -51,9 +51,8 @@
     background-color: var(--navyBlue);
     padding: 5px;
     /* Move container to the bottom of the screen on mobile */
+    bottom: 0px;
     position: fixed;
-    bottom: 35px;
-
 }
 
 #sign-up-in-button-container {
