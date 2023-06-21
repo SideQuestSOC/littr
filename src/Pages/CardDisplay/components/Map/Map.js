@@ -8,8 +8,6 @@ function Map( { location, postcode } ) {
     // encodeURIComponent() - This ensures that any special characters in those values are properly encoded and will be interpreted correctly by the Google Maps Embed API.
     // Encoding is requested by google in the best practice docs: https://developers.google.com/maps/documentation/geocoding/web-service-best-practices#BuildingURLs
 
-    // console.log(encodedLocationURI);
-
     const mapType = "roadmap"; // or "satellite"
 
     return (
