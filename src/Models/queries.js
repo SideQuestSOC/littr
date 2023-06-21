@@ -87,7 +87,7 @@ export async function selectEvent(filter) {
     .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, users ( first_name, last_name )`)
     .gt('end_time', 'now()'); // Show only events in the future (end_time is greater than current time)
 
-    if (filter !== "" && (isValid(filter) === true)) {
+    if (filter !== "" && filter !== undefined && (isValid(filter) === true)) {
       query = query.ilike('postcode', `%${filter}%`); // Filter events by partial postcode match
     }
     else {
