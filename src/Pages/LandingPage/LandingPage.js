@@ -6,9 +6,6 @@ import "./LandingPage.css";
 import { Button } from "@mui/material";
 
 function LandingPage({ isSignedIn, setFilter }) {
-  // reset search term to blank
-  setFilter("");
-
   // Initialize the navigate object using the useNavigate 'hook'
   const navigate = useNavigate();
 

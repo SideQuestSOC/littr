@@ -10,9 +10,6 @@ import SearchAppBar from "../Components/Navbar/Navbar";
 import Footer from "../Components/Footer/footer";
 
 function SignInSignUp({ isSignedIn, setIsSignedIn, setFilter }) {
-    // reset search term to blank
-    setFilter("");
-
     // This state variable 'formData' is used to store form data for the signup and sign in.
     const [formData, setFormData] = useState({
         firstName: '',
