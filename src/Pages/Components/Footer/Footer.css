@@ -1,6 +1,4 @@
 .footer {
-     position: fixed;
-     bottom: 0;
      height: 35px;
      width: 100vw;
      background-color: #6AAF88;
@@ -8,7 +6,8 @@
      justify-content: flex-end;
      align-items: center;
      gap: 15px;
-    padding-right: 16px;
+     padding-right: 16px;
+     margin-top: auto;
 }
 
 .footer a {

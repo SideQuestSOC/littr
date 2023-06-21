@@ -7,7 +7,7 @@
 }
 
 #sign-up-in-outer-container {
-    height: 100vh;
+    height: calc(100vh - 35px);
     width: 100vw;
     background-image: url("../../Assets/signinupbackground.webp");
     background-repeat: no-repeat;
@@ -49,11 +49,10 @@
     width: 100vw;
     border-radius: 10px 10px 0 0;
     background-color: var(--navyBlue);
-    padding: 5px;
+    padding: 5px 0 0 0;
     /* Move container to the bottom of the screen on mobile */
-    position: fixed;
     bottom: 35px;
-
+    position: fixed;
 }
 
 #sign-up-in-button-container {
@@ -106,8 +105,6 @@ button {
 input {
     width: 80vw;
 }
-
-
 
 /* Desktop media queries*/
 @media only screen and (min-width: 992px)
