@@ -167,7 +167,7 @@ export default function CreateCardForm({
     }
   };
 
-  return (
+  return <>
     <div id="create-card-outer-container" data-testid="create-card-form">
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} setFilter={setFilter} />
       <ThemeProvider theme={jankTheme}>
@@ -349,7 +349,8 @@ export default function CreateCardForm({
           </Stack>
         </Stack>
       </ThemeProvider>
-      <Footer />
     </div>
   );
+    <Footer />
+  </>
 }

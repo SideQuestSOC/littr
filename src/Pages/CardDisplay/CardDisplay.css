@@ -8,7 +8,6 @@
 
 body {
   background-color: var(--navyBlue);
-  margin-bottom: 35px;
 }
 
 #card-display-outer-container {
@@ -18,6 +17,19 @@ body {
   align-items: center;
   padding: 0 25% 0 25%;
   margin-top: 2%;
+}
+
+.create-post-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.outermost-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Desktop media queries*/
@@ -32,12 +44,3 @@ body {
       column-gap: 0;
   }
 }
-
-.create-post-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 100;
-}
-
-
