@@ -350,6 +350,7 @@ export default function CreateCardForm({
         </Stack>
       </ThemeProvider>
     </div>
+  );
     <Footer />
   </>
 }
