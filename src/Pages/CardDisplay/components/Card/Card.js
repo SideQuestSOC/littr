@@ -51,14 +51,12 @@ function checkBoolean(booleanProp, checkLabel) {
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
-  // placeholder thumbs up state
   const [thumbsUp, setThumbsUp] = useState(0);
 
   const handleExpand = () => {
     setOpen(!open);
   };
 
-  // placeholder thumbs up function
   const handleThumbsUp = () => {
     setThumbsUp(thumbsUp + 1);
   };
@@ -93,12 +91,9 @@ export default function Card(props) {
           >
             Details
           </Button>
-          <ThumbsUp
-  event_id={props.event_id}
-  setUpdateThumbBadge={props.setUpdateThumbBadge}
-  isSignedIn={props.isSignedIn}
-/>
-
+          <Button id="thumbs-up-button" onClick={handleThumbsUp} variant="contained">
+            <ThumbUpOffAltIcon />
+          </Button>
           <Button id="report-button" onClick={falseReport} variant="contained">
             <FlagOutlinedIcon />
           </Button>
@@ -108,7 +103,7 @@ export default function Card(props) {
             <Typography component={'div'} id="card-content-container">
               {/* CARD CONTENT */}
               <Map location={props.location} postcode={props.postcode} />
-              <div className="card-content-space"         data-testid="card-location">
+              <div className="card-content-space" data-testid="card-location">
                 <h4>Location:</h4>
                 {props.location}, {props.postcode}
               </div>
@@ -145,7 +140,7 @@ export default function Card(props) {
               </div>
             </Typography>
             <div id="volunteer-button-container">
-            <VolunteerButton event_id={props.event_id} setUpdateVolunteerBadge={props.setUpdateVolunteerBadge} isSignedIn={props.isSignedIn} />
+              <VolunteerButton event_id={props.event_id} setUpdateVolunteerBadge={props.setUpdateVolunteerBadge} isSignedIn={props.isSignedIn} />
             </div>
           </List>
         </Collapse>
