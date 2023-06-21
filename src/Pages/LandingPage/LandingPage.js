@@ -5,7 +5,10 @@ import "./LandingPage.css";
 // import MaterialUI dependencies
 import { Button } from "@mui/material";
 
-function LandingPage({ isSignedIn }) {
+function LandingPage({ isSignedIn, setFilter }) {
+  // reset search term to blank
+  setFilter("");
+
   // Initialize the navigate object using the useNavigate 'hook'
   const navigate = useNavigate();
 

@@ -46,6 +46,10 @@ export default function CreateCardForm({
   setCardData,
   setFilter
 }) {
+
+  // reset search term to blank
+  setFilter("");
+  
   // Initialize the navigate object using the useNavigate 'hook'
   const navigate = useNavigate();
   // Redirect to Card display page if a user is not logged in
