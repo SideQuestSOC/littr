@@ -7,7 +7,7 @@ import Card from '../../Pages/CardDisplay/components/Card/Card.js';
 // Location ✅
 // Date ✅
 // Time ✅
-// Creator
+// Creator ✅
 // Details
 // Additional information
 // Disposal method
@@ -89,14 +89,20 @@ test('renders time', () => {
 });
 
 // Render creator
-// test('renders creator', () => {
-//     // Arrange
-//     render(
-//         <Card />);
-//         // Act
-//         // Select the first instance of the Card 'Details' button
-//         const buttons = screen.getAllByText()
-//         )
-// })
+test('renders creator', () => {
+    // Arrange
+    render(
+        <Card />);
+        // Act
+        // Select the first instance of the Card 'Details' button
+        const buttons = screen.getAllByText('Details');
+        const firstButton = buttons[0];
+
+        fireEvent.click((firstButton));
+        // get the creator using getByTestId
+        const cardCreator = screen.getByTestId('card-creator');
+        // Assert that the creator is rendered
+        expect(cardCreator).toBeInTheDocument();
+});
 
 });

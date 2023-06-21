@@ -132,7 +132,7 @@ export default function Card(props) {
                 <h4><pre>Time: </pre></h4>{props.time} - {props.end_time}
               </div>
               <div className="card-content-space card-content-row" id="card-content-row-creator">
-                <div className="card-content-row"><h4><pre>Creator: </pre></h4>{props.creatorname}</div>
+                <div className="card-content-row" data-testid="card-creator"><h4><pre>Creator: </pre></h4>{props.creatorname}</div>
                 <VolunteersBadge count={props.count}/>
               </div>
               <div className="card-content-space">
