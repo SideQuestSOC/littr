@@ -1,0 +1,11 @@
+/* Light mode styles */
+.switch-button {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Dark mode styles */
+.dark-mode .switch-button {
+  background-color: #000000;
+  color: #ffffff;
+}
