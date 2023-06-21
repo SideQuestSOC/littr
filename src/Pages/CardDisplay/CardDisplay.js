@@ -24,9 +24,9 @@ function CardDisplay( { isSignedIn, setIsSignedIn, cardData, setCardData } ) {
   }, [updateVolunteerBadge])
 
   return (
-    <div data-testid="card-display">
+    <div>
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
-      <div id="card-display-outer-container">
+      <div id="card-display-outer-container" data-testid="card-display">
 
       {cardData.map((card, index) => (
           <Card

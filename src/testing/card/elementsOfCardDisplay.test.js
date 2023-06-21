@@ -1,11 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import Card from '../../Pages/CardDisplay/components/Card/Card';
+import { render, screen, fireEvent } from '@testing-library/react';
+import Card from '../../Pages/CardDisplay/components/Card/Card.js';
+// import CardDisplay from '../../Pages/CardDisplay/CardDisplay.js';
 
 // Write a test that chacks if card display renders ✅
 // Post Title ✅
-// Location
-// Date
-// Time
+// Location ✅
+// Date ✅
+// Time ✅
 // Creator
 // Details
 // Additional information
@@ -36,15 +37,66 @@ test('renders post title', () => {
     expect(postTitle).toBeInTheDocument();
 });
 
+// Renders location details
+test('renders location', () => {
+    // Arrange
+    render(
+        <Card />);
+        // Act
+        // Select the first instance of the Card 'Details' button
+    const buttons = screen.getAllByText('Details');
+    const firstButton = buttons[0];
 
-// Not yet working
-// test('renders location', () => {
+    fireEvent.click((firstButton));
+        // get the location using getByTestId
+        const cardLocation = screen.getByTestId('card-location');
+        // Assert that the location is rendered
+        expect(cardLocation).toBeInTheDocument();
+});
+
+// Renders Date
+test('renders date', () => {
+    // Arrange
+    render(
+        <Card />);
+        // Act
+        // Select the first instance of the Card 'Details' button
+        const buttons = screen.getAllByText('Details');
+        const firstButton = buttons[0];
+
+        fireEvent.click((firstButton));
+        // get the date using getByTestId
+        const cardDate = screen.getByTestId('card-date');
+        // Assert that the date is rendered
+        expect(cardDate).toBeInTheDocument();     
+});
+
+// Render time
+test('renders time', () => {
+    // Arrange
+    render(
+        <Card />);
+        // Act
+        // Select the first instance of the Card 'Details' button
+        const buttons = screen.getAllByText('Details');
+        const firstButton = buttons[0];
+
+        fireEvent.click((firstButton));
+        // get the time using getByTestId
+        const cardTime = screen.getByTestId('card-time');
+        // Assert that the time is rendered
+        expect(cardTime).toBeInTheDocument();
+});
+
+// Render creator
+// test('renders creator', () => {
 //     // Arrange
 //     render(
-//         <Card />
+//         <Card />);
 //         // Act
-//         // get the location using getByTestId
-//         const postTitle = screen.getByTestId
-//     )
+//         // Select the first instance of the Card 'Details' button
+//         const buttons = screen.getAllByText()
+//         )
 // })
+
 });

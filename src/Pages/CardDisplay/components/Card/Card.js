@@ -121,14 +121,14 @@ export default function Card(props) {
             <Typography component={'div'} id="card-content-container">
               {/* CARD CONTENT */}
               <Map location={props.location} postcode={props.postcode} />
-              <div className="card-content-space">
-                <h4 data-testid="card-location">Location:</h4>
+              <div className="card-content-space"         data-testid="card-location">
+                <h4>Location:</h4>
                 {props.location}, {props.postcode}
               </div>
-              <div className="card-content-space card-content-row">
+              <div className="card-content-space card-content-row" data-testid="card-date">
                 <h4><pre>Date: </pre></h4>{props.date}
               </div>
-              <div className="card-content-space card-content-row">
+              <div className="card-content-space card-content-row" data-testid="card-time">
                 <h4><pre>Time: </pre></h4>{props.time} - {props.end_time}
               </div>
               <div className="card-content-space card-content-row" id="card-content-row-creator">
