@@ -8,7 +8,7 @@ import Card from '../../Pages/CardDisplay/components/Card/Card.js';
 // Date ✅
 // Time ✅
 // Creator ✅
-// Details
+// Details ✅
 // Additional information
 // Disposal method
 // Recommended equipment
@@ -104,5 +104,39 @@ test('renders creator', () => {
         // Assert that the creator is rendered
         expect(cardCreator).toBeInTheDocument();
 });
+
+// Render Details
+test('render details', () => {
+    // Arrange
+    render(
+        <Card />);
+        // Act
+        // Select the first instance of the Card 'Details' button
+        const buttons = screen.getAllByText('Details');
+        const firstButton = buttons[0];
+        
+        fireEvent.click((firstButton));
+        // get the details using getByTestId
+        const cardDetails = screen.getByTestId('card-details');
+        // Assert that the details is rendered
+        expect(cardDetails).toBeInTheDocument();
+});
+
+// Render checkboxes based on the accessibility boolean props
+test('renders checkboxes', () => {
+    // Arrange
+    render(
+        <Card />);
+        // Act
+        // Select the first instance of the Card 'Details' button
+        const buttons = screen.getAllByText('Details');
+        const firstButton = buttons[0];
+
+        fireEvent.click((firstButton));
+        // get the checkboxes using getByTestId
+        const cardCheckboxes = screen.getByTestId('card-checkboxes');
+        // Assert that the checkboxes is rendered
+        expect(cardCheckboxes).toBeInTheDocument();
+    });
 
 });

@@ -135,13 +135,13 @@ export default function Card(props) {
                 <div className="card-content-row" data-testid="card-creator"><h4><pre>Creator: </pre></h4>{props.creatorname}</div>
                 <VolunteersBadge count={props.count}/>
               </div>
-              <div className="card-content-space">
+              <div className="card-content-space" data-testid="card-details">
                 <h4>Details:</h4>
                 {props.introduction}
               </div>
               
               {/* Render checkboxes based on the accessibility boolean props */}
-              <FormGroup className="card-content-space">
+              <FormGroup className="card-content-space" data-testid="card-checkboxes">
                 {checkBoolean(props.hasUnevenGround, "Uneven Ground")}
                 {checkBoolean(props.hasBathrooms, "Nearby Bathrooms")}
                 {checkBoolean(props.hasParking, "Nearby Parking")}
