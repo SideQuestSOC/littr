@@ -9,16 +9,24 @@ import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
 import { fetchData, formatDate, formatTime } from "../../Models/queries";
 import Footer from "../Components/Footer/footer";
 
-// Tristan's really cool hat randomiser
-function randomHat() {
+
+// Tristan's really cool hat getter that no longer randomises :(
+let hatIndex = 0;
+let hatArray = [];
+function getHat() {
   const hatContext = require.context(
     "../../Assets/Hats",  // Folder where we dump all the hats. 
     false,                // This flag is used to prevent searching subdirectories (because we don't have any)
     /\.svg$/i             // This is a regex that matches all files ending in .svg. We could change this to include .png files too by using /\.svg$|\.png$/i
   );
-  const hatImages = hatContext.keys().map(hatContext); // hatImages is a list of all images matched by the regex above
-  return hatImages[Math.floor(Math.random() * hatImages.length)]; 
+  hatArray = hatContext.keys().map(hatContext); // hatImages is a list of all images matched by the regex above
+
+  if (hatIndex >= hatArray.length) { // If we've run out of hats
+    hatIndex = 0;                    // Reset the index
+  }
+  return hatArray[hatIndex++];
 }
+
 
 function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
   const [updateVolunteerBadge, setUpdateVolunteerBadge] = useState(false);
@@ -41,7 +49,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
         <div id="card-display-outer-container">
           {cardData.map((card, index) => (
             <div id="card-display-inner-container" key={index}>
-              <img id="hat" src={randomHat()} alt="hat" />
+              <img id="hat" src={getHat()} alt="hat" />
               <Card
                 key={index}
                 event_id={card.event_id}
