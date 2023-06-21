@@ -76,7 +76,7 @@ export default function Card(props) {
           />
         </Stack>
         <div id="title-container">
-          <h5 id="card-title">{props.header}</h5>
+          <h5 id="card-title" data-testid="card-title">{props.header}</h5>
         </div>
         <Stack
           id="card-button-container"
@@ -121,27 +121,27 @@ export default function Card(props) {
             <Typography component={'div'} id="card-content-container">
               {/* CARD CONTENT */}
               <Map location={props.location} postcode={props.postcode} />
-              <div className="card-content-space">
+              <div className="card-content-space"         data-testid="card-location">
                 <h4>Location:</h4>
                 {props.location}, {props.postcode}
               </div>
-              <div className="card-content-space card-content-row">
+              <div className="card-content-space card-content-row" data-testid="card-date">
                 <h4><pre>Date: </pre></h4>{props.date}
               </div>
-              <div className="card-content-space card-content-row">
+              <div className="card-content-space card-content-row" data-testid="card-time">
                 <h4><pre>Time: </pre></h4>{props.time} - {props.end_time}
               </div>
               <div className="card-content-space card-content-row" id="card-content-row-creator">
-                <div className="card-content-row"><h4><pre>Creator: </pre></h4>{props.creatorname}</div>
+                <div className="card-content-row" data-testid="card-creator"><h4><pre>Creator: </pre></h4>{props.creatorname}</div>
                 <VolunteersBadge count={props.count}/>
               </div>
-              <div className="card-content-space">
+              <div className="card-content-space" data-testid="card-details">
                 <h4>Details:</h4>
                 {props.introduction}
               </div>
               
               {/* Render checkboxes based on the accessibility boolean props */}
-              <FormGroup className="card-content-space">
+              <FormGroup className="card-content-space" data-testid="card-checkboxes">
                 {checkBoolean(props.hasUnevenGround, "Uneven Ground")}
                 {checkBoolean(props.hasBathrooms, "Nearby Bathrooms")}
                 {checkBoolean(props.hasParking, "Nearby Parking")}
