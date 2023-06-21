@@ -23,6 +23,11 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateVolunteerBadge, filter]);
 
+  // reset the filter search term when navigating back from a different page
+  useEffect(() => {
+    setFilter("")
+  }, [setFilter])
+
   return <div className="outermost-container">
     <div data-testid="card-display">
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} setFilter={setFilter} filter={filter} />

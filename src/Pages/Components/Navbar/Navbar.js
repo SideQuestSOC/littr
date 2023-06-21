@@ -29,8 +29,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchAppBar({ isSignedIn, setIsSignedIn, setFilter, filter }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isSearchOpen, setSearchOpen] = useState(false);
-  // const [filter, setFilter] = useState("");
-
 
   // Vary components displayed in dropdown menu depending on whether user is signed in using css
   let idSignedinVariable;
@@ -80,6 +78,7 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn, setFilter, fil
                 onChange={handleSearchChange}
                 id="search-input"
                 placeholder="Search by location…"
+                value={filter}
                 inputProps={{ "aria-label": "search" }}/>
             )}
           </Search>
