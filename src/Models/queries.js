@@ -43,9 +43,11 @@ export async function updateLikes(event_id) {
 
   const { error } = await supabase
     .from('event')
-    .update({ likes: updatedLikes })
+    .update({ likes: updatedLikes }) 
     .eq('event_id', event_id);
+
 }
+
 
 // supabaseSignUp() - is used to sign up a user using the Supabase authentication service.
 // It takes in a formData object containing user signup data.
