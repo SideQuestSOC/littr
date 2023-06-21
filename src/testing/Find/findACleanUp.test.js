@@ -1,9 +1,8 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
-// import userEvent from '@testing-library/user-event';
-// import { MemoryRouter } from 'react-router-dom';
 import LandingPage from '../../Pages/LandingPage/LandingPage';
-import CardDisplay from '../../Pages/CardDisplay/CardDisplay';
+import Card from '../../Pages/CardDisplay/components/Card/Card';
+
 // import App from '../../Pages/App/App'
 
 // Check if find a clean up button renders
@@ -29,7 +28,7 @@ test('button click should navigate to CardDisplay page', async () => {
     render(
     <Router>
       <LandingPage />
-      <CardDisplay />
+      <Card />
     </Router>
     );
   

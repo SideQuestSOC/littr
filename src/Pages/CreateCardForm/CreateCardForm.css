@@ -7,6 +7,9 @@
     --offWhite: #D9D9D9;
 }
 
+#create-card-outer-container {
+    min-height: calc(100vh - 35px);
+}
 
 #create-card-title {
     color: var(--offWhite);
@@ -22,8 +25,8 @@
     width : 80%;
     max-width: 500px;
     margin: 0 auto;
-    
 }
+
 #additional-information, #recommended-equipment{
     padding: 12px;
 }
@@ -38,13 +41,12 @@
 }
 
 #accessibility-checkboxes {
-
     flex-direction: row;
     justify-content: space-between;
     margin: 0 ;
 }
 
-.checkbox{
+.checkbox {
     margin: 0;
     padding: 0;
 }
@@ -59,6 +61,7 @@
 
 #discard-button {
     background-color: var(--strawberry);
+    
 }
 
 #create-button {
@@ -78,6 +81,7 @@
 #link {
     color: var(--navyBlue);
     font-weight: 600;
+    text-decoration: none;
 }
 
 #discard-button:hover, #create-button:hover {
@@ -104,3 +108,8 @@
     font-weight: bold;
     color: var(--navyBlue);
   }
+
+#post-title-label, #additional-information-label, #recommended-equipment-label {
+    color : var(--offWhite);
+    
+}
