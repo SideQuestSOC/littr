@@ -1,0 +1,19 @@
+.footer {
+     height: 35px;
+     width: 100vw;
+     background-color: #6AAF88;
+     display: flex;
+     justify-content: flex-end;
+     align-items: center;
+     gap: 15px;
+     padding-right: 16px;
+     margin-top: auto;
+}
+
+.footer a {
+     color: #2f3e46;
+     text-decoration: none;
+     font-size: 20px;
+     font-weight: 700;
+     height: 24px;
+}

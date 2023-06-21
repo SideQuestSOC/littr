@@ -30,6 +30,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { supabaseEventInsert, fetchData } from "../../Models/queries";
 import { getCurrentUserId } from "../../Models/client";
 import { isValid } from "postcode";
+import Footer from "../Components/Footer/footer";
 
 const jankTheme = createTheme({
   palette: {
@@ -43,6 +44,7 @@ export default function CreateCardForm({
   isSignedIn,
   setIsSignedIn,
   setCardData,
+  setFilter
 }) {
   // Initialize the navigate object using the useNavigate 'hook'
   const navigate = useNavigate();
@@ -165,9 +167,9 @@ export default function CreateCardForm({
     }
   };
 
-  return (
+  return <>
     <div id="create-card-outer-container" data-testid="create-card-form">
-      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
+      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} setFilter={setFilter} />
       <ThemeProvider theme={jankTheme}>
         <Typography variant="h4" id="create-card-title">
           Create a Post
@@ -222,11 +224,15 @@ export default function CreateCardForm({
             onChange={handleAdditionalInformationChange}
             inputProps={{ maxLength: 500 }}
             label={
-              additionalInformation.length < 20 && additionalInformation.length >= 1
+              additionalInformation.length < 20 &&
+              additionalInformation.length >= 1
                 ? "This section must be at least 20 characters"
                 : `${additionalInformation.length}/500`
             }
-            error={additionalInformation.length < 20 && additionalInformation.length >= 1}
+            error={
+              additionalInformation.length < 20 &&
+              additionalInformation.length >= 1
+            }
             InputLabelProps={{ shrink: true }}
           />
           <Divider />
@@ -345,4 +351,6 @@ export default function CreateCardForm({
       </ThemeProvider>
     </div>
   );
+    <Footer />
+  </>
 }

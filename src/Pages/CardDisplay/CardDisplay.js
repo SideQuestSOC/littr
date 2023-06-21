@@ -6,29 +6,28 @@ import Card from "./components/Card/Card.js";
 import SearchAppBar from "../Components/Navbar/Navbar";
 import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
 // import SQL queries/functions
-import { fetchData, formatDate, formatTime } from '../../Models/queries';
+import { fetchData, formatDate, formatTime } from "../../Models/queries";
+import Footer from "../Components/Footer/footer";
 
-
-function CardDisplay( { isSignedIn, setIsSignedIn, cardData, setCardData } ) {
+function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilter, filter }) {
   const [updateVolunteerBadge, setUpdateVolunteerBadge] = useState(false);
 
-// Wrapped in useEffect to trigger rerender of cards when a new card is added by a user
+  // Wrapped in useEffect to trigger rerender of cards when a new card is added by a user
   useEffect(() => {
     async function setFetchedData() {
-        // retrieve event data from DB
-        setCardData(await fetchData());
-        setUpdateVolunteerBadge(false);
+      // retrieve event data from DB
+      setCardData(await fetchData(filter));
+      setUpdateVolunteerBadge(false);
     }
     setFetchedData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [updateVolunteerBadge])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [updateVolunteerBadge, filter]);
 
-  return (
-    <div>
-      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
-      <div id="card-display-outer-container" data-testid="card-display">
-
-      {cardData.map((card, index) => (
+  return <div className="outermost-container">
+    <div data-testid="card-display">
+      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} setFilter={setFilter} filter={filter} />
+      <div id="card-display-outer-container">
+        {cardData.map((card, index) => (
           <Card
             key={index}
             event_id={card.event_id}
@@ -48,18 +47,20 @@ function CardDisplay( { isSignedIn, setIsSignedIn, cardData, setCardData } ) {
             equipment={card.equipment}
             end_time={formatTime(card.end_time)}
             setUpdateVolunteerBadge={setUpdateVolunteerBadge}
+            isSignedIn={isSignedIn}
           />
         ))}
-
       </div>
       {/* Only render this button when user is signed in */}
       {isSignedIn && (
         <div className="create-post-container">
           <CreatePostButton />
         </div>
-      )}
+      )}  
     </div>
-  );
+    
+  <Footer />
+  </div> 
 }
 
 export default CardDisplay;

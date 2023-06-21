@@ -56,6 +56,7 @@
 #title-container {
     justify-content: center; 
     display: flex;
+    text-align: center;
 }
 
 #card-title {
@@ -189,7 +190,7 @@
 }
 
 .card-content-space {
-    padding: 2px 5px 2px 5px;
+    padding: 2px 20px 2px 5px;
 }
 
 .card-content-row {
@@ -201,7 +202,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-right: 25px;
+    padding-right: 30px;
 }
 
 /* Reduce space MUI checkboxes take up */

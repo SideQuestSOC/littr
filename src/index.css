@@ -15,4 +15,5 @@ h1, h2, h3 {
 
 body {
   font-family: 'Rubik', sans-serif;
+  min-height: 100vh;
 }

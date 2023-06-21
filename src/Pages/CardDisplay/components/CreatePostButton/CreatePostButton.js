@@ -7,6 +7,7 @@ function CreatePostButton() {
       <Link to="/src/pages/createpostform" className="create-post-button" data-testid="create-post-button">
         +
       </Link>
+      
     </div>
   );
 }
