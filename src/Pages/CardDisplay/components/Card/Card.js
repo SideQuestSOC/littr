@@ -11,6 +11,7 @@ import VolunteersBadge from "../VolunteersBadge/VolunteersBadge";
 // import Components
 import Map from "../../components/Map/Map";
 import eyesHappy from "../../../../Assets/eyesHappy.svg";
+import LikeButton from "../LikeButton/LikeButton";
 
 // Function to render a checked or not checked checkbox depending on whether the prop is true or false
 // Sorry this is so long, it wouldn't let me insert a ternary operator into an element tag
@@ -102,15 +103,7 @@ export default function Card(props) {
             data-testid="like-badge"
           >
           {/* Added data-testid to test the like button */}
-            <Button
-              id="like-button"
-              onClick={handleThumbsUp}
-              variant="contained"
-              data-testid="like-button"
-            >
-              {" "}
-              <ThumbUpOffAltIcon />
-            </Button>
+            <LikeButton event_id={props.event_id} />
           </Badge>
           <Button id="report-button" onClick={falseReport} variant="contained">
             <FlagOutlinedIcon />
