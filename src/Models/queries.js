@@ -30,11 +30,21 @@ export async function countVolunteers(event_id) {
 
 // get likes and update them
 export async function updateLikes(event_id) {
-    const { data } = await supabase.from('event')
-    .update({ likes: data.likes + 1 })
-    .eq('event_id', event_id);
+  const { data: event } = await supabase
+    .from('event')
+    .select('likes')
+    .eq('event_id', event_id)
+  
+  console.log(event[0].likes);
 
-    return data.likes;
+  const updatedLikes = event[0].likes + 1;
+
+  console.log(updatedLikes);
+
+  const { error } = await supabase
+    .from('event')
+    .update({ likes: updatedLikes })
+    .eq('event_id', event_id);
 }
 
 // supabaseSignUp() - is used to sign up a user using the Supabase authentication service.
