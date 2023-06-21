@@ -8,6 +8,8 @@ import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import VolunteerButton from "../VolunteerButton/VolunteerButton";
 import VolunteersBadge from "../VolunteersBadge/VolunteersBadge";
+import ThumbsUp from "../Like/ThumbsUp";
+
 // import Components
 import Map from "../../components/Map/Map";
 import eyesHappy from "../../../../Assets/eyesHappy.svg";
@@ -91,27 +93,12 @@ export default function Card(props) {
           >
             Details
           </Button>
-          <Badge
-            badgeContent={thumbsUp}
-            sx={{
-              "& .MuiBadge-badge": {
-                backgroundColor: "#D9D9D9",
-                color: "black",
-              },
-            }}
-            data-testid="like-badge"
-          >
-          {/* Added data-testid to test the like button */}
-            <Button
-              id="like-button"
-              onClick={handleThumbsUp}
-              variant="contained"
-              data-testid="like-button"
-            >
-              {" "}
-              <ThumbUpOffAltIcon />
-            </Button>
-          </Badge>
+          <ThumbsUp
+  event_id={props.event_id}
+  setUpdateThumbBadge={props.setUpdateThumbBadge}
+  isSignedIn={props.isSignedIn}
+/>
+
           <Button id="report-button" onClick={falseReport} variant="contained">
             <FlagOutlinedIcon />
           </Button>

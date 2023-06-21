@@ -19,6 +19,15 @@ export async function insertEventVolunteer(user_id, event_id) {
     })
 }
 
+
+export async function insertEventLike(user_id, event_id) {
+  await supabase.from('likes').insert({
+      user_id: user_id,
+      event_id: event_id,
+  })
+}
+
+
 // count how many volunteers there are for an event
 export async function countVolunteers(event_id) {
     const count = await supabase.from('event_volunteers')

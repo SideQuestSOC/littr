@@ -62,6 +62,35 @@ export async function getCurrentUserId() {
   return user;
 }
 
+// like func added 
+
+export const incrementLikes = async (event_id) => {
+  try {
+    // Increment the likes count in the 'event' table
+    const { data, error } = await supabase
+      .from('event')
+      .update({ likes: supabase.sql('likes + 1') })
+      .match({ id: event_id });
+
+    if (error) {
+      // Handle the error if necessary
+      console.error('Error incrementing likes:', error.message);
+      return;
+    }
+
+    if (data) {
+      // Likes incremented successfully
+      console.log('Likes incremented successfully');
+    }
+  } catch (error) {
+    // Handle any other errors
+    console.error('Error incrementing likes:', error.message);
+  }
+};
+
+
+
+
 // Sign out the user 
 export async function signOut() {
   await supabase.auth.signOut();
