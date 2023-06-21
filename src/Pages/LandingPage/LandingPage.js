@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom"; // useNavigate() is used to redi
 import "./LandingPage.css";
 // import MaterialUI dependencies
 import { Button } from "@mui/material";
-import SearchAppBar from '../Components/Navbar/Navbar';
-import Footer from "../Components/Footer/footer";
 
 function LandingPage({ isSignedIn }) {
   // Initialize the navigate object using the useNavigate 'hook'
