@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom"; // useNavigate() is used to redirect to a different page
+import { useEffect } from "react";
 import "./LandingPage.css";
 // import MaterialUI dependencies
 import { Button } from "@mui/material";
@@ -7,10 +8,13 @@ import { Button } from "@mui/material";
 function LandingPage({ isSignedIn }) {
   // Initialize the navigate object using the useNavigate 'hook'
   const navigate = useNavigate();
+
   // Redirect to Card Display Page if already logged in
-  if(isSignedIn) {
-    navigate("/src/pages/carddisplay");
-  }
+  useEffect(() => {
+    if(isSignedIn) {
+      navigate("/src/pages/carddisplay");
+    }
+  }, [isSignedIn, navigate]);
 
   return (
     <div id="landing-page-outer-container">
