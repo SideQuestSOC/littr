@@ -49,7 +49,9 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
         <div id="card-display-outer-container">
           {cardData.map((card, index) => (
             <div id="card-display-inner-container" key={index}>
-            <img id="hat" src={hats[index % hats.length]} alt="hat" /> 
+              <img id="hat" src={hats[index % hats.length]} alt="hat" />
+              {/* hats[index % hats.length] to accesses the appropriate hat based on the current index of the map function. 
+            The modulus operation (%) ensures that the hats are cycled through repeatedly as the index increases. */}
               <Card
                 key={index}
                 event_id={card.event_id}
