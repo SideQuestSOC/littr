@@ -6,7 +6,7 @@ import { updateLikes } from "../../../../Models/queries";
 import { getCurrentUserId } from "../../../../Models/client";
 
 const LikeButton = ({ event_id, isSignedIn }) => {
-  const [userID, setUserID] = useState("");
+  const [user_id, setUserID] = useState("");
 
   useEffect(() => {
     if (isSignedIn) {
@@ -19,7 +19,7 @@ const LikeButton = ({ event_id, isSignedIn }) => {
   }, [isSignedIn]);
 
   const handleUpdateLikes = async () => {
-      await updateLikes(userID.id, event_id);
+      await updateLikes(user_id, event_id);
     };
 
   return (
@@ -32,7 +32,7 @@ const LikeButton = ({ event_id, isSignedIn }) => {
           handleUpdateLikes(); 
          alert("I like you to");
         }
-        : () => alert("Please Sign In to Like!")
+       : () => alert("Please Sign In to Like!")
       }>
       <ThumbUpOffAltIcon />
     </Button>

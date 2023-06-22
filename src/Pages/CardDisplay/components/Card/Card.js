@@ -103,7 +103,7 @@ export default function Card(props) {
             data-testid="like-badge"
           >
           {/* Added data-testid to test the like button */}
-            <LikeButton event_id={props.event_id} />
+          <LikeButton event_id={props.event_id} isSignedIn={props.isSignedIn}/>
           </Badge>
           <Button id="report-button" onClick={falseReport} variant="contained">
             <FlagOutlinedIcon />
