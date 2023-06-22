@@ -9,22 +9,29 @@ import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
 import { fetchData, formatDate, formatTime } from "../../Models/queries";
 import Footer from "../Components/Footer/footer";
 
-
-// Tristan's really cool hat randomiser
-
-function randomHat() {
-  const hatContext = require.context(
-    "../../Assets/Hats",  // Folder where we dump all the hats. 
-    false,                // This flag is used to prevent searching subdirectories (because we don't have any)
-    /\.svg$/i             // This is a regex that matches all files ending in .svg. We could change this to include .png files too by using /\.svg$|\.png$/i
-  );
-  const hatImages = hatContext.keys().map(hatContext); // hatImages is a list of all images matched by the regex above
-  return hatImages[Math.floor(Math.random() * hatImages.length)]; 
-}
-
-
 function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
   const [updateVolunteerBadge, setUpdateVolunteerBadge] = useState(false);
+  const [hats, setHats] = useState([]);
+
+  async function getHats() {
+    const hatContext = require.context(
+      "../../Assets/Hats",  // Folder where we dump all the hats.
+      false,                // This flag is used to prevent searching subdirectories (because we don't have any)
+      /\.svg$/i             // This is a regex that matches all files ending in .svg. We could change this to include .png files too by using /\.svg$|\.png$/i
+    );
+    await setHats (hatContext.keys().map(hatContext)); // loading all the hats that fit the regex into the hats array
+  }
+
+  function addHat() {
+    const hat = hats[0]; 
+    hats.shift(); 
+    hats.push(hat); 
+    return hat;
+  }
+
+  useEffect(() => {
+    getHats();
+  }, []);
 
   // Wrapped in useEffect to trigger rerender of cards when a new card is added by a user
   useEffect(() => {
@@ -44,7 +51,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
         <div id="card-display-outer-container">
           {cardData.map((card, index) => (
             <div id="card-display-inner-container" key={index}>
-              <img id="hat" src={randomHat()} alt="hat" />
+              <img id="hat" src={addHat()} alt="hat" />
               <Card
                 key={index}
                 event_id={card.event_id}
