@@ -12,6 +12,25 @@ import Footer from "../Components/Footer/footer";
 function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilter, filter }) {
   const [updateVolunteerBadge, setUpdateVolunteerBadge] = useState(false);
   const [updateLikeBadge, setUpdateLikeBadge] = useState(false);
+  const [hats, setHats] = useState([]);
+
+  async function getHats() {
+    const hatContext = require.context(
+      "../../Assets/Hats", // Folder where we dump all the hats.
+      false, // This flag is used to prevent searching subdirectories (because we don't have any)
+      /\.svg$/i // This is a regex that matches all files ending in .svg. We could change this to include .png files too by using /\.svg$|\.png$/i
+    );
+    await setHats(
+      hatContext
+        .keys()
+        .map(hatContext)
+        .sort(() => Math.random() - 0.5)
+    );
+  }
+
+  useEffect(() => {
+    getHats();
+  }, []);
 
   // Wrapped in useEffect to trigger rerender of cards when a new card is added by a user
   // Also re-renders when like button/volunteer buttons are clicked
@@ -37,6 +56,10 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} setFilter={setFilter} filter={filter} />
       <div id="card-display-outer-container">
         {cardData.map((card, index) => (
+         <div id="card-display-inner-container" key={index}>
+          <img id="hat" src={hats[index % hats.length]} alt="hat" />
+          {/* hats[index % hats.length] to accesses the appropriate hat based on the current index of the map function. 
+         The modulus operation (%) ensures that the hats are cycled through repeatedly as the index increases. */}
           <Card
             key={index}
             event_id={card.event_id}
@@ -59,6 +82,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
             isSignedIn={isSignedIn}
             setUpdateLikeBadge={setUpdateLikeBadge}
             />
+           </div>
         ))}
       </div>
       {/* Only render this button when user is signed in */}
