@@ -22,6 +22,7 @@ export default function LikeButton(props) {
       onClick={() => { handleThumbsUp(props.event_id, props.isSignedIn) }}
       variant="contained"
       data-testid="like-button"
+      aria-label="Like event" // aria-label for accessibility
     >
       {" "}
       <ThumbUpOffAltIcon />

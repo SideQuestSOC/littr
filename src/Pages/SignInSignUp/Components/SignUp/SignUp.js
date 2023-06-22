@@ -76,7 +76,7 @@ function SignUp({ formData, handleChange, setSignUpRedirect }) {
               required
             />
           <div className="submit-button">
-            <Button variant="contained" type='submit'>Submit</Button>
+            <Button variant="contained" type='submit' aria-label="Submit">Submit</Button>
           </div>
         </form>
       </div>
