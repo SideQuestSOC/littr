@@ -21,6 +21,7 @@
   width: fit-content;
   margin-bottom: 5px;
   font-weight: 600;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 #landing-page-outer-container button a {
@@ -29,6 +30,11 @@
   color: inherit;
   font-family: 'Rubik', sans-serif;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.55);
+}
+
+#landing-page-outer-container button:hover {
+  background-color: var(--neonGreenTransparent60);
+  transform: scale(1.05);
 }
 
 #landing-page-banner {
