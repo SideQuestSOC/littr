@@ -9,6 +9,7 @@ export default function LikeButton(props) {
 
   async function handleThumbsUp(event_id) {
     await updateLikes(event_id);
+    props.setUpdateLikeBadge(true);
   }
 
   return (

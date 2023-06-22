@@ -52,17 +52,10 @@ function checkBoolean(booleanProp, checkLabel) {
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
-  // placeholder thumbs up state
-  const [thumbsUp, setThumbsUp] = useState(0);
   const [likes, setLikes] = useState(0);
 
   const handleExpand = () => {
     setOpen(!open);
-  };
-
-  // placeholder thumbs up function
-  const handleThumbsUp = () => {
-    setThumbsUp(thumbsUp + 1);
   };
 
   const falseReport = () => {
@@ -77,7 +70,6 @@ export default function Card(props) {
   })
 
   
-
   return (
     <div id="card-outer-container" data-testid="card-display">
       <List id="MUInav" component="nav" aria-labelledby="nested-list-subheader">
@@ -116,7 +108,7 @@ export default function Card(props) {
             data-testid="like-badge"
           >
           {/* Added data-testid to test the like button */}
-            <LikeButton event_id={props.event_id} />
+            <LikeButton event_id={props.event_id} setUpdateLikeBadge={props.setUpdateLikeBadge} />
           </Badge>
           <Button id="report-button" onClick={falseReport} variant="contained">
             <FlagOutlinedIcon />

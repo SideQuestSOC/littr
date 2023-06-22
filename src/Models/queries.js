@@ -34,14 +34,10 @@ export async function updateLikes(event_id) {
     .from('event')
     .select('likes')
     .eq('event_id', event_id)
-  
-  console.log(event[0].likes);
 
   const updatedLikes = event[0].likes + 1;
 
-  console.log(updatedLikes);
-
-  const { error } = await supabase
+  await supabase
     .from('event')
     .update({ likes: updatedLikes }) 
     .eq('event_id', event_id);
@@ -53,7 +49,6 @@ export async function getLikes(event_id){
   .select('likes')
   .eq('event_id', event_id)
 
-  console.log(data[0].likes);
   return data[0].likes;
 }
 
