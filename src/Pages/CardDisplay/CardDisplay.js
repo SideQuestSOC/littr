@@ -27,13 +27,6 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
     );
   }
 
-  function addHat() {
-    const hat = hats[0];
-    hats.shift();
-    hats.push(hat);
-    return hat;
-  }
-
   useEffect(() => {
     getHats();
   }, []);
