@@ -11,17 +11,21 @@ import Footer from "../Components/Footer/footer";
 
 function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilter, filter }) {
   const [updateVolunteerBadge, setUpdateVolunteerBadge] = useState(false);
+  const [updateLikeBadge, setUpdateLikeBadge] = useState(false);
 
   // Wrapped in useEffect to trigger rerender of cards when a new card is added by a user
+  // Also re-renders when like button/volunteer buttons are clicked
   useEffect(() => {
     async function setFetchedData() {
       // retrieve event data from DB
       setCardData(await fetchData(filter));
+      // reset useStates to allow them to trigger again
       setUpdateVolunteerBadge(false);
+      setUpdateLikeBadge(false);
     }
     setFetchedData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [updateVolunteerBadge, filter]);
+  }, [updateVolunteerBadge, updateLikeBadge, filter]);
 
   // reset the filter search term when navigating back from a different page
   useEffect(() => {
@@ -53,7 +57,8 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
             end_time={formatTime(card.end_time)}
             setUpdateVolunteerBadge={setUpdateVolunteerBadge}
             isSignedIn={isSignedIn}
-          />
+            setUpdateLikeBadge={setUpdateLikeBadge}
+            />
         ))}
       </div>
       {/* Only render this button when user is signed in */}
