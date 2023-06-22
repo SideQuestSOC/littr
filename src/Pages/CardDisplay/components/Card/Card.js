@@ -60,7 +60,7 @@ export default function Card(props) {
   const falseReport = () => {
     const reason = prompt("Please explain why you would like to report this post, and press OK to proceed.");
     if (reason) {
-    alert(`You have reported this post.\n\Reason: ${reason}\n\nThank you for your feedback.`);
+    alert(`You have reported this post.\nReason: ${reason}\n\nThank you for your feedback.`);
     }
   };
 
@@ -95,6 +95,7 @@ export default function Card(props) {
             id="details-button"
             onClick={handleExpand}
             variant="contained"
+            aria-label="Expand or close post" // aria-label for accessibility
           >
             Details
           </Button>
@@ -112,7 +113,7 @@ export default function Card(props) {
           {/* Added data-testid to test the like button */}
             <LikeButton event_id={props.event_id} setUpdateLikeBadge={props.setUpdateLikeBadge} isSignedIn={props.isSignedIn} />
           </Badge>
-          <Button id="report-button" onClick={falseReport} variant="contained">
+          <Button id="report-button" onClick={falseReport} variant="contained" aria-label="Report post">
             <FlagOutlinedIcon />
           </Button>
         </Stack>

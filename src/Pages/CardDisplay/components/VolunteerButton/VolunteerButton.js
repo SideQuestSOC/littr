@@ -33,6 +33,7 @@ const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn }) => {
             id="volunteer-button"
             variant="contained" 
             color="primary" 
+            aria-label="Volunteer" // adding aria-label for accessibility
             onClick={
                 isSignedIn 
                     ? () => { 
