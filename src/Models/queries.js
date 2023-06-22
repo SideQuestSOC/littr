@@ -45,9 +45,17 @@ export async function updateLikes(event_id) {
     .from('event')
     .update({ likes: updatedLikes }) 
     .eq('event_id', event_id);
-
 }
 
+export async function getLikes(event_id){
+  const { data } = await supabase
+  .from('event')
+  .select('likes')
+  .eq('event_id', event_id)
+
+  console.log(data[0].likes);
+  return data[0].likes;
+}
 
 // supabaseSignUp() - is used to sign up a user using the Supabase authentication service.
 // It takes in a formData object containing user signup data.

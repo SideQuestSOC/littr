@@ -1,7 +1,7 @@
 // import css
 import "./Card.css";
 // import React dependencies
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import Material UI dependencies
 import { Typography, Checkbox, FormControlLabel, FormGroup, List, Collapse, Badge, Button, Stack } from "@mui/material";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
@@ -12,6 +12,8 @@ import VolunteersBadge from "../VolunteersBadge/VolunteersBadge";
 import Map from "../../components/Map/Map";
 import eyesHappy from "../../../../Assets/eyesHappy.svg";
 import LikeButton from "../LikeButton/LikeButton";
+
+import { getLikes } from "../../../../Models/queries";
 
 // Function to render a checked or not checked checkbox depending on whether the prop is true or false
 // Sorry this is so long, it wouldn't let me insert a ternary operator into an element tag
@@ -52,6 +54,7 @@ export default function Card(props) {
   const [open, setOpen] = useState(false);
   // placeholder thumbs up state
   const [thumbsUp, setThumbsUp] = useState(0);
+  const [likes, setLikes] = useState(0);
 
   const handleExpand = () => {
     setOpen(!open);
@@ -65,6 +68,15 @@ export default function Card(props) {
   const falseReport = () => {
     alert("This post has been reported. Thank you for your feedback.");
   };
+
+  useEffect(() => {
+    async function getTheLikes() {
+      setLikes(await getLikes(props.event_id))
+    }
+    getTheLikes();
+  })
+
+  
 
   return (
     <div id="card-outer-container" data-testid="card-display">
@@ -92,8 +104,9 @@ export default function Card(props) {
           >
             Details
           </Button>
+          {/* LIKE BUTTON BADGE */}
           <Badge
-            badgeContent={thumbsUp}
+            badgeContent={likes}
             sx={{
               "& .MuiBadge-badge": {
                 backgroundColor: "#D9D9D9",
