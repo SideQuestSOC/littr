@@ -15,17 +15,22 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
 
   async function getHats() {
     const hatContext = require.context(
-      "../../Assets/Hats",  // Folder where we dump all the hats.
-      false,                // This flag is used to prevent searching subdirectories (because we don't have any)
-      /\.svg$/i             // This is a regex that matches all files ending in .svg. We could change this to include .png files too by using /\.svg$|\.png$/i
+      "../../Assets/Hats", // Folder where we dump all the hats.
+      false, // This flag is used to prevent searching subdirectories (because we don't have any)
+      /\.svg$/i // This is a regex that matches all files ending in .svg. We could change this to include .png files too by using /\.svg$|\.png$/i
     );
-    await setHats(hatContext.keys().map(hatContext).sort(() => Math.random() - 0.5));
+    await setHats(
+      hatContext
+        .keys()
+        .map(hatContext)
+        .sort(() => Math.random() - 0.5)
+    );
   }
 
   function addHat() {
-    const hat = hats[0]; 
-    hats.shift(); 
-    hats.push(hat); 
+    const hat = hats[0];
+    hats.shift();
+    hats.push(hat);
     return hat;
   }
 
@@ -51,7 +56,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
         <div id="card-display-outer-container">
           {cardData.map((card, index) => (
             <div id="card-display-inner-container" key={index}>
-              <img id="hat" src={addHat()} alt="hat" />
+            <img id="hat" src={hats[index % hats.length]} alt="hat" /> 
               <Card
                 key={index}
                 event_id={card.event_id}
