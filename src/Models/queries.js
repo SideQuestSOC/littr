@@ -109,6 +109,7 @@ export async function supabaseEventInsert(PostData) {
 export async function selectEvent(filter) {
   let query = supabase.from('event')
     .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, users ( first_name, last_name )`)
+    .order('date_timestamp', { ascending: true })
     .gt('end_time', 'now()'); // Show only events in the future (end_time is greater than current time)
 
     if (filter !== "" && filter !== undefined && (isValid(filter) === true)) {
@@ -117,6 +118,7 @@ export async function selectEvent(filter) {
     else {
       query = query.ilike('location, title, post_introduction', `%${filter}%`); // Filter events by partial keyword match
     }
+    
 
   try {
     const { data } = await query;
