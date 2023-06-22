@@ -26,10 +26,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
+export default function SearchAppBar({ isSignedIn, setIsSignedIn, setFilter, filter }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isSearchOpen, setSearchOpen] = useState(false);
-  
+
   // Vary components displayed in dropdown menu depending on whether user is signed in using css
   let idSignedinVariable;
   let idSignedoutVariable;
@@ -53,6 +53,10 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
     setSearchOpen(!isSearchOpen);
   };
 
+  const handleSearchChange = (event) => { 
+    setFilter(event.target.value);
+  };
+
   return (
     <Box id="navbar-outer-container" >
       <AppBar id="navbar-header-container" position="static">
@@ -71,12 +75,13 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
             </IconButton>
             {isSearchOpen && (
               <StyledInputBase
+                onChange={handleSearchChange}
                 id="search-input"
                 placeholder="Search by location…"
+                value={filter}
                 inputProps={{ "aria-label": "search" }}/>
             )}
           </Search>
-          
           {/* LOGO/TITLE */}
           <Typography id="navbar-title"
             variant="h5"
@@ -106,7 +111,6 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn }) {
               elevation: 1,
             }}>
             {/* DROPDOWN MENU */}
-            {/* TODO: Change the Content here based on whether user is logged in or not */}
             <MenuItem onClick={handleClose}>
               <div id={idSignedinVariable}>
                 <Link id="dropdown-user-settings-link" to="">User Settings</Link>

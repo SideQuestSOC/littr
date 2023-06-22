@@ -1,16 +1,18 @@
 // import css
 import "./Card.css";
 // import React dependencies
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import Material UI dependencies
 import { Typography, Checkbox, FormControlLabel, FormGroup, List, Collapse, Badge, Button, Stack } from "@mui/material";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import VolunteerButton from "../VolunteerButton/VolunteerButton";
 import VolunteersBadge from "../VolunteersBadge/VolunteersBadge";
 // import Components
 import Map from "../../components/Map/Map";
 import eyesHappy from "../../../../Assets/eyesHappy.svg";
+import LikeButton from "../LikeButton/LikeButton";
+
+import { getLikes } from "../../../../Models/queries";
 
 // Function to render a checked or not checked checkbox depending on whether the prop is true or false
 // Sorry this is so long, it wouldn't let me insert a ternary operator into an element tag
@@ -49,22 +51,27 @@ function checkBoolean(booleanProp, checkLabel) {
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
-  // placeholder thumbs up state
-  const [thumbsUp, setThumbsUp] = useState(0);
+  const [likes, setLikes] = useState(0);
 
   const handleExpand = () => {
     setOpen(!open);
   };
 
-  // placeholder thumbs up function
-  const handleThumbsUp = () => {
-    setThumbsUp(thumbsUp + 1);
-  };
-
   const falseReport = () => {
-    alert("This post has been reported. Thank you for your feedback.");
+    const reason = prompt("Please explain why you would like to report this post, and press OK to proceed.");
+    if (reason) {
+    alert(`You have reported this post.\n\Reason: ${reason}\n\nThank you for your feedback.`);
+    }
   };
 
+  useEffect(() => {
+    async function getTheLikes() {
+      setLikes(await getLikes(props.event_id))
+    }
+    getTheLikes();
+  })
+
+  
   return (
     <div id="card-outer-container" data-testid="card-display">
       <List id="MUInav" component="nav" aria-labelledby="nested-list-subheader">
@@ -76,7 +83,7 @@ export default function Card(props) {
           />
         </Stack>
         <div id="title-container">
-          <h5 id="card-title">{props.header}</h5>
+          <h5 id="card-title" data-testid="card-title">{props.header}</h5>
         </div>
         <Stack
           id="card-button-container"
@@ -91,8 +98,9 @@ export default function Card(props) {
           >
             Details
           </Button>
+          {/* LIKE BUTTON BADGE */}
           <Badge
-            badgeContent={thumbsUp}
+            badgeContent={likes}
             sx={{
               "& .MuiBadge-badge": {
                 backgroundColor: "#D9D9D9",
@@ -102,15 +110,7 @@ export default function Card(props) {
             data-testid="like-badge"
           >
           {/* Added data-testid to test the like button */}
-            <Button
-              id="like-button"
-              onClick={handleThumbsUp}
-              variant="contained"
-              data-testid="like-button"
-            >
-              {" "}
-              <ThumbUpOffAltIcon />
-            </Button>
+            <LikeButton event_id={props.event_id} setUpdateLikeBadge={props.setUpdateLikeBadge} isSignedIn={props.isSignedIn} />
           </Badge>
           <Button id="report-button" onClick={falseReport} variant="contained">
             <FlagOutlinedIcon />
@@ -121,27 +121,27 @@ export default function Card(props) {
             <Typography component={'div'} id="card-content-container">
               {/* CARD CONTENT */}
               <Map location={props.location} postcode={props.postcode} />
-              <div className="card-content-space">
+              <div className="card-content-space"         data-testid="card-location">
                 <h4>Location:</h4>
                 {props.location}, {props.postcode}
               </div>
-              <div className="card-content-space card-content-row">
+              <div className="card-content-space card-content-row" data-testid="card-date">
                 <h4><pre>Date: </pre></h4>{props.date}
               </div>
-              <div className="card-content-space card-content-row">
+              <div className="card-content-space card-content-row" data-testid="card-time">
                 <h4><pre>Time: </pre></h4>{props.time} - {props.end_time}
               </div>
               <div className="card-content-space card-content-row" id="card-content-row-creator">
-                <div className="card-content-row"><h4><pre>Creator: </pre></h4>{props.creatorname}</div>
+                <div className="card-content-row" data-testid="card-creator"><h4><pre>Creator: </pre></h4>{props.creatorname}</div>
                 <VolunteersBadge count={props.count}/>
               </div>
-              <div className="card-content-space">
+              <div className="card-content-space" data-testid="card-details">
                 <h4>Details:</h4>
                 {props.introduction}
               </div>
               
               {/* Render checkboxes based on the accessibility boolean props */}
-              <FormGroup className="card-content-space">
+              <FormGroup className="card-content-space" data-testid="card-checkboxes">
                 {checkBoolean(props.hasUnevenGround, "Uneven Ground")}
                 {checkBoolean(props.hasBathrooms, "Nearby Bathrooms")}
                 {checkBoolean(props.hasParking, "Nearby Parking")}
@@ -158,7 +158,7 @@ export default function Card(props) {
               </div>
             </Typography>
             <div id="volunteer-button-container">
-            <VolunteerButton event_id={props.event_id} setUpdateVolunteerBadge={props.setUpdateVolunteerBadge} />
+            <VolunteerButton event_id={props.event_id} setUpdateVolunteerBadge={props.setUpdateVolunteerBadge} isSignedIn={props.isSignedIn} />
             </div>
           </List>
         </Collapse>

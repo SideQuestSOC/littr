@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
 import CreatePostButton from '../../Pages/CardDisplay/components/CreatePostButton/CreatePostButton.js';
 import CreateCardForm from '../../Pages/CreateCardForm/CreateCardForm.js';
 

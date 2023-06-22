@@ -1,4 +1,5 @@
 import { supabase } from './client';
+import { isValid } from "postcode";
 
 // insertPublicUser() - inserts data into the public.users table, it is called after
 // the supabaseSignUp() function has inserted a new user into the auth.users table
@@ -25,6 +26,27 @@ export async function countVolunteers(event_id) {
     .eq('event_id', event_id);
 
     return count.count;
+}
+
+// get likes and update them
+export async function updateLikes(event_id) {
+  let updatedLikes = await getLikes(event_id);
+
+  updatedLikes = updatedLikes + 1;
+
+  await supabase
+    .from('event')
+    .update({ likes: updatedLikes }) 
+    .eq('event_id', event_id);
+}
+
+export async function getLikes(event_id){
+  const { data } = await supabase
+  .from('event')
+  .select('likes')
+  .eq('event_id', event_id)
+
+  return data[0].likes;
 }
 
 // supabaseSignUp() - is used to sign up a user using the Supabase authentication service.
@@ -81,27 +103,35 @@ export async function supabaseEventInsert(PostData) {
 }
 
 // selectEvent() - retrieves data from public.Events for the Card Display component
-export async function selectEvent() {
-    const { data, error } = await supabase.from('event')
-    .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, 
-    users ( first_name, last_name )`)
-    // show only events in the future (.gt - column is greater than a value)
-    .gt('end_time', 'now()')
-    
-    if (error) {
-      // Handle error
-      console.error(error);
-      return null;
+export async function selectEvent(filter) {
+  let query = supabase.from('event')
+    .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, users ( first_name, last_name )`)
+    .order('date_timestamp', { ascending: true })
+    .gt('end_time', 'now()'); // Show only events in the future (end_time is greater than current time)
+
+    if (filter !== "" && filter !== undefined && (isValid(filter) === true)) {
+      query = query.ilike('postcode', `%${filter}%`); // Filter events by partial postcode match
+    }
+    else {
+      query = query.ilike('location, title, post_introduction', `%${filter}%`); // Filter events by partial keyword match
     }
     
+
+  try {
+    const { data } = await query;
+
     return data;
-};
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
 
 // Select data from DB to map onto Cards
 // Append the count of volunteers to the data array after the promises have resolved
-export async function fetchData() {
+export async function fetchData(filter) {
     try {
-      let data = await selectEvent();
+      let data = await selectEvent(filter);
       if (data) {
         const promises = data.map((card) => {
           return countVolunteers(card.event_id).then((count) => {
