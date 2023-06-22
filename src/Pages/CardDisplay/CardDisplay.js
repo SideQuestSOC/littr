@@ -19,6 +19,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
       // retrieve event data from DB
       setCardData(await fetchData(filter));
       setUpdateVolunteerBadge(false);
+      setUpdateLikeBadge(false);
     }
     setFetchedData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
