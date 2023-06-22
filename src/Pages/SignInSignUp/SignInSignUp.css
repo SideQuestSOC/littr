@@ -33,6 +33,8 @@
     align-items: center;
     justify-content: center;
     color: white;
+    font-size: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.55);
 }
 
 #welcome-subheading {
@@ -42,6 +44,8 @@
     text-decoration-color: var(--neonGreen);
     text-decoration-thickness: 0.4em;
     text-decoration-skip-ink: none;
+    font-size: 13px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.55);
 }
 
 #sign-up-in-container {
@@ -109,10 +113,6 @@ input {
 /* Desktop media queries*/
 @media only screen and (min-width: 992px)
 {
-    /* Hide the welcome message on desktop */
-    #welcome-message-container {
-        display: none;
-    }
     /* Hide the X close button on desktop */
     #sign-up-in-close {
         display: none;
