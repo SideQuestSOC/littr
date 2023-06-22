@@ -1,6 +1,6 @@
 // import css
 import './SignInSignUp.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import MaterialUI dependencies
 import { Button } from '@mui/material';
 // import components
@@ -21,10 +21,26 @@ function SignInSignUp({ isSignedIn, setIsSignedIn, setFilter }) {
     // State variables to control the visibility of the sign up and sign in components
     const [showSignUp, setShowSignUp] = useState(false);
     const [showSignIn, setShowSignIn] = useState(false);
+    // Set true if screen is larger than 992px
+    const [isLargeScreen, setIsLargeScreen] = useState(false);
 
     // signUpRedirect - used where a new user successfully signs up, 
     // it toggles hiding the sign up component and showing the sign in component
     const [signUpRedirect, setSignUpRedirect ] = useState(false);
+
+    // check the size of the current screen, check again if it changes
+    useEffect(() => {
+        const handleResize = () => {
+          setIsLargeScreen(window.innerWidth > 992);
+        };
+    
+        window.addEventListener("resize", handleResize);
+        handleResize(); // Initial check
+    
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        };
+      }, []);
 
     // This function is used to handle changes in the form inputs.
     // It is triggered when an input value is changed.
@@ -41,6 +57,7 @@ function SignInSignUp({ isSignedIn, setIsSignedIn, setFilter }) {
         // Event handler for sign up button click
         setShowSignUp(true); // Set showSignUp to true to show the sign up component
         setShowSignIn(false); // Set showSignIn to false to hide the sign in component
+        setIsLargeScreen(false); // reset this to false to hide sign in component when sign up component is showing
     }
 
     function handleSignInClick() {
@@ -71,7 +88,7 @@ function SignInSignUp({ isSignedIn, setIsSignedIn, setFilter }) {
                     {showSignUp && !signUpRedirect && (<SignUp formData={formData} handleChange={handleChange} setSignUpRedirect={setSignUpRedirect} />)}
 
                     {/* Render the SignIn component if either showSignIn is true or signUpRedirect is true (where a new user has just signed up) */}
-                    {(showSignIn || signUpRedirect) && (<SignIn formData={formData} handleChange={handleChange} signUpRedirect={signUpRedirect} isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>)}
+                    {(showSignIn || signUpRedirect || isLargeScreen) && (<SignIn formData={formData} handleChange={handleChange} signUpRedirect={signUpRedirect} isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>)}
                     
                 </div>
             </div>
