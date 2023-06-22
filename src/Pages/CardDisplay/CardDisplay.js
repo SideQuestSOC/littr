@@ -19,7 +19,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData }) {
       false,                // This flag is used to prevent searching subdirectories (because we don't have any)
       /\.svg$/i             // This is a regex that matches all files ending in .svg. We could change this to include .png files too by using /\.svg$|\.png$/i
     );
-    await setHats (hatContext.keys().map(hatContext)); // loading all the hats that fit the regex into the hats array
+    await setHats(hatContext.keys().map(hatContext).sort(() => Math.random() - 0.5));
   }
 
   function addHat() {
