@@ -31,7 +31,7 @@ function SignInSignUp({ isSignedIn, setIsSignedIn, setFilter }) {
     // check the size of the current screen, check again if it changes
     useEffect(() => {
         const handleResize = () => {
-          setIsLargeScreen(window.innerWidth > 992);
+            setIsLargeScreen(window.innerWidth > 992);
         };
     
         window.addEventListener("resize", handleResize);
@@ -85,7 +85,7 @@ function SignInSignUp({ isSignedIn, setIsSignedIn, setFilter }) {
                     </div>
                 
                     {/* Render the SignUp component only if showSignUp is true and signUpRedirect is false */}
-                    {showSignUp && !signUpRedirect && (<SignUp formData={formData} handleChange={handleChange} setSignUpRedirect={setSignUpRedirect} />)}
+                    {showSignUp && !signUpRedirect && !isLargeScreen && (<SignUp formData={formData} handleChange={handleChange} setSignUpRedirect={setSignUpRedirect} />)}
 
                     {/* Render the SignIn component if either showSignIn is true or signUpRedirect is true (where a new user has just signed up) */}
                     {(showSignIn || signUpRedirect || isLargeScreen) && (<SignIn formData={formData} handleChange={handleChange} signUpRedirect={signUpRedirect} isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>)}
