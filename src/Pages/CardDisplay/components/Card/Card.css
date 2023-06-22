@@ -13,21 +13,21 @@
     border-radius: 10px;
     border: none;
     box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.55);
-    margin: 10px;
+    margin: 5px 10px 10px 10px;
     padding-bottom: 0;
     display: flex;
     justify-content: center;
 }
 
-#card-outer-container:nth-of-type(3n+1) {
+#card-display-inner-container:nth-of-type(3n+1) #card-outer-container {
     background-color: var(--strawberry);
 }
 
-#card-outer-container:nth-of-type(3n+2) {
+#card-display-inner-container:nth-of-type(3n+2) #card-outer-container {
     background-color: var(--neonBlue);
 }
 
-#card-outer-container:nth-of-type(3n+3) {
+#card-display-inner-container:nth-of-type(3n+3) #card-outer-container {
     background-color: var(--sunburstYellow);
 }
 

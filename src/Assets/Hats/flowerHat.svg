@@ -1,0 +1,22 @@
+<svg width="32" height="9" viewBox="0 0 32 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.32804 9H29.672L32 8H0L2.32804 9Z" fill="#FFF3C8"/>
+<path d="M8 2L10 1L11.5 0.5L14 0H15H17.5H18.5L20.5 0.5L22 1L24 2L25.5 8H6.5L8 2Z" fill="#FFF3C8"/>
+<ellipse cx="1" cy="1.33333" rx="1" ry="1.33333" transform="matrix(-0.258819 0.965926 0.965926 0.258819 16.5176 4.51643)" fill="#65BD56"/>
+<rect width="2" height="2.66667" transform="matrix(-0.258819 0.965926 0.965926 0.258819 17.8052 4.86148)" fill="#65BD56"/>
+<ellipse cx="22.8347" cy="5.82745" rx="1" ry="1.33333" transform="rotate(75 22.8347 5.82745)" fill="#65BD56"/>
+<rect x="22.5762" y="4.86148" width="2" height="2.66667" transform="rotate(75 22.5762 4.86148)" fill="#65BD56"/>
+<circle cx="20.1906" cy="4.66673" r="0.666667" fill="#F8A0FA"/>
+<rect x="19.5239" y="4.66673" width="1.33333" height="1.33333" fill="#F8A0FA"/>
+<circle cx="21.5238" cy="6.00006" r="0.666667" transform="rotate(90 21.5238 6.00006)" fill="#F8A0FA"/>
+<rect x="21.5239" y="5.33339" width="1.33333" height="1.33333" transform="rotate(90 21.5239 5.33339)" fill="#F8A0FA"/>
+<circle cx="20.1903" cy="7.33339" r="0.666667" transform="rotate(-180 20.1903 7.33339)" fill="#F8A0FA"/>
+<rect x="20.8569" y="7.33339" width="1.33333" height="1.33333" transform="rotate(-180 20.8569 7.33339)" fill="#F8A0FA"/>
+<circle cx="18.8571" cy="6.00006" r="0.666667" transform="rotate(-90 18.8571 6.00006)" fill="#F8A0FA"/>
+<rect x="18.8569" y="6.66673" width="1.33333" height="1.33333" transform="rotate(-90 18.8569 6.66673)" fill="#F8A0FA"/>
+<circle cx="19.1332" cy="4.94287" r="0.666667" transform="rotate(-45 19.1332 4.94287)" fill="#F8A0FA"/>
+<rect x="18.6616" y="5.41428" width="1.33333" height="1.33333" transform="rotate(-45 18.6616 5.41428)" fill="#F8A0FA"/>
+<circle cx="0.666667" cy="0.666667" r="0.666667" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 22.0762 4.94287)" fill="#F8A0FA"/>
+<circle cx="0.666667" cy="0.666667" r="0.666667" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 20.0762 6.94287)" fill="#F8A0FA"/>
+<circle cx="0.666667" cy="0.666667" r="0.666667" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 22.0762 6.94287)" fill="#F8A0FA"/>
+<circle cx="20.1906" cy="6.00006" r="0.666667" fill="#F1F99D"/>
+</svg>
