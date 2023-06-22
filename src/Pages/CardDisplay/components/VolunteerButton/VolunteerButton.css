@@ -34,3 +34,8 @@
     margin: auto;
     margin-top: 10px;
 }
+
+#volunteer-button:hover {
+    background-color: var(--neonGreen);
+    transform: scale(1.1);
+  }
