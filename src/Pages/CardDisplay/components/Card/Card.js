@@ -64,7 +64,7 @@ export default function Card(props) {
   const falseReport = () => {
     const reason = prompt("Please explain why you would like to report this post, and press OK to proceed.");
     if (reason) {
-    alert(`You have reported this post. Reason: ${reason}. Thank you for your feedback.`);
+    alert(`You have reported this post.\n\Reason: ${reason}\n\nThank you for your feedback.`);
     }
   };
 
