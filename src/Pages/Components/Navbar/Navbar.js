@@ -9,7 +9,7 @@ import { signOut } from '../../../Models/client';
 import { styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import { MenuItem, Button, Menu, InputBase, Typography, IconButton, Toolbar, Box, AppBar, Avatar } from "@mui/material";
+import { MenuItem, Button, Menu, InputBase, Typography, IconButton, Toolbar, Box, AppBar, /* Avatar */ } from "@mui/material";
 
 // Initialise MUI search component
 const Search = styled("div")(({ theme }) => ({}));
