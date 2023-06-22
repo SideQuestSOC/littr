@@ -113,10 +113,10 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn, setFilter, fil
             {/* DROPDOWN MENU */}
             <MenuItem onClick={handleClose}>
               <div id={idSignedinVariable}>
-                <Link id="dropdown-user-settings-link" to="">User Settings</Link>
-                <Avatar id="dropdown-menu-avatar">??</Avatar>
+                {/* <Link id="dropdown-user-settings-link" to="">User Settings</Link>
+                <Avatar id="dropdown-menu-avatar">??</Avatar> */}
                 <Link id="dropdown-createapost-link" to="/src/pages/createpostform">Create a Post</Link>
-                <Link id="dropdown-createagroup-link" to="">Create a Group</Link>
+                {/* <Link id="dropdown-createagroup-link" to="">Create a Group</Link> */}
                 <Button id="dropdown-menu-signout-button" variant="contained" onClick={() => { signOut(); setIsSignedIn(false); }}>
                   Sign Out
                 </Button>

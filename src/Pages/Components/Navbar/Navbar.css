@@ -95,17 +95,25 @@
 #dropdown-menu-signedin {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: repeat(4, 1fr);
+  /* UNCOMMENT THESE TO WORK ON THE STRETCH GOALS */
+  /* grid-template-rows: repeat(4, 1fr); */
+  grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 0;
   grid-row-gap: 0;
   justify-items: center;
   align-items: center;
 }
-#dropdown-user-settings-link { grid-area: 1 / 1 / 2 / 2; }
-#dropdown-menu-avatar { grid-area: 1 / 2 / 2 / 3; }
-#dropdown-createapost-link { grid-area: 2 / 1 / 3 / 3; }
-#dropdown-createagroup-link { grid-area: 3 / 1 / 4 / 3; }
-#dropdown-menu-signout-button { grid-area: 4 / 1 / 5 / 3; }
+/* UNCOMMENT THESE TO WORK ON THE STRETCH GOALS */
+/* #dropdown-user-settings-link { grid-area: 1 / 1 / 2 / 2; } */
+/* #dropdown-menu-avatar { grid-area: 1 / 2 / 2 / 3; } */
+/* #dropdown-createapost-link { grid-area: 2 / 1 / 3 / 3; } */
+/* #dropdown-createagroup-link { grid-area: 3 / 1 / 4 / 3; } */
+/* #dropdown-menu-signout-button { grid-area: 4 / 1 / 5 / 3; } */
+
+  /* ONLY SHOW THESE ON MVP VERSION */
+#dropdown-createapost-link { grid-area: 1 / 1 / 2 / 3; }
+#dropdown-menu-signout-button { grid-area: 2 / 1 / 3 / 3; }
+
 
 #dropdown-menu-signedin-toggle {
   display: none;
