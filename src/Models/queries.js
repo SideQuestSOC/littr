@@ -30,12 +30,9 @@ export async function countVolunteers(event_id) {
 
 // get likes and update them
 export async function updateLikes(event_id) {
-  const { data: event } = await supabase
-    .from('event')
-    .select('likes')
-    .eq('event_id', event_id)
+  let updatedLikes = await getLikes(event_id);
 
-  const updatedLikes = event[0].likes + 1;
+  updatedLikes = updatedLikes + 1;
 
   await supabase
     .from('event')

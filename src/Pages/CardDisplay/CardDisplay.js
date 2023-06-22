@@ -14,10 +14,12 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
   const [updateLikeBadge, setUpdateLikeBadge] = useState(false);
 
   // Wrapped in useEffect to trigger rerender of cards when a new card is added by a user
+  // Also re-renders when like button/volunteer buttons are clicked
   useEffect(() => {
     async function setFetchedData() {
       // retrieve event data from DB
       setCardData(await fetchData(filter));
+      // reset useStates to allow them to trigger again
       setUpdateVolunteerBadge(false);
       setUpdateLikeBadge(false);
     }
