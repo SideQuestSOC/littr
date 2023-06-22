@@ -4,7 +4,6 @@ import "./Card.css";
 import React, { useState, useEffect } from "react";
 // import Material UI dependencies
 import { Typography, Checkbox, FormControlLabel, FormGroup, List, Collapse, Badge, Button, Stack } from "@mui/material";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import VolunteerButton from "../VolunteerButton/VolunteerButton";
 import VolunteersBadge from "../VolunteersBadge/VolunteersBadge";

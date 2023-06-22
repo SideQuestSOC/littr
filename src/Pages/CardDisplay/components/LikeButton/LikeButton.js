@@ -1,8 +1,8 @@
 import "./LikeButton.css";
-import React, { useState, useEffect } from "react";
-
+// import Material UI dependencies
 import Button from "@mui/material/Button";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+// import SQL queries/functions
 import { updateLikes } from "../../../../Models/queries";
 
 export default function LikeButton(props) {
