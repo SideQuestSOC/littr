@@ -1,25 +1,43 @@
 import "./LikeButton.css";
 import React, { useState, useEffect } from "react";
-
 import Button from "@mui/material/Button";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import { updateLikes } from "../../../../Models/queries";
+import { getCurrentUserId } from "../../../../Models/client";
 
-export default function LikeButton(props) {
+const LikeButton = ({ event_id, isSignedIn }) => {
+  const [userID, setUserID] = useState("");
 
-  async function handleThumbsUp(event_id) {
-    await updateLikes(event_id);
-  }
+  useEffect(() => {
+    if (isSignedIn) {
+      async function getUserID() {
+        setUserID(await getCurrentUserId());
+          }
+
+      getUserID();
+    }
+  }, [isSignedIn]);
+
+  const handleUpdateLikes = async () => {
+      await updateLikes(userID.id, event_id);
+    };
 
   return (
+    <div> 
     <Button
       id="like-button"
-      onClick={() => { handleThumbsUp(props.event_id) }}
       variant="contained"
-      data-testid="like-button"
-    >
-      {" "}
+      onClick={isSignedIn 
+        ? () => {
+          handleUpdateLikes(); 
+         alert("I like you to");
+        }
+        : () => alert("Please Sign In to Like!")
+      }>
       <ThumbUpOffAltIcon />
     </Button>
+    </div>
   );
-}
+};
+
+export default LikeButton;

@@ -1,5 +1,6 @@
 import { supabase } from './client';
 import { isValid } from "postcode";
+import { getCurrentUserId } from "./client";
 
 // insertPublicUser() - inserts data into the public.users table, it is called after
 // the supabaseSignUp() function has inserted a new user into the auth.users table
@@ -28,26 +29,29 @@ export async function countVolunteers(event_id) {
     return count.count;
 }
 
-// get likes and update them
-export async function updateLikes(event_id) {
-  const { data: event } = await supabase
-    .from('event')
-    .select('likes')
-    .eq('event_id', event_id)
-  
-  console.log(event[0].likes);
+//Like Logic
+// export async function updateLikes(user_id, event_id) {
+//   console.log('Inserting like with the following data:');
+//   console.log('user_id:', user_id);
+//   console.log('event_id:', event_id);
 
-  const updatedLikes = event[0].likes + 1;
+//   try {
+//     await supabase.from('likes').insert({
+//       user_id: user_id,
+//       event_id: event_id,
+//     });
 
-  console.log(updatedLikes);
-
-  const { error } = await supabase
-    .from('event')
-    .update({ likes: updatedLikes }) 
-    .eq('event_id', event_id);
-
+//     console.log('Like inserted Bra');
+//   } catch (error) {
+//     console.error('Failed Bro:', error);
+//   }
+// }
+export async function updateLikes(user_id, event_id) {
+  await supabase.from('likes').insert({
+      user_id: user_id,
+      event_id: event_id,
+  })
 }
-
 
 // supabaseSignUp() - is used to sign up a user using the Supabase authentication service.
 // It takes in a formData object containing user signup data.
