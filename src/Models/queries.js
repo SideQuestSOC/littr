@@ -29,29 +29,18 @@ export async function countVolunteers(event_id) {
     return count.count;
 }
 
-//Like Logic
-// export async function updateLikes(user_id, event_id) {
-//   console.log('Inserting like with the following data:');
-//   console.log('user_id:', user_id);
-//   console.log('event_id:', event_id);
 
-//   try {
-//     await supabase.from('likes').insert({
-//       user_id: user_id,
-//       event_id: event_id,
-//     });
-
-//     console.log('Like inserted Bra');
-//   } catch (error) {
-//     console.error('Failed Bro:', error);
-//   }
-// }
 export async function updateLikes(user_id, event_id) {
-  await supabase.from('likes').insert({
-      user_id: user_id,
-      event_id: event_id,
-  })
+  const data = JSON.stringify({
+    user_id,
+    event_id,
+  });
+
+  await supabase.from('likes').insert(data, { returning: 'all' });
+
+  console.log(user_id, event_id);
 }
+
 
 // supabaseSignUp() - is used to sign up a user using the Supabase authentication service.
 // It takes in a formData object containing user signup data.

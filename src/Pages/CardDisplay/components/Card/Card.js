@@ -51,16 +51,14 @@ function checkBoolean(booleanProp, checkLabel) {
 export default function Card(props) {
   const [open, setOpen] = useState(false);
   // placeholder thumbs up state
-  const [thumbsUp, setThumbsUp] = useState(0);
+  
 
   const handleExpand = () => {
     setOpen(!open);
   };
 
   // placeholder thumbs up function
-  const handleThumbsUp = () => {
-    setThumbsUp(thumbsUp + 1);
-  };
+  
 
   const falseReport = () => {
     alert("This post has been reported. Thank you for your feedback.");
@@ -92,7 +90,7 @@ export default function Card(props) {
           >
             Details
           </Button>
-          <Badge
+          {/* <Badge
             badgeContent={thumbsUp}
             sx={{
               "& .MuiBadge-badge": {
@@ -101,10 +99,10 @@ export default function Card(props) {
               },
             }}
             data-testid="like-badge"
-          >
+          > */}
           {/* Added data-testid to test the like button */}
           <LikeButton event_id={props.event_id} isSignedIn={props.isSignedIn}/>
-          </Badge>
+          {/* </Badge> */}
           <Button id="report-button" onClick={falseReport} variant="contained">
             <FlagOutlinedIcon />
           </Button>

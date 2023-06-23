@@ -23,19 +23,13 @@ const LikeButton = ({ event_id, isSignedIn }) => {
     };
 
   return (
-    <div> 
-    <Button
-      id="like-button"
-      variant="contained"
-      onClick={isSignedIn 
-        ? () => {
-          handleUpdateLikes(); 
-         alert("I like you to");
-        }
-       : () => alert("Please Sign In to Like!")
-      }>
-      <ThumbUpOffAltIcon />
-    </Button>
+    <div>
+      <Button
+        id="like-button"
+        variant="contained"
+        onClick={isSignedIn ? () => handleUpdateLikes() : () => alert("Please Sign In to Like!")}>
+        <ThumbUpOffAltIcon />
+      </Button>
     </div>
   );
 };
