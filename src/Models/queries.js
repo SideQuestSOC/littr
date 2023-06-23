@@ -29,16 +29,19 @@ export async function countVolunteers(event_id) {
 }
 
 // get likes and update them
-export async function updateLikes(event_id) {
-  let updatedLikes = await getLikes(event_id);
 
-  updatedLikes = updatedLikes + 1;
+export async function updateLikes(user_id, event_id) {
+  const { data, error } = await supabase.from('likes').insert([
+    { user_id, event_id }
+  ]);
 
-  await supabase
-    .from('event')
-    .update({ likes: updatedLikes }) 
-    .eq('event_id', event_id);
+  if (error) {
+    console.error('Error updating likes:', error);
+  } else {
+    console.log('Likes updated successfully:', data);
+  }
 }
+
 
 export async function getLikes(event_id){
   const { data } = await supabase
