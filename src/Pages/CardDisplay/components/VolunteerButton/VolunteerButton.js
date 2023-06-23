@@ -43,14 +43,21 @@ const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn }) => {
             color="primary" 
             aria-label="Volunteer" // adding aria-label for accessibility
             onClick={
-                isSignedIn 
-                    ? () => { 
-                        handleInsertVolunteer(); 
-                        alert("Thank you for volunteering!"); 
-                        setIsVolunteer(true);
+              isSignedIn
+                ? () => {
+                    if (isVolunteer) {
+                      deleteEventVolunteer(event_id);
+                      setIsVolunteer(false);
+                      setUpdateVolunteerBadge(true);
+                      alert("You have cancelled your volunteering.");
+                    } else {
+                      handleInsertVolunteer();
+                      setIsVolunteer(true);
+                      alert("Thank you for volunteering!");
                     }
-                    : () => alert("Please Sign In to Volunteer!")
-            }>
+                  }
+                : () => alert("Please Sign In to Volunteer!")
+                    }>
               {isVolunteer ? "Cancel" : "Volunteer"}
             </Button>
         </div>

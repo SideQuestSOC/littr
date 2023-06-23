@@ -27,7 +27,7 @@ export async function deleteEventVolunteer(event_id) {
 
   await supabase.from('event_volunteers')
   .delete()
-  .eq('user_id', user_id)
+  .eq('user_id', user_id.id)
   .eq('event_id', event_id);
 }
 
