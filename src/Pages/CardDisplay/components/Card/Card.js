@@ -149,11 +149,11 @@ export default function Card(props) {
                 {checkBoolean(props.isRemoteLocation, "Remote Location")}
               </FormGroup>
 
-              <div className="card-content-space">
+              <div className="card-content-space" data-testid="card-disposal-method">
                 <h4>Disposal Method:</h4>
                 {props.disposalMethod}
               </div>
-              <div className="card-content-space">
+              <div className="card-content-space" data-testid="card-recommended-equipment">
                 <h4>Recommended Equipment:</h4>
                 {props.equipment}
               </div>

@@ -9,9 +9,9 @@ import Card from '../../Pages/CardDisplay/components/Card/Card.js';
 // Time ✅
 // Creator ✅
 // Details ✅
-// Additional information
-// Disposal method
-// Recommended equipment
+// Additional information ✅
+// Disposal method 
+// Recommended equipment ✅
 
 describe('elements of card display', () => {
 test("renders card display", () => {
@@ -137,6 +137,43 @@ test('renders checkboxes', () => {
         const cardCheckboxes = screen.getByTestId('card-checkboxes');
         // Assert that the checkboxes is rendered
         expect(cardCheckboxes).toBeInTheDocument();
+    });
+
+
+
+// Render the disposal method
+test('renders disposal method', () => {
+    //Arrange
+    render(
+        <Card />);
+        // Act
+        // Select the first instance of the Card 'Details' button
+        const buttons = screen.getAllByText('Details');
+        const firstButton = buttons[0];
+
+        fireEvent.click((firstButton));
+        // get the disposal method using getByTestId
+        const cardDisposalMethod = screen.getByTestId('card-disposal-method');
+        // Assert that the disposal method is rendered
+        expect(cardDisposalMethod).toBeInTheDocument();
+    });
+
+
+// Render the recommended equipment
+test('renders recommended equipment', () => {
+    // Arrange
+    render(
+        <Card />);
+        // Act
+        // Select the first instance of the Card 'Details' button
+        const buttons = screen.getAllByText('Details');
+        const firstButton = buttons[0];
+
+        fireEvent.click((firstButton));
+        // get the recommended equipment using getByTestId
+        const cardRecommendedEquipment = screen.getByTestId('card-recommended-equipment');
+        // Assert that the recommended equipment is rendered
+        expect(cardRecommendedEquipment).toBeInTheDocument();
     });
 
 });
