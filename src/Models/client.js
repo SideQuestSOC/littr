@@ -59,7 +59,7 @@ export async function isSessionSignedIn() {
 // Get the currently signed in users id
 export async function getCurrentUserId() {
   const { data: { user } } = await supabase.auth.getUser();
-  return user;
+  return user.id;
 }
 
 // Sign out the user 
