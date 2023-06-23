@@ -138,7 +138,6 @@ export default function Card(props) {
                 {checkBoolean(props.hasParking, "Nearby Parking")}
                 {checkBoolean(props.isRemoteLocation, "Remote Location")}
               </FormGroup>
-
               <div className="card-content-space">
                 <h4>Disposal Method:</h4>
                 {props.disposalMethod}
