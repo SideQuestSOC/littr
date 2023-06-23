@@ -1,31 +1,61 @@
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom"; // useNavigate() is used to redirect to a different page
-import { useEffect } from "react";
 import "./LandingPage.css";
-// import MaterialUI dependencies
 import { Button } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { AnimatedCounter } from "react-animated-counter";
+import { createClient } from "@supabase/supabase-js";
 
-function LandingPage({ isSignedIn, setFilter }) {
-  // Initialize the navigate object using the useNavigate 'hook'
-  const navigate = useNavigate();
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-  // Redirect to Card Display Page if already logged in
+function LandingPage({ isSignedIn }) {
+  const [counterValue, setCounterValue] = useState(0);
+
   useEffect(() => {
-    if(isSignedIn) {
-      navigate("/src/pages/carddisplay");
-    }
-  }, [isSignedIn, navigate]);
+    const fetchEventCount = async () => {
+      try {
+        const { data, error } = await supabase.from("event").select("*");
+
+        if (error) {
+          throw new Error(error.message);
+        }
+
+        if (data) {
+          const count = data.length || 0;
+          setCounterValue(count);
+        }
+      } catch (error) {
+        console.error("Error fetching event count:", error);
+      }
+    };
+
+    fetchEventCount();
+    return () => {};
+  }, []);
 
   return (
     <div id="landing-page-outer-container">
       <h1 id="title">LITTR</h1>
       <div id="landing-page-button-container">
-     
+      
         <Button variant="contained">
-          {/* If signed in go to Create Card Form, if not go to signinup page */}
-          {isSignedIn ? <Link to="/src/pages/createpostform">Sign Up</Link> : <Link to="/src/pages/signsignup">Sign Up</Link>}
+          {isSignedIn ? (
+            <Link to="/src/pages/createpostform">Sign Up</Link>
+          ) : (
+            <Link to="/src/pages/signsignup">Sign Up</Link>
+          )}
         </Button>
       </div>
+      <div id="landing-page-counter-container">
+  <AnimatedCounter
+    value={Math.floor(counterValue)} 
+    color="white"
+    fontSize="40px"
+   
+  />
+</div>
+
       <div id="landing-page-banner">
         <h2>Unite, Transform and Clean Up your community.</h2>
       </div>
