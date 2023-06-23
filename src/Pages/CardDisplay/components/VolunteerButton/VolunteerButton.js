@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import { insertEventVolunteer, checkIfVolunteer, deleteEventVolunteer } from "../../../../Models/queries";
 import { getCurrentUserId } from "../../../../Models/client";
 
-const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn }) => {
+const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn, setDeleteVolunteersBadge }) => {
     const [userID, setUserID] = useState("");
     const [isVolunteer, setIsVolunteer] = useState(0);
 
@@ -20,7 +20,7 @@ const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn }) => {
       
           getUserID();
         }
-    }, [isSignedIn]);
+    }, [isSignedIn, userID]);
 
     // Check if the current user is already volunteering for this event
     useEffect(() => {
@@ -33,7 +33,8 @@ const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn }) => {
     }, [event_id, isSignedIn])
       
     const handleInsertVolunteer = async () => {
-        await insertEventVolunteer(userID.id, event_id);
+        console.log(userID.id);
+        await insertEventVolunteer(userID, event_id);
         setUpdateVolunteerBadge(true);
       };
 
@@ -50,11 +51,12 @@ const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn }) => {
                     if (isVolunteer) {
                       deleteEventVolunteer(event_id);
                       setIsVolunteer(false);
-                      setUpdateVolunteerBadge(true);
+                      setDeleteVolunteersBadge(true);
                       alert("You have cancelled your volunteering.");
                     } else {
                       handleInsertVolunteer();
                       setIsVolunteer(true);
+                      setDeleteVolunteersBadge(true);
                       alert("Thank you for volunteering!");
                     }
                   }

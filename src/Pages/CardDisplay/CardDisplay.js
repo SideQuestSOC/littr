@@ -11,6 +11,7 @@ import Footer from "../Components/Footer/footer";
 
 function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilter, filter }) {
   const [updateVolunteerBadge, setUpdateVolunteerBadge] = useState(false);
+  const [deleteVolunteersBadge, setDeleteVolunteersBadge] = useState(false);
   const [updateLikeBadge, setUpdateLikeBadge] = useState(false);
   const [hats, setHats] = useState([]);
 
@@ -40,11 +41,12 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
       setCardData(await fetchData(filter));
       // reset useStates to allow them to trigger again
       setUpdateVolunteerBadge(false);
+      setDeleteVolunteersBadge(false);
       setUpdateLikeBadge(false);
     }
     setFetchedData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [updateVolunteerBadge, updateLikeBadge, filter]);
+  }, [updateVolunteerBadge, deleteVolunteersBadge, updateLikeBadge, filter]);
 
   // reset the filter search term when navigating back from a different page
   useEffect(() => {
@@ -81,6 +83,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
             setUpdateVolunteerBadge={setUpdateVolunteerBadge}
             isSignedIn={isSignedIn}
             setUpdateLikeBadge={setUpdateLikeBadge}
+            setDeleteVolunteersBadge={setDeleteVolunteersBadge}
             />
            </div>
         ))}
