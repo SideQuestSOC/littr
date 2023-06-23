@@ -21,6 +21,7 @@
     "react-router": "^6.12.1",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.11",
+    "use-history": "^1.4.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
