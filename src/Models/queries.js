@@ -1,6 +1,9 @@
 import { supabase } from './client';
 import { isValid } from "postcode";
-import { getCurrentUserId } from "../Models/client";
+import { getCurrentUserId } from "./client";
+
+
+
 
 // insertPublicUser() - inserts data into the public.users table, it is called after
 // the supabaseSignUp() function has inserted a new user into the auth.users table
@@ -52,26 +55,19 @@ export async function countVolunteers(event_id) {
     return count.count;
 }
 
-// get likes and update them
-export async function updateLikes(event_id) {
-  let updatedLikes = await getLikes(event_id);
 
-  updatedLikes = updatedLikes + 1;
+export async function updateLikes(user_id, event_id) {
+  const { data, error } = await supabase.from('likes').insert([
+    { user_id, event_id }
+  ]);
 
-  await supabase
-    .from('event')
-    .update({ likes: updatedLikes }) 
-    .eq('event_id', event_id);
+  if (error) {
+    console.error('Error updating likes:', error);
+  } else {
+    console.log('Likes updated successfully:', data);
+  }
 }
 
-export async function getLikes(event_id){
-  const { data } = await supabase
-  .from('event')
-  .select('likes')
-  .eq('event_id', event_id)
-
-  return data[0].likes;
-}
 
 // supabaseSignUp() - is used to sign up a user using the Supabase authentication service.
 // It takes in a formData object containing user signup data.
@@ -130,7 +126,6 @@ export async function supabaseEventInsert(PostData) {
 export async function selectEvent(filter) {
   let query = supabase.from('event')
     .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, users ( first_name, last_name )`)
-    .order('date_timestamp', { ascending: true })
     .gt('end_time', 'now()'); // Show only events in the future (end_time is greater than current time)
 
     if (filter !== "" && filter !== undefined && (isValid(filter) === true)) {
@@ -139,7 +134,6 @@ export async function selectEvent(filter) {
     else {
       query = query.ilike('location, title, post_introduction', `%${filter}%`); // Filter events by partial keyword match
     }
-    
 
   try {
     const { data } = await query;

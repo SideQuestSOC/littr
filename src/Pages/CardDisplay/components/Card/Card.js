@@ -12,7 +12,7 @@ import Map from "../../components/Map/Map";
 import eyesHappy from "../../../../Assets/eyesHappy.svg";
 import LikeButton from "../LikeButton/LikeButton";
 
-import { getLikes } from "../../../../Models/queries";
+
 
 // Function to render a checked or not checked checkbox depending on whether the prop is true or false
 // Sorry this is so long, it wouldn't let me insert a ternary operator into an element tag
@@ -64,12 +64,6 @@ export default function Card(props) {
     }
   };
 
-  useEffect(() => {
-    async function getTheLikes() {
-      setLikes(await getLikes(props.event_id))
-    }
-    getTheLikes();
-  })
 
   
   return (
@@ -99,20 +93,12 @@ export default function Card(props) {
           >
             Details
           </Button>
-          {/* LIKE BUTTON BADGE */}
-          <Badge
-            badgeContent={likes}
-            sx={{
-              "& .MuiBadge-badge": {
-                backgroundColor: "#D9D9D9",
-                color: "black",
-              },
-            }}
-            data-testid="like-badge"
-          >
+          
+         
+          
           {/* Added data-testid to test the like button */}
-            <LikeButton event_id={props.event_id} setUpdateLikeBadge={props.setUpdateLikeBadge} isSignedIn={props.isSignedIn} />
-          </Badge>
+            <LikeButton event_id={props.event_id} isSignedIn={props.isSignedIn} />
+         
           <Button id="report-button" onClick={falseReport} variant="contained" aria-label="Report post">
             <FlagOutlinedIcon />
           </Button>
