@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 // import Material UI dependencies
 import Button from '@mui/material/Button';
 // import SQL queries/functions
-import { insertEventVolunteer, checkIfVolunteer } from "../../../../Models/queries";
+import { insertEventVolunteer, checkIfVolunteer, deleteEventVolunteer } from "../../../../Models/queries";
 import { getCurrentUserId } from "../../../../Models/client";
 
 const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn }) => {

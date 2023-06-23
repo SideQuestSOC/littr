@@ -21,6 +21,16 @@ export async function insertEventVolunteer(user_id, event_id) {
     })
 }
 
+// Delete a user from the event_volunteers table when they cancel
+export async function deleteEventVolunteer(event_id) {
+  let user_id = await getCurrentUserId();
+
+  await supabase.from('event_volunteers')
+  .delete()
+  .eq('user_id', user_id)
+  .eq('event_id', event_id);
+}
+
 // Check whether currently logged in user is already in the event volunteer list
 export async function checkIfVolunteer(event_id) {
   let user_id = await getCurrentUserId();
