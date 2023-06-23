@@ -1,27 +1,33 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+// import userEvent from '@testing-library/user-event';
 import Card from '../../Pages/CardDisplay/components/Card/Card.js';
 
-// Check if like button renders 
-test("renders like button", () => {
-  // render Card component
-  render(<Card />);
-  // get the like button using screen.getByTestId
-  const likeButton = screen.getByTestId('like-button');
+test('like button increments by 1 when user is logged in', async () => {
+  // Mock the props required for testing
+  const event_id = 1;
+  const setUpdateLikeBadge = jest.fn();
+  const isSignedIn = true;
+
+  // Render the Card component with the necessary props
+  render(
+    <Card event_id={event_id} setUpdateLikeBadge={setUpdateLikeBadge} isSignedIn={isSignedIn} />
+  );
+
   // Assert that the like button is rendered
-  expect(likeButton).toBeInTheDocument();
-});
-// Above test passes
-
-// Check if the button can be pressed by simulating a click event and increments by 1
-test("clicks the like button", () => {
-  // render the Card component
-  render(<Card />);
-  // get the like button using screen.getByTestId
   const likeButton = screen.getByTestId('like-button');
-  // Click the like button
-  fireEvent.click(likeButton);
-  // Assert that the thumbsUp state has been updated
-  expect(screen.getByTestId('like-badge')).toHaveTextContent('1');
-});
+  expect(likeButton).toBeInTheDocument();
 
+  // Asset that the initial value of the like badge is 0
+  const likeBadge = screen.getByTestId('like-badge');
+  expect(likeBadge.textContent).toBe(" ");
+
+  // Simulate a click on the like button
+  fireEvent.click(likeButton);
+
+  // Assert that the like badge value is now 1
+  expect(likeBadge.textContent).toBe("1");
+
+  // Assert that the setUpdateLikeBadge function is called with the correct arguments
+  expect(setUpdateLikeBadge).toHaveBeenCalledWith(1);
+});
