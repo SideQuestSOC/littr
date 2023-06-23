@@ -23,16 +23,13 @@ export async function insertEventVolunteer(user_id, event_id) {
 
 // Check whether currently logged in user is already in the event volunteer list
 export async function checkIfVolunteer(event_id) {
-
   let user_id = await getCurrentUserId();
-  console.log(`User ID: ${user_id.id}`);
 
   let count = await supabase.from('event_volunteers')
   .select('user_id', { count: 'exact' })
   .eq('event_id', event_id)
   .eq('user_id', user_id.id);
 
-  console.log(`Return data: ${count.count}`);
   return count.count;
 }
 

@@ -21,21 +21,19 @@ const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn }) => {
           getUserID();
         }
     }, [isSignedIn]);
-      
 
-    const handleInsertVolunteer = async () => {
-        await insertEventVolunteer(userID.id, event_id);
-        setUpdateVolunteerBadge(true);
-      };
-
+    // Check if the current user is already volunteering for this event
     useEffect(() => {
       async function checkIfVolunteered() {
         setIsVolunteer(await checkIfVolunteer(event_id));
       }
       checkIfVolunteered();
     }, [event_id])
-
-    console.log(`checkIFVolunteered: ${isVolunteer}`);
+      
+    const handleInsertVolunteer = async () => {
+        await insertEventVolunteer(userID.id, event_id);
+        setUpdateVolunteerBadge(true);
+      };
 
     return (
         <div>
