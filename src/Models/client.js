@@ -61,6 +61,7 @@ export async function getCurrentUserId() {
   const { data: { user } } = await supabase.auth.getUser();
   return user.id;
 }
+
 // Sign out the user 
 export async function signOut() {
   await supabase.auth.signOut();

@@ -1,8 +1,6 @@
 import { supabase } from './client';
 import { isValid } from "postcode";
-import { getCurrentUserId } from "./client";
-
-
+import { getCurrentUserId } from "../Models/client";
 
 
 // insertPublicUser() - inserts data into the public.users table, it is called after
@@ -30,7 +28,7 @@ export async function deleteEventVolunteer(event_id) {
 
   await supabase.from('event_volunteers')
   .delete()
-  .eq('user_id', user_id.id)
+  .eq('user_id', user_id)
   .eq('event_id', event_id);
 }
 
@@ -41,7 +39,7 @@ export async function checkIfVolunteer(event_id) {
   let count = await supabase.from('event_volunteers')
   .select('user_id', { count: 'exact' })
   .eq('event_id', event_id)
-  .eq('user_id', user_id.id);
+  .eq('user_id', user_id);
 
   return count.count;
 }

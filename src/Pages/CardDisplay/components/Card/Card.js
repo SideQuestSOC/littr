@@ -1,9 +1,9 @@
 // import css
 import "./Card.css";
 // import React dependencies
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import Material UI dependencies
-import { Typography, Checkbox, FormControlLabel, FormGroup, List, Collapse, Badge, Button, Stack } from "@mui/material";
+import { Typography, Checkbox, FormControlLabel, FormGroup, List, Collapse, /* Badge, */ Button, Stack } from "@mui/material";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import VolunteerButton from "../VolunteerButton/VolunteerButton";
 import VolunteersBadge from "../VolunteersBadge/VolunteersBadge";
@@ -51,7 +51,7 @@ function checkBoolean(booleanProp, checkLabel) {
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
-  const [likes, setLikes] = useState(0);
+  // const [likes, setLikes] = useState(0);
 
   const handleExpand = () => {
     setOpen(!open);

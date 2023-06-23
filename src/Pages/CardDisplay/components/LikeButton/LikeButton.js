@@ -11,7 +11,7 @@ const LikeButton = ({ event_id, isSignedIn }) => {
     if (isSignedIn) {
       async function getUserID() {
         setUserID(await getCurrentUserId());
-          }
+      }
 
       getUserID();
     }
