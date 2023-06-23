@@ -47,10 +47,11 @@ const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn }) => {
                     ? () => { 
                         handleInsertVolunteer(); 
                         alert("Thank you for volunteering!"); 
+                        setIsVolunteer(true);
                     }
                     : () => alert("Please Sign In to Volunteer!")
             }>
-              {isVolunteer ? "Volunteer" : "Cancel"}
+              {isVolunteer ? "Cancel" : "Volunteer"}
             </Button>
         </div>
     );
