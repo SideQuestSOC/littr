@@ -1,5 +1,6 @@
 import { supabase } from './client';
 import { isValid } from "postcode";
+import { getCurrentUserId } from "../Models/client";
 
 // insertPublicUser() - inserts data into the public.users table, it is called after
 // the supabaseSignUp() function has inserted a new user into the auth.users table
@@ -13,10 +14,26 @@ export async function insertPublicUser(user_id, first_name, last_name) {
 
 // Insert a user into the event_volunteers table when they volunteer
 export async function insertEventVolunteer(user_id, event_id) {
-    await supabase.from('event_volunteers').insert({
+    await supabase.from('event_volunteers')
+    .insert({
         user_id: user_id,
         event_id: event_id,
     })
+}
+
+// Check whether currently logged in user is already in the event volunteer list
+export async function checkIfVolunteer(event_id) {
+
+  let user_id = await getCurrentUserId();
+  console.log(`User ID: ${user_id.id}`);
+
+  let count = await supabase.from('event_volunteers')
+  .select('user_id', { count: 'exact' })
+  .eq('event_id', event_id)
+  .eq('user_id', user_id.id);
+
+  console.log(`Return data: ${count.count}`);
+  return count.count;
 }
 
 // count how many volunteers there are for an event

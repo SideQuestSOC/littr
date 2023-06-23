@@ -5,11 +5,12 @@ import React, { useState, useEffect } from 'react';
 // import Material UI dependencies
 import Button from '@mui/material/Button';
 // import SQL queries/functions
-import { insertEventVolunteer } from "../../../../Models/queries";
+import { insertEventVolunteer, checkIfVolunteer } from "../../../../Models/queries";
 import { getCurrentUserId } from "../../../../Models/client";
 
 const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn }) => {
     const [userID, setUserID] = useState("");
+    const [isVolunteer, setIsVolunteer] = useState(0);
 
     useEffect(() => {
         if (isSignedIn) {
@@ -19,13 +20,22 @@ const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn }) => {
       
           getUserID();
         }
-      }, [isSignedIn]);
+    }, [isSignedIn]);
       
 
     const handleInsertVolunteer = async () => {
         await insertEventVolunteer(userID.id, event_id);
         setUpdateVolunteerBadge(true);
       };
+
+    useEffect(() => {
+      async function checkIfVolunteered() {
+        setIsVolunteer(await checkIfVolunteer(event_id));
+      }
+      checkIfVolunteered();
+    }, [event_id])
+
+    console.log(`checkIFVolunteered: ${isVolunteer}`);
 
     return (
         <div>
@@ -42,7 +52,7 @@ const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn }) => {
                     }
                     : () => alert("Please Sign In to Volunteer!")
             }>
-                Volunteer
+              {isVolunteer ? "Volunteer" : "Cancel"}
             </Button>
         </div>
     );
