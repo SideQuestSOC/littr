@@ -120,41 +120,40 @@ export async function supabaseEventInsert(PostData) {
     }
 }
 
+// set initial end range of selectEvent query outside the function
 let endRange = 5;
-
 // modify the range of the selectEvent limit endRange
-export function modifyRange(endRange) {
-  return endRange + 6;
+function modifyRange(endRange) {
+  return endRange + 6; // get the next 6 cards/rows in the DB
 }
 
 // selectEvent() - retrieves data from public.Events for the Card Display component
 export async function selectEvent(filter, endOfPage, setEndOfPage) {
-  console.log(endRange);
-
+  //  modify endRange when user hits the bottom of the page then reset endOfPage useState back to false
   if(endOfPage) {
     endRange = modifyRange(endRange);
     setEndOfPage(false);
   }
-  console.log(endRange);
 
   let query = supabase.from('event')
     .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, users ( first_name, last_name )`)
     .gt('end_time', 'now()') // Show only events in the future (end_time is greater than current time)
-    .limit(6)
-    .range(0, endRange);
+    .limit(6) // limit to 6 rows at a time
+    .range(0, endRange); // the range of rows to display - modified when user hits end of page for infinite scroll functionality
 
-    if (filter !== "" && filter !== undefined && (isValid(filter) === true)) {
-      query = query.ilike('postcode', `%${filter}%`); // Filter events by partial postcode match
-    }
-    else {
-      query = query.ilike('location, title, post_introduction', `%${filter}%`); // Filter events by partial keyword match
-    }
+  // search functionality
+  if (filter !== "" && filter !== undefined && (isValid(filter) === true)) {
+    query = query.ilike('postcode', `%${filter}%`); // Filter events by partial postcode match
+  }
+  else {
+    query = query.ilike('location, title, post_introduction', `%${filter}%`); // Filter events by partial keyword match
+  }
 
   try {
     const { data } = await query;
-
     return data;
-  } catch (error) {
+  } 
+  catch (error) {
     console.error(error);
     return null;
   }
@@ -163,7 +162,6 @@ export async function selectEvent(filter, endOfPage, setEndOfPage) {
 // Select data from DB to map onto Cards
 // Append the count of volunteers to the data array after the promises have resolved
 export async function fetchData(filter, endOfPage, setEndOfPage) {
-  console.log(endOfPage);
     try {
       let data = await selectEvent(filter, endOfPage, setEndOfPage);
       if (data) {

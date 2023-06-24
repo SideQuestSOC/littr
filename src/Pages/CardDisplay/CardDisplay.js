@@ -93,14 +93,13 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
             />
            </div>
         ))}
-        {/* Check if user scrolls to the end of the page AFTER the cardData has been mapped */}
-        {cardData.length > 0 && (
-          <Waypoint
-            onEnter={() => {console.log("End of page."); setEndOfPage(true);}}
-            onLeave={() => console.log("Left end of page.")}
-          />
-        )}
       </div>
+      {/* Check if user scrolls to the end of the page AFTER the cardData has been mapped */}
+      {cardData.length > 0 && (
+        <Waypoint
+          onEnter={() => setEndOfPage(true)}
+        />
+      )}
       {/* Only render this button when user is signed in */}
       {isSignedIn && (
         <div className="create-post-container">
