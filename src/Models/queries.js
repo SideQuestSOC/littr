@@ -120,11 +120,28 @@ export async function supabaseEventInsert(PostData) {
     }
 }
 
+let endRange = 5;
+
+// modify the range of the selectEvent limit endRange
+export function modifyRange(endRange) {
+  return endRange + 6;
+}
+
 // selectEvent() - retrieves data from public.Events for the Card Display component
-export async function selectEvent(filter) {
+export async function selectEvent(filter, endOfPage, setEndOfPage) {
+  console.log(endRange);
+
+  if(endOfPage) {
+    endRange = modifyRange(endRange);
+    setEndOfPage(false);
+  }
+  console.log(endRange);
+
   let query = supabase.from('event')
     .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, users ( first_name, last_name )`)
-    .gt('end_time', 'now()'); // Show only events in the future (end_time is greater than current time)
+    .gt('end_time', 'now()') // Show only events in the future (end_time is greater than current time)
+    .limit(6)
+    .range(0, endRange);
 
     if (filter !== "" && filter !== undefined && (isValid(filter) === true)) {
       query = query.ilike('postcode', `%${filter}%`); // Filter events by partial postcode match
@@ -145,9 +162,10 @@ export async function selectEvent(filter) {
 
 // Select data from DB to map onto Cards
 // Append the count of volunteers to the data array after the promises have resolved
-export async function fetchData(filter) {
+export async function fetchData(filter, endOfPage, setEndOfPage) {
+  console.log(endOfPage);
     try {
-      let data = await selectEvent(filter);
+      let data = await selectEvent(filter, endOfPage, setEndOfPage);
       if (data) {
         const promises = data.map((card) => {
           return countVolunteers(card.event_id).then((count) => {
