@@ -67,7 +67,7 @@ function SignInSignUp({ isSignedIn, setIsSignedIn, setFilter }) {
     }
 
     return <>
-        <div id="sign-up-in-outer-container">
+        <div id="sign-up-in-outer-container" data-testid="sign-in-sign-up-page">
             <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} setFilter={setFilter} />
             <div id="welcome-message-container">
                 <div id="welcome-title">
