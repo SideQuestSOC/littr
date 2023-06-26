@@ -3,8 +3,6 @@ import { isValid } from "postcode";
 import { getCurrentUserId } from "../Models/client";
 
 
-// insertPublicUser() - inserts data into the public.users table, it is called after
-// the supabaseSignUp() function has inserted a new user into the auth.users table
 export async function insertPublicUser(user_id, first_name, last_name) {
     await supabase.from('users').insert({
             id: user_id,
@@ -53,7 +51,7 @@ export async function countVolunteers(event_id) {
     return count.count;
 }
 
-
+// final like ver 
 export async function updateLikes(user_id, event_id) {
   const { data, error } = await supabase.from('likes').insert([
     { user_id, event_id }
@@ -65,6 +63,27 @@ export async function updateLikes(user_id, event_id) {
     console.log('Likes updated successfully:', data);
   }
 }
+// count likes
+export async function countLikes(event_id) {
+  const count = await supabase.from('likes')
+  .select('user_id', { count: 'exact' })
+  .eq('event_id', event_id);
+
+  return count.count;
+}
+
+// Check whether currently logged in user has liked
+export async function checkIfLiked(event_id) {
+  let user_id = await getCurrentUserId();
+
+  let count = await supabase.from('likes')
+  .select('user_id', { count: 'exact' })
+  .eq('event_id', event_id)
+  .eq('user_id', user_id);
+
+  return count.count;
+}
+
 
 
 // supabaseSignUp() - is used to sign up a user using the Supabase authentication service.
