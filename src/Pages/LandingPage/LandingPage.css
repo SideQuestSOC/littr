@@ -14,7 +14,7 @@
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: calc(80vh - 35px);
+  min-height: calc(78vh - 35px);
   /* min-height: calc(100vh - 35px); */
 
 }
@@ -44,7 +44,7 @@
 #landing-page-banner {
   background-color: var(--navyBlue);
   color: white;
-  height: 150px;
+  height: 156px;
   position: fixed;
   bottom: 5vh;
   width: 100vw;
@@ -52,7 +52,7 @@
   display: flex;
   text-align: center;
   align-items: center;
-  padding: 13px;
+  padding: 0 13px 0 13px;
   backdrop-filter: blur(2px);
 }
 
@@ -84,7 +84,7 @@
   align-items: flex-start;
   margin-left: 7.5vw;
   position: fixed;
-  bottom: 12vh;
+  bottom: 14vh;
 }
 
 /* Desktop media queries*/
