@@ -1,7 +1,7 @@
 # Littr
 Our environment is overrun with litter - by encouraging local communication and pride we aim to help communities struggling to reclaim their green-spaces, beaches and neighbourhoods.
 
-# Live Site
+### Live Site
 https://littr.netlify.app/
 
 ## Contributors
@@ -17,19 +17,27 @@ We aim to create a clean and healthy environment by empowering and connecting li
 
 ## Features
 Mobile focused design.
+
 User Sign Up/Log In System.
+
 Detailed overview of clean-up events.
+
 Create clean-up events.
+
 Search events by location/postcode.
+
 Google Maps integration.
+
 Volunteer for events and see total volunteers signed up.
+
 Ability to 'like' an event.
+
 Report issues with posted event functionality.
 
 ## Languages, Tools and Dependencies
 JavaScript <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/240px-JavaScript-logo.png" alt="JavaScript Logo" width="30" height="30">
 
-[React](https://react.dev/) <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png" alt="React Logo" width="30" height="30">
+[React](https://react.dev/) <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png" alt="React Logo" width="40" height="30">
 
 [Supabase](https://supabase.com/) <img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/001/299/square_480/supabase-logo-icon_1.png" alt="Supabase Logo" width="30" height="30">
 
@@ -39,7 +47,7 @@ JavaScript <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/J
 
 [Google Maps Embed API](https://developers.google.com/maps/documentation/embed/get-started) <img src="https://play-lh.googleusercontent.com/Kf8WTct65hFJxBUDm5E-EpYsiDoLQiGGbnuyP6HBNax43YShXti9THPon1YKB6zPYpA" alt="Google Logo" width="30" height="30">
 
-[Postcode.js](https://www.npmjs.com/package/postcode) <img src="https://camo.githubusercontent.com/d9ed43771cad968c9197b1787f1b14889561d0f3716e95d2acabdbfbd5aa018d/68747470733a2f2f696d672e696465616c2d706f7374636f6465732e636f2e756b2f506f7374636f64652e6a732532304c6f676f4033782e706e67" alt="Postcode.js Logo" width="30" height="30">
+[Postcode.js](https://www.npmjs.com/package/postcode)
 
 [React Waypoint](https://www.npmjs.com/package/react-waypoint)
 
