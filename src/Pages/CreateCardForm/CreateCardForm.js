@@ -194,6 +194,7 @@ export default function CreateCardForm({
                 : `${postTitle.length}/50`
             }
             error={postTitle.length < 5 && postTitle.length >= 1}
+            data-testid="post-title-input"
           />
           <TextField
             id="location-address"

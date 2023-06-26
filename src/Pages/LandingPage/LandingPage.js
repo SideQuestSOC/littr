@@ -23,7 +23,7 @@ function LandingPage({ isSignedIn, setFilter }) {
         <Button variant="contained">
           <Link to="/src/pages/carddisplay">Find a clean up</Link>
         </Button>
-        <Button variant="contained">
+        <Button variant="contained" data-testid="create-post-button">
           {/* If signed in go to Create Card Form, if not go to signinup page */}
           {isSignedIn ? <Link to="/src/pages/createpostform">Create a clean up</Link> : <Link to="/src/pages/signsignup">Create a clean up</Link>}
         </Button>
