@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Littr
+Our environment is overrun with litter - by encouraging local communication and pride we aim to help communities struggling to reclaim their green-spaces, beaches and neighbourhoods.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Live Site
+https://littr.netlify.app/
 
-## Available Scripts
+## Contributors
+### [Joshua Bailey](https://www.linkedin.com/in/jojabailey/)
+### [Steven Legere](https://www.linkedin.com/in/steven-legere-6b973476/)
+### [Anas Mohamed](https://www.linkedin.com/in/anas-mohamed-b90410189/)
+### [Diana Põldver](https://www.linkedin.com/in/dianapoldver/)
+### [Felicity Price](https://www.linkedin.com/in/felicity-price-a92a5326a/)
+### [Tristan Roscorla](https://www.linkedin.com/in/tristan-roscorla/)
 
-In the project directory, you can run:
+## Introduction
+We aim to create a clean and healthy environment by empowering and connecting like-minded individuals. Let’s come together, roll up our sleeves, and make our community shine.
 
-### `npm start`
+## Features
+Mobile focused design.
+User Sign Up/Log In System.
+Detailed overview of clean-up events.
+Create clean-up events.
+Search events by location/postcode.
+Google Maps integration.
+Volunteer for events and see total volunteers signed up.
+Ability to 'like' an event.
+Report issues with posted event functionality.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Languages, Tools and Dependencies
+JavaScript <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/240px-JavaScript-logo.png" alt="JavaScript Logo" width="30" height="30">
+[React](https://react.dev/) <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png" alt="React Logo" width="30" height="30">
+[Supabase](https://supabase.com/) <img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/001/299/square_480/supabase-logo-icon_1.png" alt="Supabase Logo" width="30" height="30">
+[Jest](https://www.npmjs.com/package/jest) <img src="https://docs.knapsackpro.com/images/blog/posts/run-jest-on-github-actions-with-parallelization/jest.png" alt="Jest Logo" width="30" height="30">
+[Material UI](https://mui.com/) <img src="https://v4.mui.com/static/logo_raw.svg" alt="Material UI Logo" width="30" height="30">
+[Google Maps Embed API](https://developers.google.com/maps/documentation/embed/get-started) <img src="https://play-lh.googleusercontent.com/Kf8WTct65hFJxBUDm5E-EpYsiDoLQiGGbnuyP6HBNax43YShXti9THPon1YKB6zPYpA" alt="Google Logo" width="30" height="30">
+[Postcode.js](https://www.npmjs.com/package/postcode) <img src="https://camo.githubusercontent.com/d9ed43771cad968c9197b1787f1b14889561d0f3716e95d2acabdbfbd5aa018d/68747470733a2f2f696d672e696465616c2d706f7374636f6465732e636f2e756b2f506f7374636f64652e6a732532304c6f676f4033782e706e67" alt="Postcode.js Logo" width="30" height="30">
+[React Waypoint](https://www.npmjs.com/package/react-waypoint)
+[Netlify](https://www.netlify.com/) <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Netlify_logo_%282%29.svg/1920px-Netlify_logo_%282%29.svg.png" alt="Netlify Logo" width="30" height="30">
