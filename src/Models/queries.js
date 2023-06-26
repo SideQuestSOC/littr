@@ -63,6 +63,7 @@ export async function updateLikes(user_id, event_id) {
     console.log('Likes updated successfully:', data);
   }
 }
+
 // count likes
 export async function countLikes(event_id) {
   const count = await supabase.from('likes')
@@ -84,7 +85,18 @@ export async function checkIfLiked(event_id) {
   return count.count;
 }
 
+export async function deleteLikes(user_id, event_id) {
+  const { data, error } = await supabase.from('likes')
+    .delete()
+    .eq('user_id', user_id)
+    .eq('event_id', event_id);
 
+  if (error) {
+    console.error('Error deleting like:', error);
+  } else {
+    console.log('Like deleted successfully:', data);
+  }
+}
 
 // supabaseSignUp() - is used to sign up a user using the Supabase authentication service.
 // It takes in a formData object containing user signup data.

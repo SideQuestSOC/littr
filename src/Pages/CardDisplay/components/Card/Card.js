@@ -92,6 +92,8 @@ export default function Card(props) {
             event_id={props.event_id}
             isSignedIn={props.isSignedIn}
             handleLike={handleLike}
+            setUpdateLikeBadge={props.setUpdateLikeBadge}
+            updateLikeBadge={props.updateLikeBadge}
           />
           <Button id="report-button" onClick={falseReport} variant="contained" aria-label="Report post">
             <FlagOutlinedIcon />

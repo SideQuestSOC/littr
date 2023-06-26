@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import { updateLikes, countLikes, checkIfLiked } from "../../../../Models/queries";
+import { updateLikes, deleteLikes, countLikes, checkIfLiked } from "../../../../Models/queries";
 import { getCurrentUserId } from "../../../../Models/client";
 import LikeBadge from "./LikeBadge";
 
-const LikeButton = ({ event_id, isSignedIn }) => {
+const LikeButton = ({ event_id, isSignedIn, setUpdateLikeBadge, updateLikeBadge }) => {
   const [user_id, setUserID] = useState("");
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
@@ -32,15 +32,17 @@ const LikeButton = ({ event_id, isSignedIn }) => {
     async function fetchLikesCount() {
       const count = await countLikes(event_id);
       setLikesCount(count);
+      setUpdateLikeBadge(false);
     }
     fetchLikesCount();
-  }, [event_id]);
+  }, [event_id, updateLikeBadge]);
 
   const handleUpdateLikes = async () => {
     if (!isLiked && isSignedIn) {
       await updateLikes(user_id, event_id);
       setLikesCount(likesCount + 1);
       setIsLiked(true);
+      setUpdateLikeBadge(false);
     }
   };
 
@@ -48,7 +50,7 @@ const LikeButton = ({ event_id, isSignedIn }) => {
     <div>
       <ThumbUpOffAltIcon
         id="like-button"
-        onClick={handleUpdateLikes}
+        onClick={isLiked ? () => {deleteLikes(user_id, event_id); setUpdateLikeBadge(true); setIsLiked(false);} : handleUpdateLikes}
         disabled={isLiked || !isSignedIn}
       />
       <LikeBadge count={likesCount} />
