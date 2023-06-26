@@ -21,6 +21,7 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.12.1",
     "react-scripts": "5.0.1",
+    "react-waypoint": "^10.3.0",
     "styled-components": "^5.3.11",
     "use-history": "^1.4.1",
     "web-vitals": "^2.1.4"

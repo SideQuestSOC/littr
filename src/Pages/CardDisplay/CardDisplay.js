@@ -1,3 +1,4 @@
+// import css
 import "./CardDisplay.css";
 // import React dependencies
 import React, { useEffect, useState } from "react";
@@ -5,15 +6,19 @@ import React, { useEffect, useState } from "react";
 import Card from "./components/Card/Card.js";
 import SearchAppBar from "../Components/Navbar/Navbar";
 import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
-// import SQL queries/functions
-import { fetchData, formatDate, formatTime } from "../../Models/queries";
 import Footer from "../Components/Footer/footer";
+// import infinite scroll package
+import { Waypoint } from 'react-waypoint';
+// import SQL queries/functions
+import { fetchData, formatDate, formatTime} from "../../Models/queries";
+
 
 function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilter, filter }) {
   const [updateVolunteerBadge, setUpdateVolunteerBadge] = useState(false);
   const [deleteVolunteersBadge, setDeleteVolunteersBadge] = useState(false);
   const [updateLikeBadge, setUpdateLikeBadge] = useState(false);
   const [hats, setHats] = useState([]);
+  const [endOfPage, setEndOfPage] = useState(false);
 
   async function getHats() {
     const hatContext = require.context(
@@ -38,7 +43,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
   useEffect(() => {
     async function setFetchedData() {
       // retrieve event data from DB
-      setCardData(await fetchData(filter));
+      setCardData(await fetchData(filter, endOfPage, setEndOfPage));
       // reset useStates to allow them to trigger again
       setUpdateVolunteerBadge(false);
       setDeleteVolunteersBadge(false);
@@ -46,14 +51,15 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
     }
     setFetchedData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [updateVolunteerBadge, deleteVolunteersBadge, updateLikeBadge, filter]);
+  }, [updateVolunteerBadge, deleteVolunteersBadge, updateLikeBadge, filter, endOfPage]);
 
   // reset the filter search term when navigating back from a different page
   useEffect(() => {
     setFilter("")
   }, [setFilter])
 
-  return <div className="outermost-container">
+  return (
+  <div className="outermost-container">
     <div data-testid="card-display">
       <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} setFilter={setFilter} filter={filter} />
       <div id="card-display-outer-container">
@@ -88,6 +94,12 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
            </div>
         ))}
       </div>
+      {/* Check if user scrolls to the end of the page AFTER the cardData has been mapped */}
+      {cardData.length > 0 && (
+        <Waypoint
+          onEnter={() => setEndOfPage(true)}
+        />
+      )}
       {/* Only render this button when user is signed in */}
       {isSignedIn && (
         <div className="create-post-container">
@@ -95,9 +107,9 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
         </div>
       )}  
     </div>
-    
-  <Footer />
-  </div> 
+    <Footer />
+  </div>
+  );
 }
 
 export default CardDisplay;
