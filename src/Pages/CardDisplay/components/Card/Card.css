@@ -112,7 +112,7 @@
     width: 30px;
     height: 30px;
     min-width: 0;
-    padding: 0;
+    padding: 2px;
 }
 
 #like-button:hover {

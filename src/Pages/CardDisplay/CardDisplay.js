@@ -89,6 +89,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
             setUpdateVolunteerBadge={setUpdateVolunteerBadge}
             isSignedIn={isSignedIn}
             setUpdateLikeBadge={setUpdateLikeBadge}
+            updateLikeBadge={updateLikeBadge}
             setDeleteVolunteersBadge={setDeleteVolunteersBadge}
             />
            </div>
