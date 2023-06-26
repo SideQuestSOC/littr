@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import "./LandingPage.css";
 // import MaterialUI dependencies
 import { Button } from "@mui/material";
+import SearchAppBar from "../Components/Navbar/Navbar";
+import Footer from "../Components/Footer/footer";
 
 function LandingPage({ isSignedIn, setFilter }) {
   // Initialize the navigate object using the useNavigate 'hook'
@@ -18,6 +20,7 @@ function LandingPage({ isSignedIn, setFilter }) {
 
   return (
     <div id="landing-page-outer-container">
+          <SearchAppBar />
       <h1 id="title">LITTR</h1>
       <div id="landing-page-button-container">
         <Button variant="contained">
@@ -31,6 +34,7 @@ function LandingPage({ isSignedIn, setFilter }) {
       <div id="landing-page-banner">
         <h2>Unite, Transform and Clean Up your community.</h2>
       </div>
+      <Footer />
     </div>
   );
 }

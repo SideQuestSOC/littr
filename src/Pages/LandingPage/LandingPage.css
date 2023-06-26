@@ -10,7 +10,7 @@
 #landing-page-outer-container {
   height: 100vh;
   width: 100vw;
-  background-image: url("../../Assets/LandingPageBackground.webp");
+  /* background-image: url("../../Assets/LandingPageBackground.webp"); */
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -86,9 +86,9 @@
 /* Desktop media queries*/
 @media only screen and (min-width: 992px)
 {
-  #landing-page-outer-container {
+  /* #landing-page-outer-container {
     background-image: url("../../Assets/LandingPageBackgroundDesktop.webp");
-  }
+  } */
 
   #landing-page-button-container {
     bottom: -10vh;
