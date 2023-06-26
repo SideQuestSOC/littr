@@ -16,15 +16,23 @@ https://littr.netlify.app/
 We aim to create a clean and healthy environment by empowering and connecting like-minded individuals. Let’s come together, roll up our sleeves, and make our community shine.
 
 ## Features
-#### Mobile focused design.
-#### User Sign Up/Log In System.
-#### Detailed overview of clean-up events.
-#### Create clean-up events.
-#### Search events by location/postcode.
-#### Google Maps integration.
-#### Volunteer for events and see total volunteers signed up.
-#### Ability to 'like' an event.
-#### Report issues with posted event functionality.
+Mobile focused design.
+
+User Sign Up/Log In System.
+
+Detailed overview of clean-up events.
+
+Create clean-up events.
+
+Search events by location/postcode.
+
+Google Maps integration.
+
+Volunteer for events and see total volunteers signed up.
+
+Ability to 'like' an event.
+
+Report issues with posted event functionality.
 
 ## Languages, Tools and Dependencies
 JavaScript <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/240px-JavaScript-logo.png" alt="JavaScript Logo" width="30" height="30">
