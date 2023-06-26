@@ -23,7 +23,7 @@ test('validates "Describe Your Event" input in CreateCardForm', () => {
     </Router>
   );
 
-  // Get the "Describe Your Event" input field using its ID
+  // Get the "Describe Your Event" input field using its Placeholder Text
   const describeEventInput = screen.getByPlaceholderText('Describe Your Event');
 
   // Simulate typing in the input field
