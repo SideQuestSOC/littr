@@ -309,9 +309,6 @@ export default function CreateCardForm({
               <MenuItem value={"On-site Refuse disposal"}>
                 On-site Refuse disposal
               </MenuItem>
-              <MenuItem value={"Literal dumpster fire"}>
-                Literal dumpster fire
-              </MenuItem>
             </Select>
           </FormControl>
           <Typography id="recommended-equipment-title" variant="h6">
