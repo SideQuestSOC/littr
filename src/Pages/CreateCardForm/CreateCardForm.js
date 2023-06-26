@@ -255,6 +255,7 @@ export default function CreateCardForm({
             />
             <SingleInputTimeRangeField
               id="time-range"
+              data-testid="time-input"
               slotProps={{
                 textField: ({ position }) => ({
                   label: "Start Time - End Time (24-Hour-Format)",

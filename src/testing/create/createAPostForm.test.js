@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import { MemoryRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import SignInSignUp from '../../Pages/SignInSignUp/SignInSignUp.js';
 import CreateCardForm from '../../Pages/CreateCardForm/CreateCardForm.js';
 
@@ -74,6 +74,52 @@ fireEvent.change(titleInput);
   });
   // Restore the original window.alert function
   mockAlert.mockRestore();
+});
+
+// User can add date and time to event
+test('User cannot submit form if date or time is not selected', async () => {
+  const mockNavigate = jest.fn();
+  const mockAlert = jest.spyOn(window, 'alert').mockImplementation(() => {});
+
+  render(
+    <MemoryRouter>
+      <CreateCardForm
+        isSignedIn={true}
+        setIsSignedIn={() => {}}
+        setCardData={() => {}}
+        setFilter={() => {}} />
+    </MemoryRouter>
+  );
+
+  const submitButton = screen.getByText('Create Post');
+
+  fireEvent.click(submitButton);
+
+  expect(mockAlert).toHaveBeenCalledWith('Please fill it all in!');
+  expect(mockNavigate).not.toHaveBeenCalled();
+
+  mockAlert.mockRestore();
+});
+
+// User can submit form if date and time are selected'
+test('User can submit form if date and time are selected', async () => {
+  const mockNavigate = jest.fn();
+
+  render(
+    <MemoryRouter>
+      <CreateCardForm
+        isSignedIn={true}
+        setIsSignedIn={() => {}}
+        setCardData={() => {}}
+        setFilter={() => {}} />
+    </MemoryRouter>
+  );
+
+  const submitButton = screen.getByText('Create Post');
+
+  // Set the date and time values
+  const dateInput = screen.getByLabelText('Date of Your Event');
+  const timeInput = screen.getByTestId('time-input');
 });
 
 });
