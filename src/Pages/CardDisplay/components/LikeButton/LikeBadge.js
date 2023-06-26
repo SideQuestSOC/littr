@@ -1,6 +1,4 @@
-
 import { Badge } from "@mui/material";
-import GroupsIcon from '@mui/icons-material/Groups';
 
 function LikeBadge({ count }) {
     return (
