@@ -8,6 +8,8 @@
      gap: 15px;
      padding-right: 16px;
      margin-top: auto;
+     position: fixed;
+     bottom: 0;
 }
 
 /* .footer {

@@ -29,10 +29,10 @@ function LandingPage({ isSignedIn, setFilter }) {
           {isSignedIn ? <Link to="/src/pages/createpostform">Create a clean up</Link> : <Link to="/src/pages/signsignup">Create a clean up</Link>}
         </Button>
       </div>
+      </div>
       <div id="landing-page-banner">
         <h2>Unite, Transform and Clean Up your community.</h2>
       </div>
-    </div>
     <Footer />
 
   </>
