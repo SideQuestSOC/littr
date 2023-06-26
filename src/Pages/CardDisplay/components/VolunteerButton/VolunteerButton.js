@@ -72,9 +72,6 @@ const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn, setDel
                         }
                         : () => alert("Please Sign In to Volunteer!")
                 }>
-                <Badge badgeContent={likeCount} color="error">
-                    <ThumbUpIcon />
-                </Badge>
                 {isVolunteer ? "Cancel" : "Volunteer"}
             </Button>
         </div>

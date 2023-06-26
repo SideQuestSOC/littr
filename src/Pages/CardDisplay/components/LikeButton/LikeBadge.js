@@ -16,7 +16,6 @@ function LikeBadge({ count }) {
             color: "black",
             width: "26px",
             }}}>
-            <GroupsIcon />
         </Badge>
     )
 }
