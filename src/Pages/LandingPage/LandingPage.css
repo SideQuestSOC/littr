@@ -8,11 +8,12 @@
 }
 
 #landing-page-outer-container {
-  height: 100vh;
   width: 100vw;
-  background-image: url("../../Assets/LandingPageBackground.webp");
+  background-image: url("../../Assets/mobBG.svg");
+  background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: calc(78vh - 35px);
 }
 
 #landing-page-outer-container button {
@@ -38,9 +39,9 @@
 }
 
 #landing-page-banner {
-  background-color: var(--neonGreenTransparent60);
+  background-color: var(--navyBlue);
   color: white;
-  height: 150px;
+  height: 156px;
   position: fixed;
   bottom: 5vh;
   width: 100vw;
@@ -48,7 +49,7 @@
   display: flex;
   text-align: center;
   align-items: center;
-  padding: 13px;
+  padding: 0 13px 0 13px;
   backdrop-filter: blur(2px);
 }
 
@@ -59,6 +60,7 @@
   text-decoration-skip-ink: none;
   font-size: 25px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.55);
+  padding-bottom: 5vh;
 }
 
 #title {
@@ -80,18 +82,19 @@
   align-items: flex-start;
   margin-left: 7.5vw;
   position: fixed;
-  bottom: -3vh;
+  bottom: 20vh;
 }
 
 /* Desktop media queries*/
 @media only screen and (min-width: 992px)
 {
   #landing-page-outer-container {
-    background-image: url("../../Assets/LandingPageBackgroundDesktop.webp");
+    background-image: url("../../Assets/deskBG.svg");
+    min-height: calc(100vh - 35px);
   }
 
   #landing-page-button-container {
-    bottom: -10vh;
+    bottom: 15vh;
     gap: 20px;
   }
 
@@ -102,6 +105,7 @@
 
   #landing-page-banner h2 {
     font-size: 52px;
+    padding-bottom: 10vh;
   }
 
   #landing-page-outer-container button a {

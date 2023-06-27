@@ -8,7 +8,22 @@
      gap: 15px;
      padding-right: 16px;
      margin-top: auto;
+     position: fixed;
+     bottom: 0;
 }
+
+/* .footer {
+     height: 35px;
+     width: 100%;
+     background-color: #6AAF88;
+     display: flex;
+     justify-content: flex-end;
+     align-items: center;
+     gap: 15px;
+     padding-right: 16px;
+     position: fixed;
+     bottom: 0;
+   } */
 
 .footer a {
      color: #2f3e46;

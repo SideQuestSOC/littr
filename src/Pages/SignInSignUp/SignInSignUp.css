@@ -9,7 +9,8 @@
 #sign-up-in-outer-container {
     height: calc(100vh - 35px);
     width: 100vw;
-    background-image: url("../../Assets/signinupbackground.webp");
+    background-image: url("../../Assets/Sign_In_Up_Mobile.svg");
+    background-position: bottom right;
     background-repeat: no-repeat;
     background-size: cover;   
     overflow: hidden;  
@@ -124,6 +125,10 @@ input {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    #sign-up-in-outer-container {
+        background-image: url("../../Assets/Sign_In_Up_Desktop.svg");
     }
 
     #sign-up-in-container {
