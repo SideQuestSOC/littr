@@ -10,9 +10,9 @@ function LikeBadge({ count }) {
             }}
             sx={{
             "& .MuiBadge-badge": {
-            backgroundColor: "#6AAF88",
+            backgroundColor: "#D9D9D9",
             color: "black",
-            width: "26px",
+            // width: "26px",
             }}}>
         </Badge>
     )
