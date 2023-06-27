@@ -99,7 +99,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
       {/* Check if user scrolls to the end of the page AFTER the cardData has been mapped */}
       {cardData.length > 0 && (
         <Waypoint
-          onEnter={() => {setEndOfPage(true); console.log("End of Page")}}
+          onEnter={() => {setEndOfPage(true)}}
         />
       )}
       {/* Spacer needed to let infinite scroll work */}

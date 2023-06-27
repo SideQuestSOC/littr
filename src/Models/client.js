@@ -20,7 +20,7 @@ export async function SignInUser(email, password) {
       }
       else {
         // Sign-in successful
-        console.log('Sign-in successful:', data);
+        // console.log('Sign-in successful:', data);
         return true;
       }
     } catch (error) {
@@ -41,11 +41,11 @@ export async function isSessionSignedIn() {
     }
     else {
       if(data.session) {
-        console.log("A user is logged in.", data);
+        // console.log("A user is logged in.", data);
         return true;
       }
       else {
-        console.log("A user is not logged in.", data);
+        // console.log("A user is not logged in.", data);
         return false;
       }
     }

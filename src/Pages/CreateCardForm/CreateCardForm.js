@@ -70,10 +70,8 @@ export default function CreateCardForm({
   async function UserID() {
     let userId = await getCurrentUserId();
     setcurrentUserID(userId);
-    console.log(userId);
   }
   UserID();
-  console.log(currentUserID);
 
   const handlePostTitleChange = (event) => {
     setPostTitle(event.target.value);
