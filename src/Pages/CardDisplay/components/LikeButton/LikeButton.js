@@ -50,7 +50,7 @@ const LikeButton = ({ event_id, isSignedIn, setUpdateLikeBadge, updateLikeBadge 
     <div>
       <ThumbUpOffAltIcon
         id="like-button"
-        onClick={isLiked ? () => {deleteLikes(user_id, event_id); setUpdateLikeBadge(true); setIsLiked(false);} : handleUpdateLikes}
+        onClick={isSignedIn ? (isLiked ? () => {deleteLikes(user_id, event_id); setUpdateLikeBadge(true); setIsLiked(false);} : handleUpdateLikes) : () => {alert("Please sign in to Like!")}}
         disabled={isLiked || !isSignedIn}
       />
       <LikeBadge count={likesCount} />
