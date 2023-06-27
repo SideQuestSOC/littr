@@ -76,8 +76,9 @@
 }
 
 #simple-menu a {
-  color: var(--navyBlue);
+  /* color: var(--navyBlue); */
 }
+
 #simple-menu a:visited {
   color: white;
 }
@@ -110,7 +111,7 @@
 /* #dropdown-createagroup-link { grid-area: 3 / 1 / 4 / 3; } */
 /* #dropdown-menu-signout-button { grid-area: 4 / 1 / 5 / 3; } */
 
-  /* ONLY SHOW THESE ON MVP VERSION */
+/* ONLY SHOW THESE ON MVP VERSION */
 #dropdown-createapost-link { grid-area: 1 / 1 / 2 / 3; }
 #dropdown-menu-signout-button { grid-area: 2 / 1 / 3 / 3; }
 

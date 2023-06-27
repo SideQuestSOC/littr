@@ -1,8 +1,8 @@
 import { supabase } from './client';
 import { isValid } from "postcode";
+import { getCurrentUserId } from "../Models/client";
 
-// insertPublicUser() - inserts data into the public.users table, it is called after
-// the supabaseSignUp() function has inserted a new user into the auth.users table
+
 export async function insertPublicUser(user_id, first_name, last_name) {
     await supabase.from('users').insert({
             id: user_id,
@@ -13,10 +13,33 @@ export async function insertPublicUser(user_id, first_name, last_name) {
 
 // Insert a user into the event_volunteers table when they volunteer
 export async function insertEventVolunteer(user_id, event_id) {
-    await supabase.from('event_volunteers').insert({
+    await supabase.from('event_volunteers')
+    .insert({
         user_id: user_id,
         event_id: event_id,
     })
+}
+
+// Delete a user from the event_volunteers table when they cancel
+export async function deleteEventVolunteer(event_id) {
+  let user_id = await getCurrentUserId();
+
+  await supabase.from('event_volunteers')
+  .delete()
+  .eq('user_id', user_id)
+  .eq('event_id', event_id);
+}
+
+// Check whether currently logged in user is already in the event volunteer list
+export async function checkIfVolunteer(event_id) {
+  let user_id = await getCurrentUserId();
+
+  let count = await supabase.from('event_volunteers')
+  .select('user_id', { count: 'exact' })
+  .eq('event_id', event_id)
+  .eq('user_id', user_id);
+
+  return count.count;
 }
 
 // count how many volunteers there are for an event
@@ -28,25 +51,51 @@ export async function countVolunteers(event_id) {
     return count.count;
 }
 
-// get likes and update them
-export async function updateLikes(event_id) {
-  let updatedLikes = await getLikes(event_id);
+// final like ver 
+export async function updateLikes(user_id, event_id) {
+  const { /* data, */ error } = await supabase.from('likes').insert([
+    { user_id, event_id }
+  ]);
 
-  updatedLikes = updatedLikes + 1;
-
-  await supabase
-    .from('event')
-    .update({ likes: updatedLikes }) 
-    .eq('event_id', event_id);
+  if (error) {
+    console.error('Error updating likes:', error);
+  } else {
+    // console.log('Likes updated successfully:', data);
+  }
 }
 
-export async function getLikes(event_id){
-  const { data } = await supabase
-  .from('event')
-  .select('likes')
-  .eq('event_id', event_id)
+// count likes
+export async function countLikes(event_id) {
+  const count = await supabase.from('likes')
+  .select('user_id', { count: 'exact' })
+  .eq('event_id', event_id);
 
-  return data[0].likes;
+  return count.count;
+}
+
+// Check whether currently logged in user has liked
+export async function checkIfLiked(event_id) {
+  let user_id = await getCurrentUserId();
+
+  let count = await supabase.from('likes')
+  .select('user_id', { count: 'exact' })
+  .eq('event_id', event_id)
+  .eq('user_id', user_id);
+
+  return count.count;
+}
+
+export async function deleteLikes(user_id, event_id) {
+  const { /*data,*/ error } = await supabase.from('likes')
+    .delete()
+    .eq('user_id', user_id)
+    .eq('event_id', event_id);
+
+  if (error) {
+    console.error('Error deleting like:', error);
+  } else {
+    // console.log('Like deleted successfully:', data);
+  }
 }
 
 // supabaseSignUp() - is used to sign up a user using the Supabase authentication service.
@@ -102,26 +151,40 @@ export async function supabaseEventInsert(PostData) {
     }
 }
 
+// set initial end range of selectEvent query outside the function
+let endRange = 5;
+// modify the range of the selectEvent limit endRange
+function modifyRange(endRange) {
+  return endRange + 6; // get the next 6 cards/rows in the DB
+}
+
 // selectEvent() - retrieves data from public.Events for the Card Display component
-export async function selectEvent(filter) {
+export async function selectEvent(filter, endOfPage, setEndOfPage) {
+  //  modify endRange when user hits the bottom of the page then reset endOfPage useState back to false
+  if(endOfPage) {
+    endRange = modifyRange(endRange);
+    setEndOfPage(false);
+  }
+
   let query = supabase.from('event')
     .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, users ( first_name, last_name )`)
-    .order('date_timestamp', { ascending: true })
-    .gt('end_time', 'now()'); // Show only events in the future (end_time is greater than current time)
+    .gt('end_time', 'now()') // Show only events in the future (end_time is greater than current time)
+    .limit(6) // limit to 6 rows at a time
+    .range(0, endRange); // the range of rows to display - modified when user hits end of page for infinite scroll functionality
 
-    if (filter !== "" && filter !== undefined && (isValid(filter) === true)) {
-      query = query.ilike('postcode', `%${filter}%`); // Filter events by partial postcode match
-    }
-    else {
-      query = query.ilike('location, title, post_introduction', `%${filter}%`); // Filter events by partial keyword match
-    }
-    
+  // search functionality
+  if (filter !== "" && filter !== undefined && (isValid(filter) === true)) {
+    query = query.ilike('postcode', `%${filter}%`); // Filter events by partial postcode match
+  }
+  else {
+    query = query.ilike('location, title, post_introduction', `%${filter}%`); // Filter events by partial keyword match
+  }
 
   try {
     const { data } = await query;
-
     return data;
-  } catch (error) {
+  } 
+  catch (error) {
     console.error(error);
     return null;
   }
@@ -129,9 +192,9 @@ export async function selectEvent(filter) {
 
 // Select data from DB to map onto Cards
 // Append the count of volunteers to the data array after the promises have resolved
-export async function fetchData(filter) {
+export async function fetchData(filter, endOfPage, setEndOfPage) {
     try {
-      let data = await selectEvent(filter);
+      let data = await selectEvent(filter, endOfPage, setEndOfPage);
       if (data) {
         const promises = data.map((card) => {
           return countVolunteers(card.event_id).then((count) => {

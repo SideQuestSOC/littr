@@ -8,7 +8,7 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 // Functionality for signing in a user
 export async function SignInUser(email, password) {
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { /* data, */ error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
       })
@@ -20,7 +20,7 @@ export async function SignInUser(email, password) {
       }
       else {
         // Sign-in successful
-        console.log('Sign-in successful:', data);
+        // console.log('Sign-in successful:', data);
         return true;
       }
     } catch (error) {
@@ -41,11 +41,11 @@ export async function isSessionSignedIn() {
     }
     else {
       if(data.session) {
-        console.log("A user is logged in.", data);
+        // console.log("A user is logged in.", data);
         return true;
       }
       else {
-        console.log("A user is not logged in.", data);
+        // console.log("A user is not logged in.", data);
         return false;
       }
     }
@@ -59,7 +59,7 @@ export async function isSessionSignedIn() {
 // Get the currently signed in users id
 export async function getCurrentUserId() {
   const { data: { user } } = await supabase.auth.getUser();
-  return user;
+  return user.id;
 }
 
 // Sign out the user 

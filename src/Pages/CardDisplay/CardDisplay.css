@@ -30,6 +30,7 @@ body {
   gap: 10px;
   padding: 0 25% 0 25%;
   margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .create-post-container {
@@ -43,6 +44,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+#spacer {
+  height: 30px;
 }
 
 /* Desktop media queries*/

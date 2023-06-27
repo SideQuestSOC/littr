@@ -69,7 +69,7 @@ export default function CreateCardForm({
   // Get the current users ID
   async function UserID() {
     let userId = await getCurrentUserId();
-    setcurrentUserID(userId.id);
+    setcurrentUserID(userId);
   }
   UserID();
 
@@ -192,6 +192,7 @@ export default function CreateCardForm({
                 : `${postTitle.length}/50`
             }
             error={postTitle.length < 5 && postTitle.length >= 1}
+            data-testid="post-title-input"
           />
           <TextField
             id="location-address"
@@ -249,9 +250,10 @@ export default function CreateCardForm({
               TextField={(params) => <TextField {...params} />}
               className="custom-date-picker"
               format="DD/MM/YYYY"
-            />
+              />
             <SingleInputTimeRangeField
               id="time-range"
+              data-testid="time-input"
               slotProps={{
                 textField: ({ position }) => ({
                   label: "Start Time - End Time (24-Hour-Format)",
@@ -308,9 +310,6 @@ export default function CreateCardForm({
               <MenuItem value={"Council pick-up"}>Council pick-up</MenuItem>
               <MenuItem value={"On-site Refuse disposal"}>
                 On-site Refuse disposal
-              </MenuItem>
-              <MenuItem value={"Literal dumpster fire"}>
-                Literal dumpster fire
               </MenuItem>
             </Select>
           </FormControl>

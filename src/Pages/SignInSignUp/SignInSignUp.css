@@ -9,7 +9,8 @@
 #sign-up-in-outer-container {
     height: calc(100vh - 35px);
     width: 100vw;
-    background-image: url("../../Assets/signinupbackground.webp");
+    background-image: url("../../Assets/Sign_In_Up_Mobile.svg");
+    background-position: bottom right;
     background-repeat: no-repeat;
     background-size: cover;   
     overflow: hidden;  
@@ -33,6 +34,8 @@
     align-items: center;
     justify-content: center;
     color: white;
+    font-size: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.55);
 }
 
 #welcome-subheading {
@@ -42,6 +45,8 @@
     text-decoration-color: var(--neonGreen);
     text-decoration-thickness: 0.4em;
     text-decoration-skip-ink: none;
+    font-size: 13px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.55);
 }
 
 #sign-up-in-container {
@@ -109,10 +114,6 @@ input {
 /* Desktop media queries*/
 @media only screen and (min-width: 992px)
 {
-    /* Hide the welcome message on desktop */
-    #welcome-message-container {
-        display: none;
-    }
     /* Hide the X close button on desktop */
     #sign-up-in-close {
         display: none;
@@ -126,13 +127,17 @@ input {
         transform: translate(-50%, -50%);
     }
 
+    #sign-up-in-outer-container {
+        background-image: url("../../Assets/Sign_In_Up_Desktop.svg");
+    }
+
     #sign-up-in-container {
         width: 40vw;
         position: static;
         border-radius: 10px;
         padding: 15px 0 15px 0;
     }
-    
+
     input {
         width: 30vw;
     }
