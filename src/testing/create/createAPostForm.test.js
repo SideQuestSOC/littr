@@ -151,5 +151,7 @@ fireEvent.change(datePicker, { target: { value: '15/07/2023' } });
 
 // Verify that the selected date is displayed
 expect(datePicker).toHaveValue('15/07/2023');
+
+
 });
 });
