@@ -1,4 +1,4 @@
-// This does not work yet!
+// This is still work in progress!
 
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
@@ -42,5 +42,5 @@ test('user can discard inputted data', async () => {
   // expect(screen.queryByPlaceholderText("Title of Post")).not.toBeInTheDocument();
   expect(screen.queryByPlaceholderText("Address")).toBeNull();
   expect(screen.queryByPlaceholderText("Postcode")).toBeNull();
-  expect(screen.queryByPlaceholderText('Describe Your Event')).toBeNull();
+  expect(screen.queryByPlaceholderText('Describe Your Event')).twoBeNull();
 });

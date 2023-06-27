@@ -11,6 +11,7 @@ test('validates "Describe Your Event" input in CreateCardForm', () => {
   const setCardData = jest.fn();
   const setFilter = jest.fn();
 
+  // Arrange
   // Render the CreateCardForm component within a Router
   render(
     <Router>
@@ -23,6 +24,7 @@ test('validates "Describe Your Event" input in CreateCardForm', () => {
     </Router>
   );
 
+  // Act
   // Get the "Describe Your Event" input field using its Placeholder Text
   const describeEventInput = screen.getByPlaceholderText('Describe Your Event');
 

@@ -10,6 +10,7 @@ import CreatePostButton from '../../Pages/CardDisplay/components/CreatePostButto
 test("user can add disposal method", async () => {
   // Mock the props required for testing
   const isSignedIn = true;
+
   // Arrange
   // Render the CreatePostButton component within a Router
   render(
@@ -18,6 +19,7 @@ test("user can add disposal method", async () => {
       <CreateCardForm isSignedIn={isSignedIn} />
     </Router>
   );
+  
   // Act
   // Get the create post button using screen.getByTestId
   const createPostButton = screen.getByTestId('create-post-button');

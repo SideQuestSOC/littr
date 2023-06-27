@@ -5,12 +5,15 @@ import CreateCardForm from '../../Pages/CreateCardForm/CreateCardForm';
 
 test('user can add recommended equipment', () => {
   // Render the CreateCardForm component within a Router
+
+  // Arrange
   render(
     <Router>
       <CreateCardForm isSignedIn={true} />
     </Router>
   );
 
+  // Act
   // Type recommended equipment in the input field
   const recommendedEquipmentInput = screen.getByPlaceholderText("e.g. gloves, pickers, water");
 

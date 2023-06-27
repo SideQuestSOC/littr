@@ -6,6 +6,7 @@ import CreateCardForm from '../../Pages/CreateCardForm/CreateCardForm';
 
 // Check if the user can enter a valid address
 test("user can enter a valid address", () => {
+// Arrange
 // render the CreateCardForm component
 render(
 <Router>
@@ -13,6 +14,7 @@ render(
 </Router>
 );
 
+// Act
 // Get the location address input field
 const locationAddressInput = screen.getByPlaceholderText("Address");
 expect(locationAddressInput).toBeInTheDocument();
@@ -20,6 +22,7 @@ expect(locationAddressInput).toBeInTheDocument();
 // Enter a valid address
 fireEvent.change(locationAddressInput, { target: { value: "123 Main Street" } });
 
+// Assert
 // Check if the entered address is displayed correctly
 expect(locationAddressInput.value).toBe("123 Main Street");
 });
