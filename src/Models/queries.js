@@ -53,14 +53,14 @@ export async function countVolunteers(event_id) {
 
 // final like ver 
 export async function updateLikes(user_id, event_id) {
-  const { data, error } = await supabase.from('likes').insert([
+  const { /* data, */ error } = await supabase.from('likes').insert([
     { user_id, event_id }
   ]);
 
   if (error) {
     console.error('Error updating likes:', error);
   } else {
-    console.log('Likes updated successfully:', data);
+    // console.log('Likes updated successfully:', data);
   }
 }
 
@@ -86,7 +86,7 @@ export async function checkIfLiked(event_id) {
 }
 
 export async function deleteLikes(user_id, event_id) {
-  const { data, error } = await supabase.from('likes')
+  const { /*data,*/ error } = await supabase.from('likes')
     .delete()
     .eq('user_id', user_id)
     .eq('event_id', event_id);
@@ -94,7 +94,7 @@ export async function deleteLikes(user_id, event_id) {
   if (error) {
     console.error('Error deleting like:', error);
   } else {
-    console.log('Like deleted successfully:', data);
+    // console.log('Like deleted successfully:', data);
   }
 }
 
