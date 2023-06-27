@@ -4,16 +4,13 @@ import "./VolunteerButton.css";
 import React, { useState, useEffect } from 'react';
 // import Material UI dependencies
 import Button from '@mui/material/Button';
-import Badge from '@mui/material/Badge';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 // import SQL queries/functions
-import { insertEventVolunteer, checkIfVolunteer, deleteEventVolunteer, countLikes } from "../../../../Models/queries";
+import { insertEventVolunteer, checkIfVolunteer, deleteEventVolunteer } from "../../../../Models/queries";
 import { getCurrentUserId } from "../../../../Models/client";
 
 const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn, setDeleteVolunteersBadge }) => {
     const [userID, setUserID] = useState("");
     const [isVolunteer, setIsVolunteer] = useState(0);
-    const [likeCount, setLikeCount] = useState(0);
 
     useEffect(() => {
         if (isSignedIn) {
@@ -33,14 +30,6 @@ const VolunteerButton = ({ event_id, setUpdateVolunteerBadge, isSignedIn, setDel
             checkIfVolunteered();
         }
     }, [event_id, isSignedIn]);
-
-    useEffect(() => {
-        async function fetchLikeCount() {
-            const count = await countLikes(event_id);
-            setLikeCount(count);
-        }
-        fetchLikeCount();
-    }, [event_id]);
 
     const handleInsertVolunteer = async () => {
         console.log(userID.id);

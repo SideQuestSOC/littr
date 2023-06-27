@@ -35,7 +35,7 @@ const LikeButton = ({ event_id, isSignedIn, setUpdateLikeBadge, updateLikeBadge 
       setUpdateLikeBadge(false);
     }
     fetchLikesCount();
-  }, [event_id, updateLikeBadge]);
+  }, [event_id, setUpdateLikeBadge, updateLikeBadge]);
 
   const handleUpdateLikes = async () => {
     if (!isLiked && isSignedIn) {

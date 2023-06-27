@@ -1,7 +1,7 @@
 // import css
 import "./Card.css";
 // import React dependencies
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import Material UI dependencies
 import { Typography, Checkbox, FormControlLabel, FormGroup, List, Collapse, Button, Stack } from "@mui/material";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
