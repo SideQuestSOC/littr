@@ -25,17 +25,25 @@
     background-color: var(--neonGreen);
     color: var(--navyBlue);
     box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.55);
-    border-radius: 11px;
+    border-radius: 5px;
     font-size: 10px;
     font-weight: bold;
-    width: 108px;
-    height: 27px;
+    /* width: 108px;
+    height: 27px; */
     text-align: center;
     margin: auto;
     margin-top: 10px;
 }
 
 #volunteer-button:hover {
-    background-color: var(--neonGreen);
-    transform: scale(1.1);
+    background-color: var(--navyBlue);
+    color: #D9D9D9;
+    /* transform: scale(1.1); */
+    transition: 0.2s;
   }
+
+#volunteer-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.55);
+    transition: 0.1s;
+}
