@@ -8,6 +8,7 @@ test('validates postcode input in CreateCardForm', () => {
   // Mock the props required for testing
   const isSignedIn = true;
 
+  // Arrange
   // Render the CreateCardForm component within a Router
   render(
     <Router>
@@ -15,6 +16,7 @@ test('validates postcode input in CreateCardForm', () => {
     </Router>
   );
 
+  // Act
   // Get the location postcode input field
   const postcodeInput = screen.getByPlaceholderText('Postcode');
 
