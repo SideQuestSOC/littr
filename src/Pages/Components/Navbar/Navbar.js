@@ -1,15 +1,26 @@
 // import css
-import './Navbar.css';
+import "./Navbar.css";
 // import react dependencies
-import { useState } from 'react';
+import { useState } from "react";
 import { Link } from "react-router-dom";
 // import Supabase functions
-import { signOut } from '../../../Models/client';
+import { signOut } from "../../../Models/client";
 // import MaterialUI dependencies
 import { styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import { MenuItem, Button, Menu, InputBase, Typography, IconButton, Toolbar, Box, AppBar, Avatar } from "@mui/material";
+import {
+  MenuItem,
+  Button,
+  Menu,
+  InputBase,
+  Typography,
+  IconButton,
+  Toolbar,
+  Box,
+  AppBar,
+  Avatar,
+} from "@mui/material";
 
 // Initialise MUI search component
 const Search = styled("div")(({ theme }) => ({}));
@@ -26,20 +37,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar({ isSignedIn, setIsSignedIn, setFilter, filter }) {
+export default function SearchAppBar({
+  isSignedIn,
+  setIsSignedIn,
+  setFilter,
+  filter,
+  setThemeChange,
+}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isSearchOpen, setSearchOpen] = useState(false);
-  // const [filter, setFilter] = useState("");
 
+  // const [filter, setFilter] = useState("");
 
   // Vary components displayed in dropdown menu depending on whether user is signed in using css
   let idSignedinVariable;
   let idSignedoutVariable;
-  if(isSignedIn === true) {
+  if (isSignedIn === true) {
     idSignedinVariable = "dropdown-menu-signedin";
-    idSignedoutVariable = "dropdown-menu-signedin-toggle"
-  }
-  else {
+    idSignedoutVariable = "dropdown-menu-signedin-toggle";
+  } else {
     idSignedinVariable = "dropdown-menu-signedin-toggle";
   }
 
@@ -55,51 +71,53 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn, setFilter, fil
     setSearchOpen(!isSearchOpen);
   };
 
-  const handleSearchChange = (event) => { 
+  const handleSearchChange = (event) => {
     setFilter(event.target.value);
   };
 
   return (
-    <Box id="navbar-outer-container" >
-      <AppBar id="navbar-header-container" position="static">
+    <Box id="navbar-outer-container">
+      <AppBar position="static">
         <Toolbar>
-
           {/* SEARCH */}
           <Search id="navbar-search-container">
-            <IconButton 
+            <IconButton
               id="search-icon"
               size="large"
               edge="start"
               color="inherit"
               aria-label="open drawer"
-              onClick={handleSearchClick}>
-                <SearchIcon />
+              onClick={handleSearchClick}
+            >
+              <SearchIcon />
             </IconButton>
             {isSearchOpen && (
               <StyledInputBase
                 onChange={handleSearchChange}
                 id="search-input"
                 placeholder="Search by location…"
-                inputProps={{ "aria-label": "search" }}/>
+                inputProps={{ "aria-label": "search" }}
+              />
             )}
           </Search>
+          {/* <button onClick={handleDarkMode}>
+            {darkMode ? "Dark Mode" : "Light Mode "}
+          </button> */}
           {/* LOGO/TITLE */}
-          <Typography id="navbar-title"
-            variant="h5"
-            noWrap
-            component="div">
-              <Link to="/">LITTR</Link>
+          <Typography id="navbar-title" variant="h5" noWrap component="div">
+            <Link to="/">LITTR</Link>
           </Typography>
 
           {/* BURGER MENU */}
-          <IconButton 
+          <IconButton
             id="burger-icon"
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            onClick={handleClick}>
-              <MenuIcon />
+            onClick={handleClick}
+          >
+            <MenuIcon />
           </IconButton>
 
           {/* DROPDOWN MENU */}
@@ -110,28 +128,54 @@ export default function SearchAppBar({ isSignedIn, setIsSignedIn, setFilter, fil
             onClose={handleClose}
             paperprops={{
               elevation: 1,
-            }}>
+            }}
+          >
             {/* DROPDOWN MENU */}
             <MenuItem onClick={handleClose}>
               <div id={idSignedinVariable}>
-                <Link id="dropdown-user-settings-link" to="">User Settings</Link>
+                <Link id="dropdown-user-settings-link" to="">
+                  User Settings
+                </Link>
                 <Avatar id="dropdown-menu-avatar">??</Avatar>
-                <Link id="dropdown-createapost-link" to="/src/pages/createpostform">Create a Post</Link>
-                <Link id="dropdown-createagroup-link" to="">Create a Group</Link>
-                <Button id="dropdown-menu-signout-button" variant="contained" onClick={() => { signOut(); setIsSignedIn(false); }}>
+                <Link
+                  id="dropdown-createapost-link"
+                  to="/src/pages/createpostform"
+                >
+                  Create a Post
+                </Link>
+                {/* <Link id="dropdown-theme-change" onClick={setThemeChange}>
+                  Change Theme
+                </Link> */}
+                <Link
+                  style={{ textDecoration: "none" }}
+                  id="dropdown-theme-change"
+                  onClick={setThemeChange}
+                >
+                  Change Theme
+                </Link>
+
+                <Link id="dropdown-createagroup-link" to="">
+                  Create a Group
+                </Link>
+
+                <Button
+                  id="dropdown-menu-signout-button"
+                  variant="contained"
+                  onClick={() => {
+                    signOut();
+                    setIsSignedIn(false);
+                  }}
+                >
                   Sign Out
                 </Button>
               </div>
               <div id={idSignedoutVariable}>
                 <Button variant="contained" id="dropdown-menu-susi-button">
-                  <Link to="/src/pages/signsignup">
-                    Sign Up / Sign In
-                  </Link>
+                  <Link to="/src/pages/signsignup">Sign Up / Sign In</Link>
                 </Button>
-              </div>   
+              </div>
             </MenuItem>
           </Menu>
-          
         </Toolbar>
       </AppBar>
     </Box>

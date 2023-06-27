@@ -9,7 +9,16 @@ import CreatePostButton from "./components/CreatePostButton/CreatePostButton";
 import { fetchData, formatDate, formatTime } from "../../Models/queries";
 import Footer from "../Components/Footer/footer";
 
-function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilter, filter }) {
+function CardDisplay({
+  isSignedIn,
+  setIsSignedIn,
+  cardData,
+  setCardData,
+  setFilter,
+  filter,
+  setThemeChange,
+  themeChange,
+}) {
   const [updateVolunteerBadge, setUpdateVolunteerBadge] = useState(false);
 
   // Wrapped in useEffect to trigger rerender of cards when a new card is added by a user
@@ -23,44 +32,57 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateVolunteerBadge, filter]);
 
-  return <div className="outermost-container">
-    <div data-testid="card-display">
-      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} setFilter={setFilter} filter={filter} />
-      <div id="card-display-outer-container">
-        {cardData.map((card, index) => (
-          <Card
-            key={index}
-            event_id={card.event_id}
-            count={card.count}
-            header={card.title}
-            location={card.location}
-            postcode={card.postcode}
-            creatorname={card.users.first_name + " " + card.users.last_name}
-            date={formatDate(card.date_timestamp)}
-            time={formatTime(card.date_timestamp)}
-            introduction={card.post_introduction}
-            hasUnevenGround={card.has_uneven_ground}
-            hasBathrooms={card.has_bathrooms}
-            hasParking={card.has_parking}
-            isRemoteLocation={card.is_remote_location}
-            disposalMethod={card.disposal_method}
-            equipment={card.equipment}
-            end_time={formatTime(card.end_time)}
-            setUpdateVolunteerBadge={setUpdateVolunteerBadge}
-            isSignedIn={isSignedIn}
-          />
-        ))}
-      </div>
-      {/* Only render this button when user is signed in */}
-      {isSignedIn && (
-        <div className="create-post-container">
-          <CreatePostButton />
+  return (
+    <div
+      className={
+        themeChange ? "outermost-container-dark-mode" : "outermost-container"
+      }
+    >
+      <div data-testid="card-display">
+        <SearchAppBar
+          isSignedIn={isSignedIn}
+          setIsSignedIn={setIsSignedIn}
+          setFilter={setFilter}
+          filter={filter}
+          setThemeChange={setThemeChange}
+        />
+
+        <div id="card-display-outer-container">
+          {cardData.map((card, index) => (
+            <Card
+              key={index}
+              event_id={card.event_id}
+              count={card.count}
+              header={card.title}
+              location={card.location}
+              postcode={card.postcode}
+              creatorname={card.users.first_name + " " + card.users.last_name}
+              date={formatDate(card.date_timestamp)}
+              time={formatTime(card.date_timestamp)}
+              introduction={card.post_introduction}
+              hasUnevenGround={card.has_uneven_ground}
+              hasBathrooms={card.has_bathrooms}
+              hasParking={card.has_parking}
+              isRemoteLocation={card.is_remote_location}
+              disposalMethod={card.disposal_method}
+              equipment={card.equipment}
+              end_time={formatTime(card.end_time)}
+              setUpdateVolunteerBadge={setUpdateVolunteerBadge}
+              isSignedIn={isSignedIn}
+            />
+          ))}
         </div>
-      )}  
+        {/* Only render this button when user is signed in */}
+        {isSignedIn && (
+          <div className="create-post-container">
+            <CreatePostButton themeChange={themeChange} />
+          </div>
+        )}
+      </div>
+
+      <Footer />
     </div>
-    
-  <Footer />
-  </div> 
+  );
 }
 
 export default CardDisplay;

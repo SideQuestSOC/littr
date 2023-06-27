@@ -5,6 +5,7 @@
   --strawberry: #fc786e;
   --navyBlue: #2f3e46;
   --neonGreenTransparent60: #6aaf8860;
+  --background-image: url("../../Assets/signinupbackground.webp");
 }
 
 #landing-page-outer-container {
@@ -27,7 +28,7 @@
   text-decoration: none;
   outline: none;
   color: inherit;
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.55);
 }
 
@@ -78,8 +79,7 @@
 }
 
 /* Desktop media queries*/
-@media only screen and (min-width: 992px)
-{
+@media only screen and (min-width: 992px) {
   #landing-page-outer-container {
     background-image: url("../../Assets/LandingPageBackgroundDesktop.webp");
   }

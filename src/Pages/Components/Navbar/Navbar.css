@@ -1,18 +1,22 @@
 :root {
-  --neonBlue: #55DADB;
-  --sunburstYellow: #F5BB02;
-  --neonGreen: #6AAF88;
-  --strawberry: #FC786E;
-  --navyBlue: #2F3E46;
-  --transparentWhite90: #ffffff90
+  --neonBlue: #55dadb;
+  --sunburstYellow: #f5bb02;
+  --neonGreen: #6aaf88;
+  --strawberry: #fc786e;
+  --navyBlue: #2f3e46;
+  --transparentWhite90: #ffffff90;
 }
 
 #navbar-outer-container {
   flex-grow: 1px;
 }
 
-#navbar-header-container {
+#navbar-header-container-light {
   background-color: var(--neonGreen);
+}
+
+#navbar-header-container-dark {
+  background-color: var(--navyBlue);
 }
 
 #navbar-search-container {
@@ -31,7 +35,9 @@
   border-radius: 10px;
   padding: 5px;
 }
-#search-icon:hover, #search-icon:active, #search-icon:focus {
+#search-icon:hover,
+#search-icon:active,
+#search-icon:focus {
   background-color: var(--sunburstYellow);
 }
 
@@ -42,7 +48,7 @@
 
 /* override MUI default to center text */
 .css-yz9k0d-MuiInputBase-input {
-  padding: 5px 5px 5px 10px!important;
+  padding: 5px 5px 5px 10px !important;
 }
 
 #navbar-title {
@@ -58,17 +64,21 @@
   border-radius: 10px;
   padding: 5px;
 }
-#burger-icon:hover, #burger-icon:active, #burger-icon:focus {
+#burger-icon:hover,
+#burger-icon:active,
+#burger-icon:focus {
   background-color: var(--sunburstYellow);
 }
 
-#navbar-title a, #navbar-title a:visited, #dropdown-menu-susi-button a {
+#navbar-title a,
+#navbar-title a:visited,
+#dropdown-menu-susi-button a {
   color: white;
   text-decoration: none;
 }
 
 .littr {
-    font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 #simple-menu ul {
@@ -84,10 +94,11 @@
 
 /* override MUI default boxshadow */
 .MuiPopover-paper {
-  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.55)!important;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.55) !important;
 }
 
-#dropdown-menu-susi-button, #dropdown-menu-signout-button {
+#dropdown-menu-susi-button,
+#dropdown-menu-signout-button {
   background-color: var(--navyBlue);
 }
 
@@ -101,11 +112,24 @@
   justify-items: center;
   align-items: center;
 }
-#dropdown-user-settings-link { grid-area: 1 / 1 / 2 / 2; }
-#dropdown-menu-avatar { grid-area: 1 / 2 / 2 / 3; }
-#dropdown-createapost-link { grid-area: 2 / 1 / 3 / 3; }
-#dropdown-createagroup-link { grid-area: 3 / 1 / 4 / 3; }
-#dropdown-menu-signout-button { grid-area: 4 / 1 / 5 / 3; }
+#dropdown-user-settings-link {
+  grid-area: 1 / 1 / 2 / 2;
+}
+#dropdown-menu-avatar {
+  grid-area: 1 / 2 / 2 / 3;
+}
+/* #dropdown-theme-change {
+  
+} */
+#dropdown-createapost-link {
+  grid-area: 2 / 1 / 3 / 3;
+}
+#dropdown-createagroup-link {
+  grid-area: 3 / 1 / 4 / 3;
+}
+#dropdown-menu-signout-button {
+  grid-area: 4 / 1 / 5 / 3;
+}
 
 #dropdown-menu-signedin-toggle {
   display: none;

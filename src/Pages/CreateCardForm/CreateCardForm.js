@@ -44,7 +44,9 @@ export default function CreateCardForm({
   isSignedIn,
   setIsSignedIn,
   setCardData,
-  setFilter
+  setFilter,
+  setThemeChange,
+  themeChange,
 }) {
   // Initialize the navigate object using the useNavigate 'hook'
   const navigate = useNavigate();
@@ -167,190 +169,208 @@ export default function CreateCardForm({
     }
   };
 
-  return <>
-    <div id="create-card-outer-container" data-testid="create-card-form">
-      <SearchAppBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} setFilter={setFilter} />
-      <ThemeProvider theme={jankTheme}>
-        <Typography variant="h4" id="create-card-title">
-          Create a Post
-        </Typography>
-        <Stack spacing={2} direction="column" id="create-card-form-container">
-          <TextField
-            id="post-title"
-            placeholder="Title of Post"
-            multiline
-            rows={1}
-            InputLabelProps={{ shrink: true }}
-            variant="standard"
-            value={postTitle}
-            onChange={handlePostTitleChange}
-            inputProps={{ maxLength: 50 }}
-            label={
-              postTitle.length < 5 && postTitle.length >= 1
-                ? "Title must be at least 5 characters"
-                : `${postTitle.length}/50`
-            }
-            error={postTitle.length < 5 && postTitle.length >= 1}
-          />
-          <TextField
-            id="location-address"
-            placeholder="Address"
-            multiline
-            rows={1}
-            variant="standard"
-            value={locationAddress}
-            onChange={handleLocationAddressChange}
-            inputProps={{ maxLength: 255 }}
-          />
-          <TextField
-            id="location-postcode"
-            placeholder="Postcode"
-            multiline
-            rows={1}
-            variant="standard"
-            value={locationPostcode}
-            onChange={handleLocationPostcodeChange}
-            error={!isPostcodeValid}
-            helperText={!isPostcodeValid ? "Invalid postcode" : ""}
-          />
-          <TextField
-            id="additional-information"
-            className="multi-line-input"
-            placeholder="Describe Your Event"
-            multiline
-            rows={3}
-            variant="standard"
-            value={additionalInformation}
-            onChange={handleAdditionalInformationChange}
-            inputProps={{ maxLength: 500 }}
-            label={
-              additionalInformation.length < 20 &&
-              additionalInformation.length >= 1
-                ? "This section must be at least 20 characters"
-                : `${additionalInformation.length}/500`
-            }
-            error={
-              additionalInformation.length < 20 &&
-              additionalInformation.length >= 1
-            }
-            InputLabelProps={{ shrink: true }}
-          />
-          <Divider />
-          <Typography id="date-time-title" variant="h6">
-            Date and Time
+  return (
+    <>
+      <div
+        id={
+          themeChange
+            ? "create-card-outer-container"
+            : "create-card-outer-container-light-mode"
+        }
+        data-testid="create-card-form"
+      >
+        <SearchAppBar
+          isSignedIn={isSignedIn}
+          setIsSignedIn={setIsSignedIn}
+          setFilter={setFilter}
+          setThemeChange={setThemeChange}
+        />
+        <ThemeProvider theme={jankTheme}>
+          <Typography variant="h4" id="create-card-title">
+            Create a Post
           </Typography>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              id="date-picker"
-              label="Date of Your Event"
-              value={date}
-              onChange={handleDateChange}
-              TextField={(params) => <TextField {...params} />}
-              className="custom-date-picker"
-              format="DD/MM/YYYY"
+          <Stack spacing={2} direction="column" id="create-card-form-container">
+            <TextField
+              id="post-title"
+              placeholder="Title of Post"
+              multiline
+              rows={1}
+              InputLabelProps={{ shrink: true }}
+              variant="standard"
+              value={postTitle}
+              onChange={handlePostTitleChange}
+              inputProps={{ maxLength: 50 }}
+              label={
+                postTitle.length < 5 && postTitle.length >= 1
+                  ? "Title must be at least 5 characters"
+                  : `${postTitle.length}/50`
+              }
+              error={postTitle.length < 5 && postTitle.length >= 1}
             />
-            <SingleInputTimeRangeField
-              id="time-range"
-              slotProps={{
-                textField: ({ position }) => ({
-                  label: "Start Time - End Time (24-Hour-Format)",
-                  className: "time-range-field",
-                  value: Time,
-                  onChange: handleTimeChange,
-                  ampm: false,
-                }),
-              }}
+            <TextField
+              id="location-address"
+              placeholder="Address"
+              multiline
+              rows={1}
+              variant="standard"
+              value={locationAddress}
+              onChange={handleLocationAddressChange}
+              inputProps={{ maxLength: 255 }}
             />
-          </LocalizationProvider>
+            <TextField
+              id="location-postcode"
+              placeholder="Postcode"
+              multiline
+              rows={1}
+              variant="standard"
+              value={locationPostcode}
+              onChange={handleLocationPostcodeChange}
+              error={!isPostcodeValid}
+              helperText={!isPostcodeValid ? "Invalid postcode" : ""}
+            />
+            <TextField
+              id="additional-information"
+              className="multi-line-input"
+              placeholder="Describe Your Event"
+              multiline
+              rows={3}
+              variant="standard"
+              value={additionalInformation}
+              onChange={handleAdditionalInformationChange}
+              inputProps={{ maxLength: 500 }}
+              label={
+                additionalInformation.length < 20 &&
+                additionalInformation.length >= 1
+                  ? "This section must be at least 20 characters"
+                  : `${additionalInformation.length}/500`
+              }
+              error={
+                additionalInformation.length < 20 &&
+                additionalInformation.length >= 1
+              }
+              InputLabelProps={{ shrink: true }}
+            />
+            <Divider />
+            <Typography id="date-time-title" variant="h6">
+              Date and Time
+            </Typography>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                id="date-picker"
+                label="Date of Your Event"
+                value={date}
+                onChange={handleDateChange}
+                TextField={(params) => <TextField {...params} />}
+                className="custom-date-picker"
+                format="DD/MM/YYYY"
+              />
+              <SingleInputTimeRangeField
+                id="time-range"
+                slotProps={{
+                  textField: ({ position }) => ({
+                    label: "Start Time - End Time (24-Hour-Format)",
+                    className: "time-range-field",
+                    value: Time,
+                    onChange: handleTimeChange,
+                    ampm: false,
+                  }),
+                }}
+              />
+            </LocalizationProvider>
 
-          <Divider />
-          <Typography id="accessibility-title" variant="h6">
-            Accessibility information
-          </Typography>
-          {/* Accessibility checkboxes */}
-          <FormGroup id="accessibility-checkboxes">
-            <FormControlLabel
-              control={<Checkbox id="checkbox-bathrooms" />}
-              className="checkbox"
-              label="Nearby Bathrooms"
+            <Divider />
+            <Typography id="accessibility-title" variant="h6">
+              Accessibility information
+            </Typography>
+            {/* Accessibility checkboxes */}
+            <FormGroup id="accessibility-checkboxes">
+              <FormControlLabel
+                control={<Checkbox id="checkbox-bathrooms" />}
+                className="checkbox"
+                label="Nearby Bathrooms"
+              />
+              <FormControlLabel
+                control={<Checkbox id="checkbox-uneven-ground" />}
+                className="checkbox"
+                label="Uneven ground"
+              />
+              <FormControlLabel
+                control={<Checkbox id="checkbox-remote-location" />}
+                className="checkbox"
+                label="Remote location"
+              />
+              <FormControlLabel
+                control={<Checkbox id="checkbox-parking" />}
+                className="checkbox"
+                label="Nearby Parking"
+              />
+            </FormGroup>
+            <Divider />
+            {/* Disposal method */}
+            <FormControl fullWidth>
+              <InputLabel id="disposal-method">Disposal Method</InputLabel>
+              <Select
+                labelId="disposal-method"
+                id="disposal-select"
+                value={disposalMethod}
+                label="method"
+                onChange={handleDisposalMethodChange}
+              >
+                <MenuItem value={"Pickers must dispose of their own litter"}>
+                  Pickers must dispose of their own litter
+                </MenuItem>
+                <MenuItem value={"Council pick-up"}>Council pick-up</MenuItem>
+                <MenuItem value={"On-site Refuse disposal"}>
+                  On-site Refuse disposal
+                </MenuItem>
+                <MenuItem value={"Literal dumpster fire"}>
+                  Literal dumpster fire
+                </MenuItem>
+              </Select>
+            </FormControl>
+            <Typography id="recommended-equipment-title" variant="h6">
+              Recommended equipment
+            </Typography>
+            <TextField
+              className="multi-line-input"
+              id="recommended-equipment"
+              multiline
+              placeholder="e.g. gloves, pickers, water"
+              rows={3}
+              variant="standard"
+              InputLabelProps={{ shrink: true }}
+              value={recommendedEquipment}
+              inputProps={{ maxLength: 255 }}
+              label={`${recommendedEquipment.length}/255`}
+              onChange={handleRecommendedEquipmentChange}
             />
-            <FormControlLabel
-              control={<Checkbox id="checkbox-uneven-ground" />}
-              className="checkbox"
-              label="Uneven ground"
-            />
-            <FormControlLabel
-              control={<Checkbox id="checkbox-remote-location" />}
-              className="checkbox"
-              label="Remote location"
-            />
-            <FormControlLabel
-              control={<Checkbox id="checkbox-parking" />}
-              className="checkbox"
-              label="Nearby Parking"
-            />
-          </FormGroup>
-          <Divider />
-          {/* Disposal method */}
-          <FormControl fullWidth>
-            <InputLabel id="disposal-method">Disposal Method</InputLabel>
-            <Select
-              labelId="disposal-method"
-              id="disposal-select"
-              value={disposalMethod}
-              label="method"
-              onChange={handleDisposalMethodChange}
-            >
-              <MenuItem value={"Pickers must dispose of their own litter"}>
-                Pickers must dispose of their own litter
-              </MenuItem>
-              <MenuItem value={"Council pick-up"}>Council pick-up</MenuItem>
-              <MenuItem value={"On-site Refuse disposal"}>
-                On-site Refuse disposal
-              </MenuItem>
-              <MenuItem value={"Literal dumpster fire"}>
-                Literal dumpster fire
-              </MenuItem>
-            </Select>
-          </FormControl>
-          <Typography id="recommended-equipment-title" variant="h6">
-            Recommended equipment
-          </Typography>
-          <TextField
-            className="multi-line-input"
-            id="recommended-equipment"
-            multiline
-            placeholder="e.g. gloves, pickers, water"
-            rows={3}
-            variant="standard"
-            InputLabelProps={{ shrink: true }}
-            value={recommendedEquipment}
-            inputProps={{ maxLength: 255 }}
-            label={`${recommendedEquipment.length}/255`}
-            onChange={handleRecommendedEquipmentChange}
-          />
 
-          {/* Buttons */}
-          <Stack spacing={2} direction="row" id="create-card-button-container">
-            <Button id="discard-button" variant="contained">
-              <Link id="link" variant="contained" to="/src/pages/carddisplay">
-                Discard
-              </Link>
-            </Button>
-            <Button
-              id="create-button"
-              variant="contained"
-              onClick={() => {
-                handleCreatePost();
-              }}
+            {/* Buttons */}
+            <Stack
+              spacing={2}
+              direction="row"
+              id="create-card-button-container"
             >
-              Create Post
-            </Button>
+              <Button id="discard-button" variant="contained">
+                <Link id="link" variant="contained" to="/src/pages/carddisplay">
+                  Discard
+                </Link>
+              </Button>
+              <Button
+                id="create-button"
+                variant="contained"
+                onClick={() => {
+                  handleCreatePost();
+                }}
+              >
+                Create Post
+              </Button>
+            </Stack>
           </Stack>
-        </Stack>
-      </ThemeProvider>
-    </div>
+        </ThemeProvider>
+      </div>
+      );
+      <Footer />
+    </>
   );
-    <Footer />
-  </>
 }

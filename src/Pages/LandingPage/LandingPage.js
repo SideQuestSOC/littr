@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import "./LandingPage.css";
 // import MaterialUI dependencies
 import { Button } from "@mui/material";
-import DarkLightMode from "../Components/DarkAndLightMode/DarkAndLightMode";
+// import DarkLightMode from "../Components/DarkAndLightMode/DarkAndLightMode";
 
 function LandingPage({ isSignedIn }) {
   // Initialize the navigate object using the useNavigate 'hook'
@@ -17,13 +17,15 @@ function LandingPage({ isSignedIn }) {
     }
   }, [isSignedIn, navigate]);
 
+  const cardDisplayURL = "/src/pages/carddisplay";
+
   return (
     <div id="landing-page-outer-container">
       <h1 id="title">LITTR</h1>
       <div id="landing-page-button-container">
-        <DarkLightMode />
+        {/* <DarkLightMode /> */}
         <Button variant="contained">
-          <Link to="/src/pages/carddisplay">Find a clean up</Link>
+          <Link to={cardDisplayURL}>Find a clean up</Link>
         </Button>
         <Button variant="contained">
           {/* If signed in go to Create Card Form, if not go to signinup page */}
