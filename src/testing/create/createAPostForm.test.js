@@ -145,13 +145,19 @@ test('user can add a date and time', async () => {
   );
 // Find the datePicker component
 const datePicker = screen.getByLabelText('Date of Your Event');
+const timeInput = screen.getByTestId('time-input');
 
 // Simulate selecting a date
 fireEvent.change(datePicker, { target: { value: '15/07/2023' } });
 
-// Verify that the selected date is displayed
+// Assert that the selected date is displayed
 expect(datePicker).toHaveValue('15/07/2023');
 
+// Simulate selecting a time
+timeInput.value = '10:00 - 12:00';
+fireEvent.change(timeInput);
 
+// Assert that the selected time is displayed
+expect(timeInput).toHaveValue('10:00 - 12:00');
 });
 });
