@@ -252,9 +252,10 @@ export default function CreateCardForm({
               TextField={(params) => <TextField {...params} />}
               className="custom-date-picker"
               format="DD/MM/YYYY"
-            />
+              />
             <SingleInputTimeRangeField
               id="time-range"
+              data-testid="time-input"
               slotProps={{
                 textField: ({ position }) => ({
                   label: "Start Time - End Time (24-Hour-Format)",
