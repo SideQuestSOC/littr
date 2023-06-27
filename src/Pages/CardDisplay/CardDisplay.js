@@ -47,7 +47,7 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
       // reset useStates to allow them to trigger again
       setUpdateVolunteerBadge(false);
       setDeleteVolunteersBadge(false);
-      setUpdateLikeBadge(false);
+      setUpdateLikeBadge(false);  
     }
     setFetchedData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,12 +95,15 @@ function CardDisplay({ isSignedIn, setIsSignedIn, cardData, setCardData, setFilt
            </div>
         ))}
       </div>
+
       {/* Check if user scrolls to the end of the page AFTER the cardData has been mapped */}
       {cardData.length > 0 && (
         <Waypoint
-          onEnter={() => setEndOfPage(true)}
+          onEnter={() => {setEndOfPage(true); console.log("End of Page")}}
         />
       )}
+      {/* Spacer needed to let infinite scroll work */}
+      <div id="spacer"></div>
       {/* Only render this button when user is signed in */}
       {isSignedIn && (
         <div className="create-post-container">
