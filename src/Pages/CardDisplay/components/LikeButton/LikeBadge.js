@@ -3,6 +3,7 @@ import { Badge } from "@mui/material";
 function LikeBadge({ count }) {
     return (
         <Badge 
+            data-testid="like-badge"
             badgeContent={count} 
             anchorOrigin={{
             vertical: 'bottom',
