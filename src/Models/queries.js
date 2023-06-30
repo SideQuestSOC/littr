@@ -170,7 +170,8 @@ export async function selectEvent(filter, endOfPage, setEndOfPage) {
     .select(`event_id, location, postcode, has_parking, likes, is_remote_location, post_introduction, has_uneven_ground, has_bathrooms, disposal_method, equipment, title, date_timestamp, end_time, users ( first_name, last_name )`)
     .gt('end_time', 'now()') // Show only events in the future (end_time is greater than current time)
     .limit(6) // limit to 6 rows at a time
-    .range(0, endRange); // the range of rows to display - modified when user hits end of page for infinite scroll functionality
+    .range(0, endRange) // the range of rows to display - modified when user hits end of page for infinite scroll functionality
+    .order('end_time', { ascending: true });
 
   // search functionality
   if (filter !== "" && filter !== undefined && (isValid(filter) === true)) {
