@@ -10,7 +10,7 @@ import Card from '../../Pages/CardDisplay/components/Card/Card.js';
 // Creator ✅
 // Details ✅
 // Additional information ✅
-// Disposal method 
+// Disposal method ✅
 // Recommended equipment ✅
 
 describe('elements of card display', () => {
