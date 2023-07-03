@@ -334,7 +334,7 @@ export default function CreateCardForm({
 
           {/* Buttons */}
           <Stack spacing={2} direction="row" id="create-card-button-container">
-            <Button id="discard-button" variant="contained">
+            <Button id="discard-button" variant="contained" data-testid="create-post-button-submit">
               <Link id="link" variant="contained" to="/src/pages/carddisplay">
                 Discard
               </Link>
